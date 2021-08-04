@@ -1,0 +1,41 @@
+.login_forgot{
+    text-align: right;
+    margin-top: -15px;
+}
+.login_register{
+    text-align: left;
+    margin-top: -20px;
+}
+.login_title{
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+.login_button{
+    margin-top: -20px;
+}
+body{
+    background-image: url("../../../images/1087589.jpg");
+    background-repeat: no-repeat;
+}
+.login_img{
+    text-align: center;
+    margin-top: -20px
+}
+@media all and (min-width: 480px) {
+    .Login {
+        max-width: 500px;
+        width: 100%;
+        padding: 30px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.125);
+        margin: 50px auto;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        border: 2px solid;
+    }
+
+    .Login form {
+        margin: 50px auto;
+        max-width: 320px;
+    }
+}
