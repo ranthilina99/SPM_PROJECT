@@ -84,7 +84,7 @@ class EmpViewStore extends Component {
                     </div>
                     <table className="table table-hover">
                         <thead>
-                        <tr class="table-dark">
+                        <tr class="thead-dark">
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>

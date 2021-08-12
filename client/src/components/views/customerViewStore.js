@@ -64,6 +64,36 @@ class CustomerViewStore extends Component {
     render() {
         return (
 
+            // <div className="aa">
+            //     <br/>
+            //
+            //     <div className="container">
+            //
+            //
+            //         <div className="row">
+            //             {this.state.store.length > 0 && this.state.store.map((item, index) => (
+            //             <div className="col-md-3">
+            //
+            //                 <div className="card">
+            //                     <img className="card-img-top" src={item.itemImage}  alt="Card image cap"/>
+            //                     <div className="card-body">
+            //                         <h5 className="card-title">{item.itemName}</h5>
+            //                         <h6 className="card-text">{item.itemDescription}</h6>
+            //                         <hr/>
+            //                         <h6 className="card-text">LKR : {item.itemAmount}</h6>
+            //                         <hr/>
+            //                         <a href="#" className="btn btn-primary">Add</a>
+            //                     </div>
+            //                 </div>
+            //
+            //             </div>
+            //             ))}
+            //         </div>
+            //
+            //
+            //     </div>
+            // </div>
+
             <div className="aa">
                 <br/>
 
@@ -90,21 +120,21 @@ class CustomerViewStore extends Component {
 
                     <div className="row">
                         {this.state.store.length > 0 && this.state.store.map((item, index) => (
-                        <div className="col-md-3">
+                            <div className="col-md-3">
 
-                            <div className="card">
-                                <img className="card-img-top" src={item.itemImage}  alt="Card image cap"/>
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.itemName}</h5>
-                                    <h6 className="card-text">{item.itemDescription}</h6>
-                                    <hr/>
-                                    <h6 className="card-text">LKR : {item.itemAmount}</h6>
-                                    <hr/>
-                                    <a href="#" className="btn btn-primary">Add</a>
+                                <div className="card">
+                                    <img className="card-img-top" src={item.itemImage}  alt="Card image cap"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{item.itemName}</h5>
+                                        <h6 className="card-text">{item.itemDescription}</h6>
+                                        <hr/>
+                                        <h6 className="card-text">LKR : {item.itemAmount}</h6>
+                                        <hr/>
+                                        <a href="#" className="btn btn-primary">Add</a>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div>
                         ))}
                     </div>
 
