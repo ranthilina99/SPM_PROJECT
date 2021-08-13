@@ -29,8 +29,8 @@ const getAllWorkoutUsers = async (req, res) => {
 const getSpecificWorkoutUser = async (req, res) => {
     if (req.params && req.params.id) {
         await WorkoutUser.findById(req.params.id)
-            .populate('workout_users', 'username email')
-            .populate('workout_workouts', 'workout_name workout_theme workout_creator.username workout_users workout_description')
+            //.populate('workout_users', 'username email')
+            .populate('workout_workouts', 'workout_name workout_theme workout_description workout_schedule workout_diet workout_img')
             .then(response => {
                 res.status(200).send({ data: response });
             })
@@ -68,10 +68,27 @@ const deleteWorkoutUsers = async (req, res) => {
     }
 }
 
+const getSpecificUsersWorkout = async (req, res) => {
+    await WorkoutUser.find({workoutUser_id:req.params.id})
+        //.populate('workout_workouts', 'workout_name workout_theme workout_description workout_schedule workout_diet workout_img')
+        .then(data => {
+            let exist = false;
+            if(data[0]._id !== undefined){
+                exist = true;
+            }
+
+            res.status(200).send({ data: data, exists:exist});
+        })
+        .catch(error => {
+            res.status(500).send({ error: error.message });
+        });
+}
+
 module.exports = {
     addWorkoutUsers,
     getAllWorkoutUsers,
     getSpecificWorkoutUser,
     editWorkoutUsers,
-    deleteWorkoutUsers
+    deleteWorkoutUsers,
+    getSpecificUsersWorkout
 };
