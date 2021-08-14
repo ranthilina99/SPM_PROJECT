@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import axios from 'axios';
+import '../../../CSS/commonViewsCSS.css';
 
 
 
@@ -50,13 +51,19 @@ class AdminCategoryView extends Component {
                     {this.state.stockCategory.length > 0 && this.state.stockCategory.map((item, index) => (
                         <div key={index} className="card mb-3">
                             <div className="p-3">
-                                <img src={item.category_image} alt="Category" />
+                                <img src={item.category_image} alt="Category" class ="center" />
                                 <h4>Topic: {item.category_topic}</h4>
+                                <h4>date: {item.category_date}</h4>
                                 <h6>Description: {item.category_description}</h6>
-                                {/*<h6>Place: {item.category_image}</h6>*/}
                                 <button className="btn btn-success" onClick={e => this.navigateAddStockCategoryItemsPage(e, item._id)}>Add an Item</button>
+                                &nbsp; &nbsp;
                                 <button className="btn btn-danger" onClick={e => this.navigateViewItemsPage(e,item._id)}>Go To Items</button>
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                &nbsp;
                                 <button className="btn btn-success" onClick={e => this.navigateEditStockCategoryPage(e, item._id)}>Edit</button>
+                                &nbsp; &nbsp;
                                 <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}>Delete</button>
                             </div>
                         </div>

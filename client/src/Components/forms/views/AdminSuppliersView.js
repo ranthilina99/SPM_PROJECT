@@ -40,6 +40,7 @@ class AdminSuppliersView extends Component {
                                 <h6>Supplier Address: {item.supplier_address}</h6>
                                 <h6>Supplier Contact Number: {item.supplier_phone}</h6>
                                 <button className="btn btn-success" onClick={e => this.navigateEditStockCategoryPage(e, item._id)}>Edit</button>
+                                &nbsp;&nbsp;
                                 <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}>Delete</button>
                             </div>
                         </div>

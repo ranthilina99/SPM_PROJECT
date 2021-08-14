@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import  CreateStockCategoryAdmin from "../../Components/forms/StockCategory/CreateCategoryAdmin";
 import  EditStockCategoryAdmin from "../../Components/forms/StockCategory/EditCategoryAdmin";
-import AdminCategoryView from "../forms/views/AdminSuppliersView";
+import AdminCategoryView from "../forms/views/AdminCategoryView";
+
 import CreateStockItemAdmin from "../../Components/forms/StockItems/CreateStockItemAdmin";
 import EditStockItemAdmin from "../../Components/forms/StockItems/EditStockItemsAdmin";
 import ViewStockItemAdmin from "../forms/views/AdminStockItemsView";
@@ -24,7 +25,7 @@ function Routes() {
                         <Route path='/adminEditStockCategory/:id' component={EditStockCategoryAdmin}/>
                         <Route path='/adminViewStockCategory' component={AdminCategoryView}/>
 
-                        <Route path='/adminCreateStockItems/:id' component={CreateStockItemAdmin}/>
+                        <Route path='/adminCreateStockItems' component={CreateStockItemAdmin}/>
                         <Route path='/adminEditStockItem/:id' component={EditStockItemAdmin}/>
                         <Route path='/adminViewStockItem/:id' component={ViewStockItemAdmin}/>
 

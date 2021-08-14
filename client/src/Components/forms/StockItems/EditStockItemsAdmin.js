@@ -1,15 +1,15 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 
 const initialState = {
-    item_name:'',
-    item_quantity:0,
-    item_price:0,
-    item_date:'',
-    item_suppliers:'',
+    item_name: '',
+    item_quantity: 0,
+    item_price: 0,
+    item_date: '',
+    item_suppliers: '',
     item_image: '',
-    item_description:''
+    item_description: ''
 }
 
 class EditStockItemsAdmin extends Component {
@@ -25,13 +25,13 @@ class EditStockItemsAdmin extends Component {
             .then(response => {
                 this.setState(
                     {
-                        item_name:response.data.data.item_name,
-                        item_quantity:response.data.data.item_quantity,
-                        item_price:response.data.data.item_price,
-                        item_date:response.data.data.item_date,
-                        item_suppliers:response.data.data.item_suppliers,
-                        item_image:response.data.data.item_image,
-                        item_description:response.data.data.item_description,
+                        item_name: response.data.data.item_name,
+                        item_quantity: response.data.data.item_quantity,
+                        item_price: response.data.data.item_price,
+                        item_date: response.data.data.item_date,
+                        item_suppliers: response.data.data.item_suppliers,
+                        item_image: response.data.data.item_image,
+                        item_description: response.data.data.item_description,
                     });
             })
             .catch(error => {
@@ -40,22 +40,22 @@ class EditStockItemsAdmin extends Component {
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({[e.target.name]: e.target.value})
     }
 
     onSubmit(e) {
         e.preventDefault();
         let item = {
-            item_name:this.state.item_name,
-            item_quantity:this.state.item_quantity,
-            item_price:this.state.item_price,
-            item_date:this.state.item_date,
-            item_suppliers:this.state.item_suppliers,
-            item_image:this.state.item_image,
-            item_description:this.state.item_description,
+            item_name: this.state.item_name,
+            item_quantity: this.state.item_quantity,
+            item_price: this.state.item_price,
+            item_date: this.state.item_date,
+            item_suppliers: this.state.item_suppliers,
+            item_image: this.state.item_image,
+            item_description: this.state.item_description,
         };
         console.log('DATA TO SEND', item);
-        axios.put(`http://localhost:5000/StockCategoryItem/${this.props.match.params.id}`,item)
+        axios.put(`http://localhost:5000/StockCategoryItem/${this.props.match.params.id}`, item)
             .then(response => {
                 alert('Item Data successfully updated')
             })
@@ -130,10 +130,11 @@ class EditStockItemsAdmin extends Component {
                         <div className="mb-3">
                             <label htmlFor="ItemImage" className="form-label">Item Image</label>
                             <div>
-                                <img src={this.state.item_image} alt="Item" />
+                                <img src={this.state.item_image} alt="Item"/>
                             </div>
                             <div>
-                                <FileBase type="file" multiple={false} onDone={({base64}) => this.state.item_image = base64} />
+                                <FileBase type="file" multiple={false}
+                                          onDone={({base64}) => this.state.item_image = base64}/>
                             </div>
 
                         </div>

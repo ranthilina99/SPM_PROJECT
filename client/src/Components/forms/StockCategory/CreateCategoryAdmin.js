@@ -1,14 +1,15 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 
 const initialState = {
-    category_topic:'',
-    category_description:'',
-    category_image:''
-
+    category_topic: '',
+    category_description: '',
+    category_date: '',
+    category_image: ''
 
 }
+
 class CreateCategoryAdmin extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,7 @@ class CreateCategoryAdmin extends Component {
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({[e.target.name]: e.target.value})
     }
 
     onSubmit(e) {
@@ -26,10 +27,10 @@ class CreateCategoryAdmin extends Component {
         let category = {
             category_topic: this.state.category_topic,
             category_description: this.state.category_description,
+            category_date: this.state.category_date,
             category_image: this.state.category_image,
 
         };
-
 
         console.log('DATA TO SEND', category);
         axios.post('http://localhost:5000/StockCategory', category)
@@ -71,11 +72,24 @@ class CreateCategoryAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
+                        <div className="mb-3">
+                            <label htmlFor="Date" className="form-label">Date </label>
+                            <input
+                                type="date"
+                                className="form-control"
+                                id="Date"
+                                placeholder="Date Of Category"
+                                name="category_date"
+                                value={this.state.category_date}
+                                onChange={this.onChange}
+                            />
+                        </div>
 
                         <div className="mb-3">
                             <label htmlFor="categoryImage" className="form-label">Category Image</label>
                             <div>
-                                <FileBase type="file" multiple={false} onDone={({base64}) => this.state.category_image = base64} />
+                                <FileBase type="file" multiple={false}
+                                          onDone={({base64}) => this.state.category_image = base64}/>
                             </div>
                         </div>
 

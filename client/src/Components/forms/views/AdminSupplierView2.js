@@ -153,6 +153,7 @@ class AdminSupplierView2 extends Component {
                             <td>{suppliers.supplier_phone}</td>
                             <td>
                                 <button className="btn btn-success" onClick={e => this.navigateEditSupplierPage(e, suppliers._id)}>Edit</button>
+                                &nbsp;
                                 <button className="btn btn-danger" onClick={e => this.deleteSuppliers(suppliers._id)}>Delete</button>
                             </td>
                         </tr>

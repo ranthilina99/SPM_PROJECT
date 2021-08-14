@@ -20,7 +20,7 @@ const addStockItem = async (req, res) => {
 const getAllStockItem = async (req, res) => {
 
     await StockItemController.find()
-        //  .populate('stock_items', 'item_name item_quentity item_suppliers item_image item_price item_description  item_date')
+          // .populate('stock_items', 'item_name item_quentity item_suppliers item_image item_price item_description  item_date')
         .then(data => {
             res.status(200).send({ data: data });
             console.log(data);
@@ -34,7 +34,6 @@ const getAllStockItem = async (req, res) => {
 const getSpecificStockCategoryItem = async (req, res) => {
     if (req.params && req.params.id) {
         await StockItemController.findById(req.params.id)
-            //.populate('stock_items', 'item_name item_quentity item_price item_date item_suppliers item_image  item_description')
             .then(response => {
                 res.status(200).send({ data: response });
             })
@@ -43,7 +42,7 @@ const getSpecificStockCategoryItem = async (req, res) => {
             });
     }
 }
-//
+
 const editSpecificStockItem = async (req, res) => {
     if (req.params && req.params.id) {
 
@@ -123,10 +122,8 @@ const deleteSpecificStockCategoryItem = async (req, res) => {
 module.exports = {
     addStockItem,
     getAllStockItem,
-    // getAllStockCategory,
     getSpecificStockCategoryItem,
     editSpecificStockItem,
     deleteSpecificStockCategoryItem,
-    // addItemsToCategories,
     // MailSend
 };

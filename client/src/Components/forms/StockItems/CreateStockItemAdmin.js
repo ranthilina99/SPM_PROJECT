@@ -1,19 +1,20 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 
 const initialState = {
 
-    item_name:'',
-    item_quantity:0,
-    item_price:0,
-    item_date:'',
-    item_suppliers:'',
+    item_name: '',
+    item_quantity: 0,
+    item_price: 0,
+    item_date: '',
+    item_suppliers: '',
     item_image: '',
-    item_description:''
+    item_description: ''
 
 
 }
+
 class CreateStockItemAdmin extends Component {
     constructor(props) {
         super(props);
@@ -23,23 +24,23 @@ class CreateStockItemAdmin extends Component {
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({[e.target.name]: e.target.value})
     }
 
     onSubmit(e) {
         e.preventDefault();
         let item = {
-            item_name:this.state.item_name,
-            item_quantity:this.state.item_quantity,
-            item_price:this.state.item_price,
-            item_date:this.state.item_date,
-            item_suppliers:this.state.item_suppliers,
-            item_image:this.state.item_image ,
-            item_description:this.state.item_description,
+            item_name: this.state.item_name,
+            item_quantity: this.state.item_quantity,
+            item_price: this.state.item_price,
+            item_date: this.state.item_date,
+            item_suppliers: this.state.item_suppliers,
+            item_image: this.state.item_image,
+            item_description: this.state.item_description,
         };
 
-        console.log('DATA TO SEND',item);
-        axios.post('http://localhost:5000/StockCategoryItem',item)
+        console.log('DATA TO SEND', item);
+        axios.post('http://localhost:5000/StockCategoryItem', item)
             .then(response => {
                 alert('Data successfully inserted')
 
@@ -129,7 +130,8 @@ class CreateStockItemAdmin extends Component {
                         <div className="mb-3">
                             <label htmlFor="ItemImage" className="form-label">Item Image</label>
                             <div>
-                                <FileBase type="file" multiple={false} onDone={({base64}) => this.state.item_image = base64} />
+                                <FileBase type="file" multiple={false}
+                                          onDone={({base64}) => this.state.item_image = base64}/>
                             </div>
                         </div>
 

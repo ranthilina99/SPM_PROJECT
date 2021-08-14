@@ -20,7 +20,8 @@ const addStockCategory = async (req, res) => {
 const getAllStockCategory = async (req, res) => {
 
     await StockCategoryController.find()
-        .then(data => {
+        // .populate('stock_items', 'item_name item_quentity item_suppliers item_image item_price item_description  item_date')
+           .then(data => {
             res.status(200).send({ data: data });
             console.log(data);
         })
@@ -33,6 +34,7 @@ const getAllStockCategory = async (req, res) => {
 const getSpecificStockCategory = async (req, res) => {
     if (req.params && req.params.id) {
         await StockCategoryController.findById(req.params.id)
+             .populate('stock_items', 'item_name item_quentity item_suppliers item_image item_price item_description  item_date')
             .then(response => {
                 res.status(200).send({ data: response });
             })
