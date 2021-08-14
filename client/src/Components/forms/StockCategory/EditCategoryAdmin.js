@@ -1,0 +1,113 @@
+import React, { Component} from 'react';
+import axios from 'axios';
+import FileBase from 'react-file-base64';
+
+
+
+const initialState = {
+    category_topic:'',
+    category_description:'',
+    category_image:''
+}
+
+class EditCategoryAdmin extends Component {
+    constructor(props) {
+        super(props);
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.state = initialState;
+    }
+
+    componentDidMount() {
+
+        axios.get(`http://localhost:5000/StockCategory/${this.props.match.params.id}`)
+            .then(response => {
+                this.setState(
+                    {
+
+                        category_topic: response.data.data.category_topic,
+                        category_description: response.data.data.category_description,
+                        category_image: response.data.data.category_image,
+
+                    });
+            })
+            .catch(error => {
+                alert(error.message)
+            })
+
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+        let category = {
+            category_topic: this.state.category_topic,
+            category_description: this.state.category_description,
+            category_image: this.state.category_image,
+
+        };
+        console.log('DATA TO SEND', category)
+        axios.put(`http://localhost:4002/StockCategory/${this.props.match.params.id}`,category)
+            .then(response => {
+                alert('Category Data successfully updated')
+            })
+            .catch(error => {
+                console.log(error.message);
+                alert(error.message)
+            })
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="container">
+                    <h1>Edit Stock Category</h1>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="categoryTopic" className="form-label">Stock Category</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="categoryTopic"
+                                name="category_topic"
+                                value={this.state.category_topic}
+                                onChange={this.onChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="categoryDescription" className="form-label">Category description </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="categoryDescription"
+                                name="category_description"
+                                value={this.state.category_description}
+                                onChange={this.onChange}
+                            />
+                        </div>
+
+                        <div className="mb-3">
+
+                            <label htmlFor="categoryImage" className="form-label">Category Image</label>
+                            <div>
+                                <img src={this.state.category_image} alt="Category" />
+                            </div>
+                            <div>
+                                <FileBase type="file" multiple={false} onDone={({base64}) => this.state.category_image = base64  } />
+                            </div>
+
+                        </div>
+
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <br/>
+            </div>
+        )
+    }
+}
+
+export default EditCategoryAdmin;

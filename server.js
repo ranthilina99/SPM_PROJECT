@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const StockCategoryAPI = require('./src/api/StockCategoryApi');
+const StockCategoryItemAPI=require('./src/api/StockItemsApi');
+const SuppliersAPI=require('./src/api/SuppliersApi');
 
 const app = express();
 app.use(cors());
@@ -22,6 +25,13 @@ mongoose.connect(MONGODB_URI, {
     console.log('Database Error: ', error.message);
   }
 });
+
+app.use('/StockCategory', StockCategoryAPI());
+app.use('/StockCategoryItem', StockCategoryItemAPI());
+app.use('/Suppliers', SuppliersAPI());
+app.use(bodyParser.json({ limit:"30mb",extended: true}));
+app.use(bodyParser.urlencoded({ limit:"30mb",extended: true}));
+
 
 mongoose.connection.once('open', () => {
   console.log('Database Connected');
