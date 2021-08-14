@@ -1,5 +1,9 @@
 import React, { Component} from 'react';
 import axios from 'axios';
+import jsPDF from "jspdf";
+import 'jspdf-autotable'
+import { ExportToCsv } from 'export-to-csv';
+import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
 
 
 class showWorkoutAdmin extends Component {
@@ -24,6 +28,56 @@ class showWorkoutAdmin extends Component {
         window.location = `/workoutAdminShowOne/${id}`
     }
 
+    ExportCSV = () => {
+        const options = {
+            fieldSeparator: ',',
+            quoteStrings: '"',
+            decimalSeparator: '.',
+            showLabels: true,
+            showTitle: true,
+            filename :'Equinox All Workout Report',
+            title: 'All Workout Details CSV ',
+            useTextFile: false,
+            useBom: true,
+            useKeysAsHeaders: false,
+            headers: [ 'Name','Theme','Description', 'Price', 'Level'],
+        };
+        const data = this.state.Workouts.map(elt=> [elt.workout_name, elt.workout_theme,elt.workout_description, elt.workout_price,elt.workout_level]);
+
+        const csvExporter = new ExportToCsv(options);
+
+        csvExporter.generateCsv(data);
+    }
+
+
+    ExportPDF = () => {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+        doc.setFontSize(25);
+
+
+        const title = "EQUINOX Gym All Workout Details Report";
+        const headers = [['Name','Theme','Description', 'Price', 'Level']];
+
+        const data = this.state.Workouts.map(elt=> [elt.workout_name, elt.workout_theme,elt.workout_description, elt.workout_price,elt.workout_level]);
+
+        let content = {
+            startY: 50,
+            head: headers,
+            body: data
+        };
+
+        doc.setFont('helvetica')
+        doc.setTextColor(0, 0, 255)
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("equinox all workout report.pdf")
+    }
+
 
     render() {
         return (
@@ -43,6 +97,26 @@ class showWorkoutAdmin extends Component {
 
                         </div>
                     ))}
+                </div>
+
+
+                <div align="right">
+                        <UncontrolledDropdown>
+                            <DropdownToggle style={{color: 'white', backgroundColor: "blue", marginRight: '15px'}}
+                                            className="btn btn-lg">
+                                <i className="fa fa-download"></i>&nbsp;Generate Report&nbsp;
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem onClick={this.ExportPDF}>
+                                    PDF File
+                                </DropdownItem>
+                                <DropdownItem divider/>
+                                <DropdownItem onClick={this.ExportCSV}>
+                                    CSV File
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+
                 </div>
             </div>
         )
