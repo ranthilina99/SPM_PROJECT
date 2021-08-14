@@ -5,7 +5,9 @@ import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import {DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown} from 'reactstrap';
 import jsPDF from "jspdf";
 import 'jspdf-autotable'
+import './admin.css'
 import { ExportToCsv } from 'export-to-csv';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const usersAlert = () => {
     swat.fire({
@@ -66,16 +68,19 @@ class GetAllUsers extends Component {
     }
 
     onDelete(id){
-        axios.delete(SERVER_ADDRESS+`/users/delete/${id}`,{
-            headers: {
-                Authorization: this.state.token
-            }
-        }).then(res=>{
-            usersAlert()
-        }).catch(err=>{
-            usersFail()
-            console.log(err.message);
-        })
+        if(window.confirm("Are you sure you want to delete this account?")) {
+            axios.delete(SERVER_ADDRESS + `/users/delete/${id}`, {
+                headers: {
+                    Authorization: this.state.token
+                }
+            }).then(res => {
+                usersAlert()
+                window.location.replace('/getAll')
+            }).catch(err => {
+                usersFail()
+                console.log(err.message);
+            })
+        }
     }
     ExportCSV = () => {
         const options = {
@@ -134,13 +139,12 @@ class GetAllUsers extends Component {
             <div className="container">
                 <br/>
                 <div className="navbar bg-light justify-content-between">
-                    <h1>All User Details</h1>
+                    <h3 className="admin_title">All User Details</h3>
                     <form className="form-inline">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <input className="form-control mr-sm-2 mr-md-2 " type="search" placeholder="Search" aria-label="Search"/>
                     </form>
                 </div>
-                <table className="table table-striped table-hover table-dark  table-bordered ">
+                <table className="table table-striped table-hover table-dark  table-bordered  col-md-12 ">
                     <thead className="thead-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -159,7 +163,7 @@ class GetAllUsers extends Component {
                     <tbody>
                     {this.state.users.length > 0 && this.state.users.map((users, index)=>(
                         <tr key={index}>
-                            <th scope="row" className="bg-info" style={{color:"white"}}>{index + 1}</th>
+                            <th scope="row" >{index + 1}</th>
                             {/*<td>{users._id}</td>*/}
                             <td>{users.position}</td>
                             <td>{users.firstName}</td>
@@ -170,8 +174,12 @@ class GetAllUsers extends Component {
                             <td>{users.address}</td>
                             <td>{users.Gender}</td>
                             <td>
+                                <a className = "btn btn-warning" href={`/edit_user/${users._id}`}>
+                                    <i className="fa fa-edit"></i>&nbsp;
+                                </a>
+                                &nbsp;
                                 <button className = "btn btn-danger" href="#" onClick={()=>this.onDelete(users._id)}>
-                                    <i className="fa fa-trash"></i>&nbsp;Delete&nbsp;
+                                    <i className="fa fa-trash"></i>&nbsp;
                                 </button>
                             </td>
                         </tr>
@@ -181,7 +189,7 @@ class GetAllUsers extends Component {
                 <div align="right" >
                     <UncontrolledDropdown >
                         <DropdownToggle  style={{color: 'white', backgroundColor:"blue",marginRight:'15px'}} className = "btn btn-lg">
-                            <i class="fa fa-download"></i>&nbsp;Print&nbsp;
+                            <i class="fa fa-download"></i>&nbsp;Generate Report&nbsp;
                         </DropdownToggle>
                         <DropdownMenu right>
                             <DropdownItem onClick={this.ExportPDF}>

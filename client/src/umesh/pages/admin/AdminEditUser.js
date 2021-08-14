@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {SERVER_ADDRESS} from "../../Constants/Constants";
+import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import swat from "sweetalert2";
-import AdminNavBar from "../../Components/navbar/adminNavBar";
-import {isEmpty, isEmail, isLengthMobile} from "../../utils/validation";
+
 
 const UpdateAlert = () => {
     swat.fire({
@@ -29,16 +28,15 @@ class AdminEditUser extends Component {
         this.state = {
             firstname:'',
             lastname:'',
-            email:'',
-            mobileNo:'',
-            address: '',
-            DOB:'',
-            Gender:'',
-            position:'',
+            password:'',
+            position1:'',
+            passwordFields: '',
+            updateFields: true,
+            token:''
         }
         this.onChange=this.onChange.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
-
+        this.onChangePassword=this.onChangePassword.bind(this);
     }
     componentDidMount() {
         axios.get(SERVER_ADDRESS+`/users/${this.props.match.params.id}`)
@@ -46,11 +44,7 @@ class AdminEditUser extends Component {
                 this.setState({
                     firstname:response.data.data.firstName,
                     lastname:response.data.data.lastName,
-                    mobileNo:response.data.data.mobileNo,
-                    address:response.data.data.address,
-                    DOB:response.data.data.DOB,
-                    Gender:response.data.data.Gender,
-                    position:response.data.data.user_position,
+                    position1:response.data.data.position,
                 });
             }).catch(err=>{
             alert(err.message)
@@ -61,116 +55,181 @@ class AdminEditUser extends Component {
     onChange(e){
         this.setState({ [e.target.name]: e.target.value })
     }
-
+    onChangePassword(e){
+        e.preventDefault();
+        let user = {
+            new_password: this.state.password
+        }
+        console.log('DATA TO SEND', user);
+        axios.post(SERVER_ADDRESS+`/users/admin_update_password/${this.props.match.params.id}`, user)
+            .then(response => {
+                UpdateAlert();
+            })
+            .catch(error => {
+                console.log(error.message);
+                let message= "Password Error"
+                UpdateFail(message);
+            }).finally(x=>{
+            this.setState({
+                password:''
+            })
+        })
+    }
     onSubmit(e) {
         e.preventDefault();
         let user = {
-            user_name: this.state.fullName,
-            user_telephone: this.state.telephone,
-            user_address: this.state.address,
-            user_position: this.state.position,
+            position: this.state.position1
         }
-        if (isEmpty(this.state.fullName) || isEmpty(this.state.telephone) || isEmpty(this.state.address) || isEmpty(this.state.position)) {
-            let message = "Please Fill the Field"
-            UpdateFail(message);
-        } else if (!isLengthMobile(this.state.telephone)) {
-            let message = "Mobile, Please enter 10 Numbers"
-            UpdateFail(message);
-        } else {
-            console.log('DATA TO SEND', user);
-            axios.put(SERVER_ADDRESS + `/users/admin_update/${this.props.match.params.id}`, user)
-                .then(response => {
-                    UpdateAlert();
-                    this.props.history.push('/get_all_users');
-
-                })
-                .catch(error => {
-                    console.log(error.message);
-                    let message = "Update Failed"
-                    UpdateFail(message);
-                })
-        }
+        console.log('DATA TO SEND', user);
+        axios.put(SERVER_ADDRESS + `/users/admin_update/${this.props.match.params.id}`, user)
+            .then(response => {
+                UpdateAlert();
+                this.props.history.push('/getAll');
+            })
+            .catch(error => {
+                console.log(error.message);
+                let message = "Update Failed"
+                UpdateFail(message);
+            })
     }
     render() {
         return (
             <div>
-                <AdminNavBar/>
-                <section className="space-section">
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-md-7 col-lg-5">
-                                <div className="con-control p-4 p-md-5">
-                                    <h1 className="text-center mb-4">Update User</h1>
-                                    <form  onSubmit={this.onSubmit}>
-                                        <label htmlFor="exampleFormControlInput1" className="form-label">Full Name</label>
-                                        <div className="form-group">
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                name="fullName"
-                                                id="fullName"
-                                                placeholder="Full Name"
-                                                value={this.state.fullName}
-                                                onChange={this.onChange}
-                                                required
-                                            />
-                                        </div>
-                                        <label htmlFor="exampleFormControlInput1" className="form-label">Telephone Number</label>
-                                        <div className="form-group d-flex">
-                                            <input
-                                                type="tel"
-                                                className="form-control"
-                                                name="telephone"
-                                                id="telephone"
-                                                placeholder="Tel No"
-                                                value={this.state.telephone}
-                                                onChange={this.onChange}
-                                                required
-                                            />
-                                        </div>
-                                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Address</label>
-                                        <div className="form-group d-flex">
-                                              <textarea
-                                                  className="form-control"
-                                                  name="address"
-                                                  id="address"
-                                                  rows="3"
-                                                  value={this.state.address}
-                                                  onChange={this.onChange}
-                                                  required
-                                              >
-                                         </textarea>
-                                        </div>
-                                        <label htmlFor="exampleFormControlInput1" className="form-label">Position</label>
-                                        <div className="form-group d-flex">
-                                            <select className="form-select form-select-sm"
-                                                    aria-label=".form-select-sm example"
-                                                    name="position"
-                                                    id="exampleInputPosition"
-                                                    value={this.state.position}
-                                                    onChange={this.onChange}
-                                                    required>
-                                                <option value="" selected disabled>Select&nbsp;Position</option>
-                                                <option value='user'>User</option>
-                                                <option value='editor'>Editor</option>
-                                                <option value='reviewer'>Reviewer</option>
-                                                <option value='admin'>Administrator</option>
-                                            </select>
-                                        </div>
-                                        <div className="form-group">
-                                            <button type="submit"
-                                                    className="form-control btn btn-primary">Update Details
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                {this.state.updateFields &&
+                <form className="register_wrapper" onSubmit={this.onSubmit}>
+                    <h3> Update Position</h3>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="firstname"
+                            id="firstname"
+                            disabled
+                            placeholder="First Name"
+                            value={this.state.firstname}
+                            onChange={this.onChange}
+                            required
+                        />
                     </div>
-                </section>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+                    <div className="form-group d-flex">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="lastname"
+                            id="lastname"
+                            disabled
+                            placeholder="Last Name"
+                            value={this.state.lastname}
+                            onChange={this.onChange}
+                            required
+                        />
+                    </div>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Position</label>
+                    <div className="form-group d-flex">
+                        <select className="form-select form-select-sm"
+                                aria-label=".form-select-sm example"
+                                name="position1"
+                                id="exampleInputPosition"
+                                value={this.state.position1}
+                                onChange={this.onChange}
+                                required>
+                            <option value="" selected disabled>Select&nbsp;Position</option>
+                            <option value='user'>User</option>
+                            <option value='employee'>Employee</option>
+                            <option value='admin'>Administrator</option>
+                        </select>
+                    </div>
+                    &nbsp;
+                    <div className="form-group">
+                        <button type="submit"
+                                className="form-control btn btn-primary">Update Details
+                        </button>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit"
+                                onClick={this.passwordFieldShow} className="form-control btn btn-success">Change Password
+                        </button>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" onClick={this.back} className="form-control btn btn-warning">Cancel</button>
+                    </div>
+                </form>
+
+                }
+                {this.state.passwordFields &&
+                <form className="register_wrapper" onSubmit={this.onChangePassword}>
+                    <h3> Update Password</h3>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="firstname"
+                            id="firstname"
+                            disabled
+                            placeholder="First Name"
+                            value={this.state.firstname}
+                            onChange={this.onChange}
+                            required
+                        />
+                    </div>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Last Name</label>
+                    <div className="form-group d-flex">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="lastname"
+                            id="lastname"
+                            disabled
+                            placeholder="Last Name"
+                            value={this.state.lastname}
+                            onChange={this.onChange}
+                            required
+                        />
+                    </div>
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label">Password</label>
+                    <div className="form-group d-flex">
+                        <input
+                            className="form-control"
+                            type="password"
+                            name="password"
+                            id="password"
+                            value={this.state.password}
+                            onChange={this.onChange}>
+                        </input>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit"
+                                className="form-control btn btn-primary">Update Details
+                        </button>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit"
+                                onClick={this.passwordFieldHide} className="form-control btn btn-warning">Cancel
+                        </button>
+                    </div>
+                </form>
+                }
             </div>
 
         );
+    }
+    passwordFieldShow = () =>{
+        this.setState({
+            passwordFields: true,
+            updateFields:false
+        })
+    }
+    passwordFieldHide = () =>{
+        this.setState({
+            passwordFields: false,
+            updateFields:true
+        })
+    }
+    back = () =>{
+        window.location.replace('/getAll')
     }
 }
 export default AdminEditUser;

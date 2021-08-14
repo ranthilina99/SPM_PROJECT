@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import {setToken} from "../setToken";
 import Swal from "sweetalert2";
+import {useState} from "react";
 
 export const LoadUserOther = async () => {
     if (localStorage.getItem('token')) {
@@ -41,6 +42,7 @@ const InvalidLogin = () => {
         title: 'Oops...',
         text: 'Please check your email and password!'
     })
+    window.location.replace('/login')
 }
 const LoggedAlert = () => {
     Swal.fire({
@@ -75,7 +77,7 @@ export const LoginUser = (email, password) => async dispatch => {
         }
         dispatch({
             type: LOGIN_FAIL,
-            payload: e
+            payload: e,
         })
     }
 }

@@ -5,7 +5,7 @@ import swat from "sweetalert2";
 import './login.css'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import logo from '../../../images/photo.png'
+import logo from '../../../images/new.png'
 
 const Login = ({loginUser, isLoggedIn}) => {
 
@@ -20,7 +20,12 @@ const Login = ({loginUser, isLoggedIn}) => {
     });
 
     let {email, password} = data;
-
+    const clear =()=>{
+        useState({
+            email: '',
+            password:''
+        })
+    }
     if (isLoggedIn) {
         LoadUserOther().then((res) => {
             setUser({
@@ -55,7 +60,7 @@ const Login = ({loginUser, isLoggedIn}) => {
             swat.fire({
                 icon: 'error',
                 title: 'OOps! something missing',
-                text: res
+                text: res,
             })
         }
         const onChange = e => {
@@ -78,47 +83,47 @@ const Login = ({loginUser, isLoggedIn}) => {
                     <img
                         alt=""
                         src={logo}
-                        width="200"
-                        height="50"
+                        width="250"
+                        height="100"
                         align="center"
                     />
                 </div>
                 &nbsp;
                 <h3 className="login_title">LOGIN</h3>
-
-                <Form.Group size="lg" controlId="email">
+                <Form.Group size="lg" controlId="email" >
                     <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="email@example.com"
-                        onChange={(e) => onChange(e)}
-                        value={email}
-                        name="email"
-                        required/>
+                        <Form.Control
+                            type="email"
+                            className="form-control"
+                            id="email"
+                            placeholder="email@example.com"
+                            onChange={(e) => onChange(e)}
+                            value={email}
+                            name="email"
+                            required/>
                 </Form.Group>
                 <Form.Group size="lg" controlId="password">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        className="form-control"
-                        id="user_password"
-                        placeholder="Password"
-                        onChange={(e) => onChange(e)}
-                        value={password}
-                        name="password"
-                        required/>
+                        <Form.Control
+                            type="password"
+                            className="form-control"
+                            id="user_password"
+                            placeholder="Password"
+                            onChange={(e) => onChange(e)}
+                            value={password}
+                            name="password"
+                            required/>
                 </Form.Group>
                 <Form.Group className="login_forgot">
                     <Form.Label>Forgot<a  href="/forgot"> Password?</a></Form.Label>
                 </Form.Group>
-                <Button block size="lg" type="submit" className="login_button">
+                &nbsp;
+                <button type="submit" className="login_button btn btn-primary">
                     LOGIN
-                </Button>
+                </button>
                 &nbsp;
                 <Form.Group className="login_register">
-                    <Form.Label>Create an Account?<a className="register"  href="/register">Register</a></Form.Label>
+                    <Form.Label>Don't have an account?<a className="register"  href="/register">Register</a></Form.Label>
                 </Form.Group>
             </Form>
         </div>

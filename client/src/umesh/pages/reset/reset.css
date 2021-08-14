@@ -56,3 +56,7 @@
 .strength-Strong::-webkit-progress-value {
     background-color: #70C1B3;
 }
+.reset_img{
+    text-align: center;
+    margin-top: -10px;
+}

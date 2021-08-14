@@ -4,6 +4,7 @@ import axios from "axios";
 import {Form, FormGroup, Label, Input } from 'reactstrap';
 import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import zxcvbn from "zxcvbn";
+import './admin.css';
 
 const RegisteredAlert = () => {
     swat.fire({
@@ -100,8 +101,8 @@ class AdminRegister extends Component {
         return (
             <div>
                 <br/><br/>
-                <Form className="register_wrapper" onSubmit={this.onSubmit}>
-                    <h1>Register</h1>
+                <Form className="admin_wrapper" onSubmit={this.onSubmit}>
+                    <h1 className="admin_title">User Register</h1>
                     <div className="row">
                         <FormGroup className="col-6">
                             <Label for="exampleEmail">First Name</Label>
@@ -124,6 +125,7 @@ class AdminRegister extends Component {
                                 onChange={this.onChange}/>
                         </FormGroup>
                     </div>
+                    &nbsp;
                     <FormGroup>
                         <Label for="exampleEmail">Email</Label>
                         <Input
@@ -134,6 +136,7 @@ class AdminRegister extends Component {
                             value={this.state.email}
                             onChange={this.onChange}/>
                     </FormGroup>
+                    &nbsp;
                     <FormGroup>
                         <Label for="exampleEmail">Mobile No</Label>
                         <Input
@@ -144,6 +147,7 @@ class AdminRegister extends Component {
                             value={this.state.mobileNo}
                             onChange={this.onChange}/>
                     </FormGroup>
+                    &nbsp;
                     <div className="row">
                         <FormGroup className="col-4">
                             <Label for="exampleEmail">Date Of Birth</Label>
@@ -183,6 +187,7 @@ class AdminRegister extends Component {
                             </Input>
                         </FormGroup>
                     </div>
+                    &nbsp;
                     <FormGroup>
                         <Label for="exampleText">Address</Label>
                         <Input
@@ -192,6 +197,7 @@ class AdminRegister extends Component {
                             value={this.state.address}
                             onChange={this.onChange}/>
                     </FormGroup>
+                    &nbsp;
                     <FormGroup>
                         <Label for="examplePassword">Password</Label>
                         <Input
@@ -219,6 +225,7 @@ class AdminRegister extends Component {
                             </Label>
                         </FormGroup>
                     </FormGroup>
+                    &nbsp;
                     <button className="register_button btn btn-primary">Submit</button>
                     <FormGroup>
                         <Label>Login Page <a className="register"  href="/login">Login</a></Label>

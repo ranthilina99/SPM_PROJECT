@@ -7,6 +7,7 @@ import {Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import './reset.css'
 import zxcvbn from "zxcvbn";
+import logo from "../../../images/new.png";
 const RegisteredAlert = () => {
     swat.fire({
         position: 'center',
@@ -95,30 +96,46 @@ class Reset extends Component {
         return (
             <div>
                 <Form className="reset_wrapper" onSubmit={this.onSubmit}>
+                        <div className="reset_img">
+                            <img
+                                alt=""
+                                src={logo}
+                                width="250"
+                                height="100"
+                                align="center"
+                            />
+                        </div>
+                        &nbsp;
                     <h3 className="reset_title">RESET PASSWORD</h3>
                     <FormGroup>
                         <Label for="exampleEmail">Password</Label>
-                        <Input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            id="password"
-                            placeholder="password"
-                            value={this.state.password}
-                            onChange={this.onChange}
-                            required/>
+                        <div className="Login_input-container">
+                            <i className="fas fa-key Login_icon"></i>
+                            <Input
+                                type="password"
+                                className="form-control"
+                                name="password"
+                                id="password"
+                                placeholder="password"
+                                value={this.state.password}
+                                onChange={this.onChange}
+                                required/>
+                        </div>
                     </FormGroup>
                     <FormGroup className="password-strength-meter">
                         <Label for="exampleEmail">Confirm Password</Label>
-                        <Input
-                            type="password"
-                            className="form-control"
-                            name="confirm_password"
-                            id="confirm_password"
-                            placeholder="Confirm Password"
-                            value={this.state.confirm_password}
-                            onChange={this.onChange}
-                            required/>
+                        <div className="Login_input-container">
+                            <i className="fas fa-key Login_icon"></i>
+                            <Input
+                                type="password"
+                                className="form-control"
+                                name="confirm_password"
+                                id="confirm_password"
+                                placeholder="Confirm Password"
+                                value={this.state.confirm_password}
+                                onChange={this.onChange}
+                                required/>
+                        </div>
                         &nbsp;
                         {this.state.password ?
                             <>

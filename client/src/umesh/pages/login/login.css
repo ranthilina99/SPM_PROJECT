@@ -12,6 +12,12 @@
     color: black;
 }
 .login_button{
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
     margin-top: -20px;
 }
 body{
@@ -20,7 +26,21 @@ body{
 }
 .login_img{
     text-align: center;
-    margin-top: -20px
+    margin-top: -20px;
+}
+.Login_input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.Login_icon {
+    padding: 10px;
+    background: white;
+    color: black;
+    min-width: 50px;
+    text-align: center;
 }
 @media all and (min-width: 480px) {
     .Login {

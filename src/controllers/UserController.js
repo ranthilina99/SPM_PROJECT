@@ -243,6 +243,22 @@ const resetPassword = async (req, res)=>{
         return res.status(500).json({alert:"server Error"});
     }
 }
+const AdminResetPasswordUser = async (req, res)=>{
+    try{
+            const {new_password}= req.body;
+
+            const passwordHash = await bcrypt.hash(new_password,12)
+
+            await UserSchema.updateOne({_id:req.params.id},{
+                $set: { password:passwordHash}
+            });
+            console.log(passwordHash)
+        res.status(200).json({alert:"Password Successful"})
+    }catch (e){
+        console.log(e.message);
+        return res.status(500).json({alert:"server Error"});
+    }
+}
 const getUserAll =async (req,res)=>{
     try{
         const users = await UserSchema.find().select('-password')
@@ -256,7 +272,7 @@ const getUserAll =async (req,res)=>{
 const updateProfile = async (req,res)=>{
     try{
         const {firstName,lastName,address,mobileNo,DOB,Gender,imageUrl} =req.body
-        await UserSchema.findOneAndUpdate({_id:req.user.id},{
+        await UserSchema.findOneAndUpdate({_id:req.params.id},{
             firstName,lastName,address,mobileNo,DOB,Gender,imageUrl
         })
         res.status(200).json({alert:"update Successful"})
@@ -311,5 +327,6 @@ module.exports = {
     deleteUsers,
     getUserAll,
     updateAdminUser,
-    getSpecificAdminUsers
+    getSpecificAdminUsers,
+    AdminResetPasswordUser
 }

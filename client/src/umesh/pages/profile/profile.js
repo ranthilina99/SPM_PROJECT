@@ -5,6 +5,7 @@ import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import {Input, Label, Form, FormGroup,Button} from "reactstrap";
 import FileBase from 'react-file-base64'
 import './profile.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SuccessAlert = (res) => {
     swat.fire({
@@ -123,7 +124,6 @@ class Profile extends Component {
                 dob: '',
                 address: '',
                 gender: '',
-                disabled: true
             })
         });
     }
@@ -148,10 +148,10 @@ class Profile extends Component {
     onSubmit(e) {
         e.preventDefault();
         let user = {
-            password: this.state.newPassword
+            new_password: this.state.newPassword
         }
         console.log('DATA TO SEND', user);
-        axios.post(SERVER_ADDRESS+'/users/reset_password', user, {
+        axios.post(SERVER_ADDRESS+`/users/admin_update_password/${this.state.id}`, user, {
             headers: {Authorization: this.state.token}
         })
             .then(response => {
@@ -162,20 +162,25 @@ class Profile extends Component {
                 console.log(error.message);
                 let message= "Password Error"
                 FailAlert(message);
-            })
+            }).finally(x=> {
+            this.setState({
+                newPassword: '',
+                confirmPassword: ''
+            });
+        });
     }
     render() {
         return (
-            <>
+            <div className="profile_page">
                 <Form >
-                    <div className="profile_page">
+                    <div>
                         <div className="col-left">
                             <div className="avatar">
                                 <img src={this.state.image} alt=""/>
                             </div>
                             {this.state.updateFields &&
                             <>
-                                <h1>User Profile</h1>
+                                <h3 className="profile_title">User Profile</h3>
                                 <div className="row">
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">First Name</Label>
@@ -272,39 +277,42 @@ class Profile extends Component {
                             }
                             {this.state.passwordFields &&
                             <Form>
-                                <FormGroup>
-                                    <Label for="exampleText">Password</Label>
-                                    <Input type="password"
-                                           name="newPassword"
-                                           placeholder="New Password"
-                                           value={this.state.newPassword}
-                                           onChange={this.onChange}
-                                           required/>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label for="exampleText">Confirm Password</Label>
-                                    <Input type="password"
-                                           name="confirmPassword"
-                                           placeholder="Confirm Password"
-                                           value={this.state.confirmPassword}
-                                           onChange={this.onChange}
-                                           required/>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Button size="lg" block color="success" type="button"
-                                            onClick={this.onSubmit}>Update Password</Button>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Button size="lg" block color="warning" type="button"
-                                            onClick={this.passwordFieldHide}>Cancel</Button>
-                                </FormGroup>
+                                <>
+                                    <h3 className="profile_title">Change Password</h3>
+                                    <FormGroup>
+                                        <Label for="exampleText">Password</Label>
+                                        <Input type="password"
+                                               name="newPassword"
+                                               placeholder="New Password"
+                                               value={this.state.newPassword}
+                                               onChange={this.onChange}
+                                               required/>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for="exampleText">Confirm Password</Label>
+                                        <Input type="password"
+                                               name="confirmPassword"
+                                               placeholder="Confirm Password"
+                                               value={this.state.confirmPassword}
+                                               onChange={this.onChange}
+                                               required/>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Button size="lg" block color="success" type="button"
+                                                onClick={this.onSubmit}>Update Password</Button>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Button size="lg" block color="warning" type="button"
+                                                onClick={this.passwordFieldHide}>Cancel</Button>
+                                    </FormGroup>
+                                </>
                             </Form>
                             }
                             {!this.state.passwordFields &&
                             <Button size="lg" block color="success" type="button"
                                     onClick={this.passwordFieldShow}>Change Password</Button>
                             }
-                            <div>
+                            <>
                                 {this.state.updateFields &&
                                 <div>
                                     <h6>Delete Profile</h6>
@@ -314,11 +322,11 @@ class Profile extends Component {
                                     </Button>
                                 </div>
                                 }
-                            </div>
+                            </>
                         </div>
                     </div>
                 </Form>
-            </>
+            </div>
         );
     }
     passwordFieldShow = () =>{

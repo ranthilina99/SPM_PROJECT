@@ -5,7 +5,8 @@ import {Form, FormGroup, Label, Input } from 'reactstrap';
 import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import './register.css'
 import zxcvbn from "zxcvbn";
-import logo from "../../../images/photo.png";
+import logo from "../../../images/new.png";
+import LoadingScreen from "../../loading/loading";
 
 const RegisteredAlert = () => {
     swat.fire({
@@ -39,7 +40,8 @@ class Register extends Component {
             DOB:'',
             Gender:'',
             password:'',
-            image:''
+            image:'',
+            isLoading:false
         }
         this.onChange=this.onChange.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
@@ -64,23 +66,24 @@ class Register extends Component {
         console.log('DATA TO SEND', user);
         axios.post(SERVER_ADDRESS+'/users/register', user)
             .then(response => {
-                this.setState({
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    mobileNo: '',
-                    DOB: '',
-                    address:'',
-                    Gender: '',
-                    password: '',
-                });
                 RegisteredAlert();
             })
             .catch(error => {
                 console.log(error.message);
                 let message = "Register Failed"
                 RegisterFail(message);
-            });
+            }).finally(x=>{
+                this.setState({
+                    firstname:'',
+                    lastname:'',
+                    email:'',
+                    mobileNo:'',
+                    address: '',
+                    DOB:'',
+                    Gender:'',
+                    password:'',
+                })
+        });
     }
     createPasswordLabel = (result) => {
         switch (result.score) {
@@ -108,8 +111,8 @@ class Register extends Component {
                         <img
                             alt=""
                             src={logo}
-                            width="200"
-                            height="50"
+                            width="250"
+                            height="100"
                             align="center"/>
                     </div>
                     &nbsp;
@@ -118,89 +121,111 @@ class Register extends Component {
                    <div className="row">
                        <FormGroup className="col-6">
                            <Label for="exampleEmail">First Name</Label>
-                           <Input
-                               type="text"
-                               name="firstname"
-                               id="exampleFirstname"
-                               placeholder="First Name"
-                               value={this.state.firstname}
-                               onChange={this.onChange}/>
+                           <div className="register_input-container">
+                               <i className="fas fa-user register_icon"></i>
+                               <Input
+                                   type="text"
+                                   name="firstname"
+                                   id="exampleFirstname"
+                                   placeholder="First Name"
+                                   value={this.state.firstname}
+                                   onChange={this.onChange}/>
+                           </div>
                        </FormGroup>
                        <FormGroup className="col-6">
                            <Label for="exampleEmail">Last Name</Label>
-                           <Input
-                               type="text"
-                               name="lastname"
-                               id="exampleLastname"
-                               placeholder="Last Name"
-                               value={this.state.lastname}
-                               onChange={this.onChange}/>
+                           <div className="register_input-container">
+                               <i className="fas fa-user register_icon"></i>
+                               <Input
+                                   type="text"
+                                   name="lastname"
+                                   id="exampleLastname"
+                                   placeholder="Last Name"
+                                   value={this.state.lastname}
+                                   onChange={this.onChange}/>`
+                           </div>
                        </FormGroup>
                    </div>
                     <FormGroup>
                         <Label for="exampleEmail">Email</Label>
-                        <Input
-                            type="email"
-                            name="email"
-                            id="exampleEmail"
-                            placeholder="abc@gmail.com"
-                            value={this.state.email}
-                            onChange={this.onChange}/>
+                        <div className="register_input-container">
+                            <i className="fas fa-envelope register_icon"></i>
+                            <Input
+                                type="email"
+                                name="email"
+                                id="exampleEmail"
+                                placeholder="abc@gmail.com"
+                                value={this.state.email}
+                                onChange={this.onChange}/>
+                        </div>
                     </FormGroup>
                     <FormGroup>
                         <Label for="exampleEmail">Mobile No</Label>
-                        <Input
-                            type="number"
-                            name="mobileNo"
-                            id="exampleMobile"
-                            placeholder="07xxxxxxxx"
-                            value={this.state.mobileNo}
-                            onChange={this.onChange}/>
+                        <div className="register_input-container">
+                            <i className="fas fa-mobile register_icon"></i>
+                            <Input
+                                type="number"
+                                name="mobileNo"
+                                id="exampleMobile"
+                                placeholder="07xxxxxxxx"
+                                value={this.state.mobileNo}
+                                onChange={this.onChange}/>
+                        </div>
                     </FormGroup>
                    <div className="row">
                        <FormGroup className="col-6">
                            <Label for="exampleEmail">Date Of Birth</Label>
-                           <Input
-                               type="date"
-                               name="DOB"
-                               id="exampleDate"
-                               placeholder="Date Of Birth"
-                               value={this.state.DOB}
-                               onChange={this.onChange}/>
+                           <div className="register_input-container">
+                               <i className="fas fa-calendar-alt register_icon"></i>
+                               <Input
+                                   type="date"
+                                   name="DOB"
+                                   id="exampleDate"
+                                   placeholder="Date Of Birth"
+                                   value={this.state.DOB}
+                                   onChange={this.onChange}/>
+                           </div>
                        </FormGroup>
                        <FormGroup className="col-6">
                            <Label for="exampleSelect">Gender</Label>
-                           <Input
-                               type="select"
-                               name="Gender"
-                               id="exampleSelect"
-                               value={this.state.Gender}
-                               onChange={this.onChange}>
-                               <option value="" disabled>Select Gender</option>
-                               <option value={'male'}>Male</option>
-                               <option value={'female'}>Female</option>
-                           </Input>
+                           <div className="register_input-container">
+                               <i className="fas fa-genderless register_icon"></i>
+                               <Input
+                                   type="select"
+                                   name="Gender"
+                                   id="exampleSelect"
+                                   value={this.state.Gender}
+                                   onChange={this.onChange}>
+                                   <option value="" disabled>Select Gender</option>
+                                   <option value={'male'}>Male</option>
+                                   <option value={'female'}>Female</option>
+                               </Input>
+                           </div>
                        </FormGroup>
                    </div>
                     <FormGroup>
                         <Label for="exampleText">Address</Label>
-                        <Input
-                            type="textarea"
-                            name="address"
-                            placeholder="Address"
-                            id="exampleText"
-                            value={this.state.address}
-                            onChange={this.onChange}/>
+                        <div className="register_input-container">
+                            <Input
+                                type="textarea"
+                                name="address"
+                                placeholder="Address"
+                                id="exampleText"
+                                value={this.state.address}
+                                onChange={this.onChange}/>
+                        </div>
                     </FormGroup>
-
                     <FormGroup className="password-strength-meter">
                         <Label for="examplePassword">Password</Label>
-                        <Input
-                            type="password"
-                            name="password" id="examplePassword"
-                            placeholder="password "
-                            value={this.state.password}
-                            onChange={this.onChange}/>
+                        <div className="register_input-container">
+                            <i className="fas fa-key register_icon"></i>
+                            <Input
+                                type="password"
+                                name="password" id="examplePassword"
+                                placeholder="password "
+                                value={this.state.password}
+                                onChange={this.onChange}/>
+                        </div>
                         {this.state.password &&
                         <progress
                             className={`password-strength-meter-progress strength-${this.createPasswordLabel(testedResult)}`}
@@ -222,7 +247,7 @@ class Register extends Component {
                     </FormGroup>
                     <button className="register_button btn btn-primary">REGISTER</button>
                     <FormGroup>
-                        <Label>Login Page <a className="register"  href="/login">Login</a></Label>
+                        <Label>Already have an account?  <a className="register"  href="/login">Login</a></Label>
                     </FormGroup>
                 </Form>
 

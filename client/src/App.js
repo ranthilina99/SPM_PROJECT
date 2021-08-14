@@ -18,6 +18,7 @@ import Forgot from "./umesh/pages/forgot/forgot";
 import Reset from './umesh/pages/reset/reset'
 import GetAllUsers from "./umesh/pages/admin/getAllUser";
 import AdminRegister from "./umesh/pages/admin/adminAddEmployee";
+import AdminEditUser from "./umesh/pages/admin/AdminEditUser";
 import {LoadUser} from "./Actions/Authentication";
 
 if(localStorage.getItem('token')){
@@ -44,6 +45,7 @@ const App = () => {
                         <Route path="/profile" component={Profile} />
                         <Route path="/forgot" component={Forgot} />
                         <Route path="/register" component={Register} />
+                        <Route path="/edit_user/:id" component={AdminEditUser} />
                         <Route path="/getAll" component={GetAllUsers} />
                         <Route path="/adminReg" component={AdminRegister} />
                         <Route path="/users/reset_password/:id" component={Reset}/>

@@ -1,5 +1,5 @@
 .register_wrapper{
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
     padding: 30px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.125);
@@ -29,14 +29,12 @@
 .password-strength-meter {
     text-align: left;
 }
-
 .password-strength-meter-progress {
     -webkit-appearance: none;
     appearance: none;
     width: 250px;
     height: 8px;
 }
-
 .password-strength-meter-progress::-webkit-progress-bar {
     background-color: #eee;
     border-radius: 3px;
@@ -63,3 +61,18 @@
 .strength-Strong::-webkit-progress-value {
     background-color: #70C1B3;
 }
+.register_input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.register_icon {
+    padding: 10px;
+    background: white;
+    color: black;
+    min-width: 50px;
+    text-align: center;
+}
+

@@ -6,6 +6,7 @@ import {FormGroup, Input, Label} from "reactstrap";
 import {Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import './forgot.css';
+import logo from '../../../images/new.png'
 
 const ForgotAlert = () => {
     swat.fire({
@@ -64,19 +65,33 @@ class Forgot extends Component {
                 <Form className="forgot_wrapper" onSubmit={this.onSubmit}>
                     {this.state.viewForgot ?
                         <>
+
+                            <div className="forgot_img">
+                                <img
+                                    alt=""
+                                    src={logo}
+                                    width="250"
+                                    height="100"
+                                    align="center"
+                                />
+                            </div>
+                            &nbsp;
                             <h3 className="forgot_title">FORGOT PASSWORD</h3>
                             <FormGroup>
                                 <Label for="exampleEmail">Email address</Label>
-                                <Input
-                                    type="text"
-                                    className="form-control"
-                                    name="email"
-                                    id="email"
-                                    placeholder="Enter Your Email"
-                                    value={this.state.email}
-                                    onChange={this.onChange}
-                                    required
-                                />
+                                <div className="Login_input-container">
+                                    <i className="fas fa-envelope Login_icon"></i>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Enter Your Email"
+                                        value={this.state.email}
+                                        onChange={this.onChange}
+                                        required
+                                    />
+                                </div>
                             </FormGroup>
                             &nbsp;
                             <button className="forgot_button btn btn-primary">Submit</button>

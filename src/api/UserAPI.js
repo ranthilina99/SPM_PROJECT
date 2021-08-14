@@ -16,6 +16,7 @@ module.exports = function () {
     router.post('/reset_password',auth1,controller.resetPassword);
     router.get('/all',auth,controller.getUserAll);
     router.put('/admin_update/:id',controller.updateAdminUser);
+    router.post('/admin_update_password/:id',controller.AdminResetPasswordUser);
     router.get('/:id', controller.getSpecificAdminUsers);
     return router;
 }
