@@ -2,6 +2,12 @@ import React, { Component} from 'react';
 import axios from 'axios';
 // import ReviewerNavBar from "../navbar/reviewerNavBar";
 import swat from "sweetalert2";
+import jsPDF from "jspdf";
+import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
+import { ExportToCsv } from 'export-to-csv';
+// import * as jsPDF from "jspdf";
+import 'jspdf-autotable'
+
 
 const SubmissionAlert1 = () => {
     swat.fire({
@@ -51,6 +57,54 @@ class EmpViewStore extends Component {
         window.location = `/createStore`
     }
 
+    ExportCSV = () => {
+        const options = {
+            fieldSeparator: ',',
+            quoteStrings: '"',
+            decimalSeparator: '.',
+            showLabels: true,
+            showTitle: true,
+            filename :'equinox all Store Items report',
+            title: 'All Store items Details CSV ',
+            useTextFile: false,
+            useBom: true,
+            useKeysAsHeaders: false,
+            headers: [ 'Item Name','Description','Amount', 'QTY'],
+        };
+
+        const data = this.state.store.map(elt=> [elt.itemName, elt.itemDescription,elt.itemAmount, elt.itemQTY]);
+        const csvExporter = new ExportToCsv(options);
+        csvExporter.generateCsv(data);
+    }
+
+    ExportPDF = () => {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+        doc.setFontSize(25);
+
+
+        const title = "EQUINOX Gym All Store Items Details Report";
+        const headers = [['Item Name','Description','Amount', 'QTY']];
+
+        const data = this.state.store.map(elt=> [elt.itemName, elt.itemDescription,elt.itemAmount, elt.itemQTY]);
+
+        let content = {
+            startY: 50,
+            head: headers,
+            body: data
+        };
+
+        doc.setFont('helvetica')
+        doc.setTextColor(0, 0, 255)
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("equinox all Store Items report.pdf")
+    }
+
 
     render() {
         return (
@@ -83,8 +137,8 @@ class EmpViewStore extends Component {
                         <h2>Store Details</h2>
                     </div>
                     <table className="table table-hover">
-                        <thead>
-                        <tr class="thead-dark">
+                        <thead className="thead-dark">
+                        <tr className="table-dark">
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
@@ -110,9 +164,34 @@ class EmpViewStore extends Component {
                             ))}
                         </tbody>
                     </table>
-                    <button className="btn btn-success" onClick={e => this.navigateCreateStore()}>Add new</button>
-                    <br/><br/>
+
+                    <div className="row">
+                        <div className="col-md-6">
+                            <button className="btn btn-success" onClick={e => this.navigateCreateStore()}>Add new</button>
+                        </div>
+                        <div className="col-md-6">
+                            <div align="right">
+                                <UncontrolledDropdown>
+                                    <DropdownToggle style={{color: 'white', backgroundColor: "blue", width:"30%"}}
+                                                    className="btn btn-lg">
+                                        <i className="fa fa-download"></i>&nbsp;Generate Report&nbsp;
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem onClick={this.ExportPDF}>
+                                            PDF File
+                                        </DropdownItem>
+                                        <DropdownItem divider/>
+                                        <DropdownItem onClick={this.ExportCSV}>
+                                            CSV File
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         )
     }

@@ -5,6 +5,7 @@ import CreateStore from "./components/forms/createStore";
 import EmpViewStore from "./components/views/empViewStore";
 import EditStore from "./components/forms/editStore";
 import CustomerViewStore from "./components/views/customerViewStore";
+import StoreItem from "./components/views/StoreItem";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
                       <Route path="/viewStore" component={CustomerViewStore} />
                       <Route path="/empViewStore" component={EmpViewStore} />
                       <Route path="/editStore/:id" component={EditStore} />
-                      {/*<Route path="/" component=# exact />*/}
+                      <Route path="/storeItem/:id" component={StoreItem} />
+                      <Route path="/" component={EmpViewStore} exact />
                   </Switch>
               </section>
           </Router>

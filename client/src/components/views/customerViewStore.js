@@ -4,6 +4,7 @@ import axios from 'axios';
 import swat from "sweetalert2";
 import car from "../../asserts/bottle.jpg";
 
+
 const SubmissionAlert1 = () => {
     swat.fire({
         position: 'center',
@@ -31,6 +32,7 @@ class CustomerViewStore extends Component {
         this.state = {
             store: []
         }
+
     }
 
     componentDidMount() {
@@ -42,11 +44,11 @@ class CustomerViewStore extends Component {
 
     }
 
-    // navigateEditStore(e, Id) {
-    //     window.location = `/editStore/${Id}`
-    //     console.log(Id);
-    // }
-    //
+    navigateStoreItem(e, Id) {
+        window.location = `/storeItem/${Id}`
+        console.log(Id);
+    }
+
     // deletePaper(id){
     //     axios.delete(`http://localhost:4002/store/${id}`)
     //         .then(response => {
@@ -130,7 +132,7 @@ class CustomerViewStore extends Component {
                                         <hr/>
                                         <h6 className="card-text">LKR : {item.itemAmount}</h6>
                                         <hr/>
-                                        <a href="#" className="btn btn-primary">Add</a>
+                                        <button className="btn btn-primary" onClick={e => this.navigateStoreItem(e,item._id)}>Add</button>
                                     </div>
                                 </div>
 
