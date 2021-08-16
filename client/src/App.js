@@ -1,17 +1,24 @@
 import './App.css';
-import React from "react";
-import UserNavbar from "./Components/navBars/UserNavBar";
+import React, {useEffect} from "react";
 import Routes from "./Components/routes/routes";
-import Footer from "./Components/footer/footer";
+import Footer from "./umesh/footer/footer";
+import Header from "./umesh/Header/header";
+import {setToken} from "./setToken";
+import store from "./Store";
+import {LoadUser} from "./Actions/Authentication";
 
+if(localStorage.getItem('token')){
+    setToken(localStorage.getItem('token'));
+}
 function App() {
+    useEffect(() => {
+        store.dispatch(LoadUser())
+    },[]);
   return (
     <div>
-      {/*<h1>Testing</h1>*/}
-        <UserNavbar/>
+        <Header/>
         <Routes/>
         <Footer/>
-
     </div>
   );
 }

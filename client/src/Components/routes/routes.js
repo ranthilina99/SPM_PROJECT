@@ -13,28 +13,62 @@ import CreateSuppliersAdmin from "../../Components/forms/Suppliers/CreateSupplie
 import EditSuppliersAdmin from "../../Components/forms/Suppliers/EditSuppliersAdmin";
 import ViewSuppliersAdmin2 from "../forms/views/AdminSupplierView";
 
+import {Provider} from "react-redux";
+import store from "../../Store";
+import About from "../../umesh/about";
+import User from "../../umesh/user";
+import Admin from "../../umesh/admin";
+import Employee from "../../umesh/employee";
+import Login from "../../umesh/pages/login/login";
+import Profile from "../../umesh/pages/profile/profile";
+import Forgot from "../../umesh/pages/forgot/forgot";
+import Register from "../../umesh/pages/register/register";
+import AdminEditUser from "../../umesh/pages/admin/AdminEditUser";
+import GetAllUsers from "../../umesh/pages/admin/getAllUser";
+import AdminRegister from "../../umesh/pages/admin/adminAddEmployee";
+import Reset from "../../umesh/pages/reset/reset";
+import ConfirmEmail from "../../Actions/confirmEmail";
+
 function Routes() {
     return (
         <div>
-            <Router>
-                <section>
+            <Provider store={store}>
+                <Router>
                     <Switch>
+                        <Route>
+                            <Route path="/"  exact/>
+                            <Route path="/about" component={About} />
+                            <Route path="/user" component={User} />
+                            <Route path="/admin" component={Admin} />
+                            <Route path="/employee" component={Employee} />
 
-                        <Route path='/adminCreateStockCategory' component={CreateStockCategoryAdmin}/>
-                        <Route path='/adminEditStockCategory/:id' component={EditStockCategoryAdmin}/>
-                        <Route path='/adminViewStockCategory' component={AdminCategoryView}/>
+                            <Route path="/login" component={Login} />
+                            <Route path="/profile" component={Profile} />
+                            <Route path="/forgot" component={Forgot} />
+                            <Route path="/register" component={Register} />
 
-                        <Route path='/adminCreateStockItems/:id' component={CreateStockItemAdmin}/>
-                        <Route path='/adminEditStockItem/:id' component={EditStockItemAdmin}/>
-                        <Route path='/adminViewStockItem/:id' component={ViewStockItemAdmin}/>
+                            <Route path="/edit_user/:id" component={AdminEditUser} />
+                            <Route path="/getAll" component={GetAllUsers} />
+                            <Route path="/adminReg" component={AdminRegister} />
 
-                        <Route path='/adminCreateSuppliers' component={CreateSuppliersAdmin}/>
-                        <Route path='/adminEditSuppliers/:id' component={EditSuppliersAdmin}/>
-                        <Route path='/adminViewSuppliers' component={ViewSuppliersAdmin2}/>
+                            <Route path="/users/reset_password/:id" component={Reset}/>
+                            <Route path="/users/activate/:auth_token" component={ConfirmEmail}/>
 
+                            <Route path='/adminCreateStockCategory' component={CreateStockCategoryAdmin}/>
+                            <Route path='/adminEditStockCategory/:id' component={EditStockCategoryAdmin}/>
+                            <Route path='/adminViewStockCategory' component={AdminCategoryView}/>
+
+                            <Route path='/adminCreateStockItems/:id' component={CreateStockItemAdmin}/>
+                            <Route path='/adminEditStockItem/:id' component={EditStockItemAdmin}/>
+                            <Route path='/adminViewStockItem/:id' component={ViewStockItemAdmin}/>
+
+                            <Route path='/adminCreateSuppliers' component={CreateSuppliersAdmin}/>
+                            <Route path='/adminEditSuppliers/:id' component={EditSuppliersAdmin}/>
+                            <Route path='/adminViewSuppliers' component={ViewSuppliersAdmin2}/>
+                        </Route>
                     </Switch>
-                </section>
-            </Router>
+                </Router>
+            </Provider>
         </div>
     );
 }
