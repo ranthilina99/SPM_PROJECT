@@ -11,8 +11,7 @@ import ViewStockItemAdmin from "../forms/views/AdminStockItemsView";
 
 import CreateSuppliersAdmin from "../../Components/forms/Suppliers/CreateSupplierAdmin";
 import EditSuppliersAdmin from "../../Components/forms/Suppliers/EditSuppliersAdmin";
-import ViewSuppliersAdmin from "../forms/views/AdminSuppliersView";
-import ViewSuppliersAdmin2 from "../forms/views/AdminSupplierView2";
+import ViewSuppliersAdmin2 from "../forms/views/AdminSupplierView";
 
 function Routes() {
     return (
@@ -25,14 +24,13 @@ function Routes() {
                         <Route path='/adminEditStockCategory/:id' component={EditStockCategoryAdmin}/>
                         <Route path='/adminViewStockCategory' component={AdminCategoryView}/>
 
-                        <Route path='/adminCreateStockItems' component={CreateStockItemAdmin}/>
+                        <Route path='/adminCreateStockItems/:id' component={CreateStockItemAdmin}/>
                         <Route path='/adminEditStockItem/:id' component={EditStockItemAdmin}/>
                         <Route path='/adminViewStockItem/:id' component={ViewStockItemAdmin}/>
 
                         <Route path='/adminCreateSuppliers' component={CreateSuppliersAdmin}/>
                         <Route path='/adminEditSuppliers/:id' component={EditSuppliersAdmin}/>
-                        <Route path='/adminViewSuppliers' component={ViewSuppliersAdmin}/>
-                        <Route path='/adminViewSuppliers2' component={ViewSuppliersAdmin2}/>
+                        <Route path='/adminViewSuppliers' component={ViewSuppliersAdmin2}/>
 
                     </Switch>
                 </section>

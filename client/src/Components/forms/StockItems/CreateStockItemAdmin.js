@@ -45,8 +45,8 @@ class CreateStockItemAdmin extends Component {
                 alert('Data successfully inserted')
 
                 let details = {
-                    categoryID: this.props.match.params.id,
-                    itemID: response.data.data._id,
+                    categoryID:this.props.match.params.id,
+                    itemID:response.data.data._id,
                 };
                 axios.patch(`http://localhost:5000/StockCategory/item`, details)
                     .then(response => {

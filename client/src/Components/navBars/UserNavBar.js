@@ -32,10 +32,7 @@ class UserNavbar extends Component {
                           <a className="nav-link" href="/adminCreateSuppliers">AdminCreateSuppliers</a>
                       </li>
                       <li className="nav-item">
-                          <a className="nav-link" href="/adminViewSuppliers">View Suppliers</a>
-                      </li>
-                      <li className="nav-item">
-                          <a className="nav-link" href="/adminViewSuppliers2">View Suppliers table</a>
+                          <a className="nav-link" href="/adminViewSuppliers">View Suppliers table</a>
                       </li>
 
                   </ul>

@@ -51,7 +51,6 @@ class EditSuppliersAdmin extends Component {
         axios.put(`http://localhost:5000/Suppliers/${this.props.match.params.id}`,supplier)
             .then(response => {
                 alert('Data successfully updated')
-                window.location = `/adminViewSuppliers2`
             })
             .catch(error => {
                 console.log(error.message);

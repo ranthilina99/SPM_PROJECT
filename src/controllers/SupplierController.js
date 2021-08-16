@@ -23,7 +23,7 @@ const getAllSuppliers = async (req, res) => {
         //  .populate('stock_items', 'item_name item_quentity item_suppliers item_image item_price item_description  item_date')
         .then(data => {
             res.status(200).send({ data: data });
-            console.log(data);
+
         })
         .catch(error => {
             res.status(500).send({ error: error.message });

@@ -27,7 +27,7 @@ const supplierFail = () => {
     })
 }
 
-class AdminSupplierView2 extends Component {
+class AdminSupplierView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,7 +53,7 @@ class AdminSupplierView2 extends Component {
                 supplierFail()
                 console.log(err.message);
             })
-        window.location = `/adminViewSuppliers2`
+        window.location = `/adminViewSuppliers`
 
     }
 
@@ -183,4 +183,4 @@ class AdminSupplierView2 extends Component {
     }
 }
 
-export default AdminSupplierView2;
+export default AdminSupplierView;

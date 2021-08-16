@@ -37,7 +37,7 @@ class AdminStockItemsView extends Component {
                     {this.state.stockItems.length > 0 && this.state.stockItems.map((item, index) => (
                         <div key={index} className="card mb-3">
                             <div className="p-3">
-                                <img src={item.item_image} alt="Item"/>
+                                <img src={item.item_image} alt="Item" class="center"/>
                                 <h4>Name: {item.item_name}</h4>
                                 <h5>Quantity: {item.item_quantity}</h5>
                                 <h5>Price: {item.item_price}</h5>

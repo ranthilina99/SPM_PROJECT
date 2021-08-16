@@ -3,10 +3,6 @@ const StockItemController = require('../models/StocksItems');
 const addStockItem = async (req, res) => {
     if (req.body) {
         const item = new StockItemController(req.body);
-        if(req.file){
-            StockItemController.work_template =req.file.path
-        }
-
         await item.save()
             .then(data => {
                 res.status(200).send({ data: data });
@@ -20,10 +16,8 @@ const addStockItem = async (req, res) => {
 const getAllStockItem = async (req, res) => {
 
     await StockItemController.find()
-          // .populate('stock_items', 'item_name item_quentity item_suppliers item_image item_price item_description  item_date')
         .then(data => {
             res.status(200).send({ data: data });
-            console.log(data);
         })
         .catch(error => {
             res.status(500).send({ error: error.message });
