@@ -9,7 +9,8 @@ const initialState = {
     item_date: '',
     item_suppliers: '',
     item_image: '',
-    item_description: ''
+    item_description: '',
+    categoryID:''
 }
 
 class EditStockItemsAdmin extends Component {
@@ -44,6 +45,7 @@ class EditStockItemsAdmin extends Component {
     }
 
     onSubmit(e) {
+
         e.preventDefault();
         let item = {
             item_name: this.state.item_name,
@@ -54,10 +56,15 @@ class EditStockItemsAdmin extends Component {
             item_image: this.state.item_image,
             item_description: this.state.item_description,
         };
+        this.setState({
+                categoryID:this.props.match.params.id
+        });
         console.log('DATA TO SEND', item);
         axios.put(`http://localhost:5000/StockCategoryItem/${this.props.match.params.id}`, item)
             .then(response => {
                 alert('Item Data successfully updated')
+
+                window.location.replace("/adminViewStockCategory");
             })
             .catch(error => {
                 console.log(error.message);

@@ -3,8 +3,8 @@ import swat from "sweetalert2";
 import axios from "axios";
 import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
 import {ExportToCsv} from "export-to-csv";
-// import * as jsPDF from "jspdf";
-// import 'jspdf-autotable'
+import jsPDF from "jspdf";
+import 'jspdf-autotable'
 
 
 
@@ -53,7 +53,7 @@ class AdminSupplierView extends Component {
                 supplierFail()
                 console.log(err.message);
             })
-        window.location = `/adminViewSuppliers`
+        window.location.replace("/adminViewSuppliers");
 
     }
 
@@ -88,33 +88,33 @@ class AdminSupplierView extends Component {
         const csvExporter = new ExportToCsv(options);
         csvExporter.generateCsv(data);
     }
-    // ExportPDF = () => {
-    //     const unit = "pt";
-    //     const size = "A4"; // Use A1, A2, A3 or A4
-    //     const orientation = "portrait"; // portrait or landscape
-    //
-    //     const marginLeft = 40;
-    //     const doc = new jsPDF(orientation, unit, size);
-    //     doc.setFontSize(25);
-    //
-    //
-    //     const title = "EQUINOX Gym All Suppliers Details Report";
-    //     const headers = [['Supplier Name','Email','Address', 'Contact Number']];
-    //
-    //     const data = this.state.suppliers.map(elt=> [elt.supplier_name, elt.supplier_email,elt.supplier_address, elt.supplier_phone]);
-    //
-    //     let content = {
-    //         startY: 50,
-    //         head: headers,
-    //         body: data
-    //     };
-    //
-    //     doc.setFont('helvetica')
-    //     doc.setTextColor(0, 0, 255)
-    //     doc.text(title, marginLeft, 40);
-    //     doc.autoTable(content);
-    //     doc.save("equinox all users report.pdf")
-    // }
+    ExportPDF = () => {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+        doc.setFontSize(25);
+
+
+        const title = "EQUINOX Gym All Suppliers Details Report";
+        const headers = [['Supplier Name','Email','Address', 'Contact Number']];
+
+        const data = this.state.suppliers.map(elt=> [elt.supplier_name, elt.supplier_email,elt.supplier_address, elt.supplier_phone]);
+
+        let content = {
+            startY: 50,
+            head: headers,
+            body: data
+        };
+
+        doc.setFont('helvetica')
+        doc.setTextColor(0, 0, 255)
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("equinox all supplier report.pdf")
+    }
     onchange =(e)=>{
         this.setState({
             search:e.target.value

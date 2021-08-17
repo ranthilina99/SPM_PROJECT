@@ -22,7 +22,7 @@ class AdminStockItemsView extends Component {
             .then(response => {
                 this.setState({stockItems: response.data.data});
             })
-        window.location = `/adminViewStockItem/`
+        window.location.replace("/adminViewStockItem");
     }
 
     navigateEditPage(e, itemId) {

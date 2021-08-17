@@ -55,6 +55,7 @@ class EditCategoryAdmin extends Component {
         axios.put(`http://localhost:5000/StockCategory/${this.props.match.params.id}`, category)
             .then(response => {
                 alert('Category Data successfully updated')
+                window.location.replace("/adminViewStockCategory");
             })
             .catch(error => {
                 console.log(error.message);

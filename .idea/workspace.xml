@@ -2,22 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/editStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/asserts/bottle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/asserts/car.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/store.api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/store.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/store.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/footer/footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/footer/footer.scss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/EditSuppliersAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/EditSuppliersAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminSupplierView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminSupplierView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/navBars/UserNavBar.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/Header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/Header/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +91,7 @@
       <workItem from="1629125296024" duration="4081000" />
       <workItem from="1629203252164" duration="268000" />
       <workItem from="1629205200186" duration="4837000" />
+      <workItem from="1629210994371" duration="3673000" />
     </task>
     <servers />
   </component>

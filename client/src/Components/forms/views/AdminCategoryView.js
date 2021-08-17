@@ -24,7 +24,7 @@ class AdminCategoryView extends Component {
             .then(response => {
                 this.setState({ stockCategory: response.data.data });
             })
-        window.location = `/adminViewStockCategory`
+        window.location.replace("/adminViewStockCategory");
     }
 
     navigateEditStockCategoryPage(e, categoryStockId) {

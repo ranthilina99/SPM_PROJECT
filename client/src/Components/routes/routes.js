@@ -55,6 +55,7 @@ function Routes() {
                 <Router>
                     <Switch>
                         <Route>
+                            {/* Umesh Routes */}
                             <Route path="/"  exact/>
                             <Route path="/about" component={About} />
                             <Route path="/user" component={User} />
@@ -73,6 +74,7 @@ function Routes() {
                             <Route path="/users/reset_password/:id" component={Reset}/>
                             <Route path="/users/activate/:auth_token" component={ConfirmEmail}/>
 
+                            {/* Salika Routes */}
                             <Route path='/adminCreateStockCategory' component={CreateStockCategoryAdmin}/>
                             <Route path='/adminEditStockCategory/:id' component={EditStockCategoryAdmin}/>
                             <Route path='/adminViewStockCategory' component={AdminCategoryView}/>

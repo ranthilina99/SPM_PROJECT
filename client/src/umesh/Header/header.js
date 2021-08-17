@@ -55,31 +55,31 @@ class Header extends Component {
         window.location.replace('/getAll');
     }
     AddStock = e => {
-        window.location.replace('#');
+        window.location.replace('/adminCreateStockCategory');
     }
     ViewStock = e => {
-        window.location.replace('#');
+        window.location.replace('/adminViewStockCategory');
     }
     AddSupplier = e => {
-        window.location.replace('#');
+        window.location.replace('/adminCreateSuppliers');
     }
     ViewSupplier = e => {
-        window.location.replace('#');
+        window.location.replace('/adminViewSuppliers');
     }
-    AddCategory = e => {
-        window.location.replace('#');
-    }
-    ViewCategory = e => {
-        window.location.replace('#');
-    }
+    // AddCategory = e => {
+    //     window.location.replace('#');
+    // }
+    // ViewCategory = e => {
+    //     window.location.replace('#');
+    // }
     AddCWorkout = e => {
-        window.location.replace('#');
+        window.location.replace('/workout');
     }
     ViewWorkout = e => {
-        window.location.replace('#');
+        window.location.replace('/workoutEmployeeShow');
     }
     BuyWorkout = e => {
-        window.location.replace('#');
+        window.location.replace('/question');
     }
 
 
@@ -196,27 +196,27 @@ class Header extends Component {
                                     </UncontrolledDropdown>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/adminReg">Store</a>
+                                    <a className="nav-link" href="/createStore">Add Store</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/adminReg">View Workout</a>
+                                    <a className="nav-link" href="/workoutAdminShow">View Workout</a>
                                 </li>
-                                <li className="nav-item dropdown">
-                                    <UncontrolledDropdown nav>
-                                        <DropdownToggle nav caret>
-                                            Item Category
-                                        </DropdownToggle>
-                                        <DropdownMenu>
-                                            <DropdownItem onClick={this.AddCategory}>
-                                                Add Item Category
-                                            </DropdownItem>
-                                            <DropdownItem divider/>
-                                            <DropdownItem onClick={this.ViewCategory}>
-                                                View Item Category
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                </li>
+                                {/*<li className="nav-item dropdown">*/}
+                                {/*    <UncontrolledDropdown nav>*/}
+                                {/*        <DropdownToggle nav caret>*/}
+                                {/*            Item Category*/}
+                                {/*        </DropdownToggle>*/}
+                                {/*        <DropdownMenu>*/}
+                                {/*            <DropdownItem onClick={this.AddCategory}>*/}
+                                {/*                Add Item Category*/}
+                                {/*            </DropdownItem>*/}
+                                {/*            <DropdownItem divider/>*/}
+                                {/*            <DropdownItem onClick={this.ViewCategory}>*/}
+                                {/*                View Item Category*/}
+                                {/*            </DropdownItem>*/}
+                                {/*        </DropdownMenu>*/}
+                                {/*    </UncontrolledDropdown>*/}
+                                {/*</li>*/}
                             </ul>
                             :
                             null
@@ -228,10 +228,10 @@ class Header extends Component {
                                        href="/employee">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">View Stock</a>
+                                    <a className="nav-link" href="/adminViewStockCategory">View Stock</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">View Store</a>
+                                    <a className="nav-link" href="/empViewStore">View Store</a>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <UncontrolledDropdown nav>
@@ -260,7 +260,7 @@ class Header extends Component {
                                        href="/user">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Store</a>
+                                    <a className="nav-link" href="/viewStore">Store</a>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <UncontrolledDropdown nav>
@@ -278,9 +278,9 @@ class Header extends Component {
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">Cart</a>
-                                </li>
+                                {/*<li className="nav-item">*/}
+                                {/*    <a className="nav-link" href="#">Cart</a>*/}
+                                {/*</li>*/}
                             </ul>
                             :
                             null

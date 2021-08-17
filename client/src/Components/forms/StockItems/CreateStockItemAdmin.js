@@ -67,7 +67,6 @@ class CreateStockItemAdmin extends Component {
     render() {
         return (
             <div>
-
                 <div className="container">
                     <h1>Create Stock Item</h1>
                     <form onSubmit={this.onSubmit}>
