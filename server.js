@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const StockCategoryAPI = require('./src/api/StockCategoryApi');
 const StockCategoryItemAPI=require('./src/api/StockItemsApi');
+const workoutAPI = require('./src/api/WorkoutApi');
+const workoutUserAPI = require('./src/api/WorkoutUserApi');
 const SuppliersAPI=require('./src/api/SuppliersApi');
 const fileUpload = require('express-fileupload');
 const userAPI=require('./src/api/UserAPI');
@@ -39,6 +41,8 @@ app.use('/users', userAPI());
 app.use('/StockCategory', StockCategoryAPI());
 app.use('/StockCategoryItem', StockCategoryItemAPI());
 app.use('/Suppliers', SuppliersAPI());
+app.use('/workout', workoutAPI());
+app.use('/workoutUser', workoutUserAPI());
 
 
 mongoose.connection.once('open', () => {

@@ -1,0 +1,156 @@
+.timer-container{
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    color:#fff;
+    width: 100%;
+    height:100%;
+
+}
+
+.timer {
+    /*background-color: rgba(0,0,0,0.5);*/
+    display: flex;
+    flex: border-box;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5em;
+    padding-top: 2em;
+    width: 100%;
+    height: 100%;
+    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-size: medium;
+    color: black;
+
+}
+
+.timer div:first-child {
+    text-align: center;
+}
+
+.timer-icon {
+    font-size: 8em;
+}
+
+
+.timer div:last-child {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    margin-top: 3em;
+    padding:3em;
+    text-align: center;
+}
+
+section p:first-child, .timer div:last-child span{
+    font-size: 3em;
+}
+
+.register_wrapper{
+    max-width: 1250px;
+    width: 100%;
+    padding: 30px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.125);
+    margin: 50px auto;
+    border: 1px solid;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.yas-banner{
+    width: 100%;
+    height: 405px;
+    background-color: purple;
+    background-position: center;
+}
+
+.yas-body{
+
+    /*background: #fff url("yasPic3.png") center center/cover no-repeat;*/
+    /* The image used */
+    /*background-image: url("yasPic3.png");*/
+
+    /*!* Full height *!*/
+    /*height: 100%;*/
+
+    /*!* Center and scale the image nicely *!*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+}
+
+.h1-yas{
+    color: orangered;
+    font-family: Courier New;
+    font-size: 800%;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+.h2-yas{
+    color: blanchedalmond;
+    font-family: "Times New Roman";
+    font-size: 400%;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+.h4-yas{
+    color: #fff;
+    font-family: "Times New Roman";
+    font-size: 170%;
+    font-weight: bold
+}
+
+.h3-yas{
+    color: mediumvioletred;
+    font-family: "Times New Roman";
+    font-size: 300%;
+    font-weight: bold
+}
+.parallax {
+    /* The image used */
+    /*background-image: url('yasPic3.png');*/
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
+
+.parallax-container {
+
+    background-color:rgba(0, 0, 0, 0.5);
+}
+.parallax-container-inner {
+    position: relative;
+    top : 200px;
+
+}
+
+.yas-button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: darkslategray;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: crosshair;
+    margin: 5px;
+}
