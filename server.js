@@ -10,6 +10,7 @@ const workoutUserAPI = require('./src/api/WorkoutUserApi');
 const SuppliersAPI=require('./src/api/SuppliersApi');
 const fileUpload = require('express-fileupload');
 const userAPI=require('./src/api/UserAPI');
+const storeAPI = require('./src/api/store.api');
 
 const app = express();
 app.use(cors());
@@ -43,6 +44,8 @@ app.use('/StockCategoryItem', StockCategoryItemAPI());
 app.use('/Suppliers', SuppliersAPI());
 app.use('/workout', workoutAPI());
 app.use('/workoutUser', workoutUserAPI());
+app.use('/store', storeAPI());
+
 
 
 mongoose.connection.once('open', () => {

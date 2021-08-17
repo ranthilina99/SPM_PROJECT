@@ -41,6 +41,13 @@ import showWorkoutOneEmployee from "../workout/showWorkoutOneEmployee";
 import showWorkoutChosen from "../workout/ShowChosen";
 import showWorkoutOneUser from "../workout/showWorkoutOneUser";
 
+//Binuka Routes
+import CreateStore from "../forms/Store/createStore";
+import EmpViewStore from "../forms/views/empViewStore";
+import EditStore from "../forms/Store/editStore";
+import CustomerViewStore from "../forms/views/customerViewStore";
+import StoreItem from "../forms/views/StoreItem";
+
 function Routes() {
     return (
         <div>
@@ -89,6 +96,13 @@ function Routes() {
                             <Route path="/workoutEmployeeShowOne/:id" component={showWorkoutOneEmployee}  />
                             <Route path="/workoutChosen/:id" component={showWorkoutChosen}  />
                             <Route path="/workoutUserShow/:id" component={showWorkoutOneUser}  />
+
+                            {/* Binuka Routes */}
+                            <Route path="/createStore" component={CreateStore} />
+                            <Route path="/viewStore" component={CustomerViewStore} />
+                            <Route path="/empViewStore" component={EmpViewStore} />
+                            <Route path="/editStore/:id" component={EditStore} />
+                            <Route path="/storeItem/:id" component={StoreItem} />
                         </Route>
                     </Switch>
                 </Router>
