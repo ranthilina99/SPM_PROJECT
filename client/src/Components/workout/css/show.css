@@ -47,7 +47,7 @@ section p:first-child, .timer div:last-child span{
     font-size: 3em;
 }
 
-.register_wrapper{
+.workout_wrapper{
     max-width: 1250px;
     width: 100%;
     padding: 30px;

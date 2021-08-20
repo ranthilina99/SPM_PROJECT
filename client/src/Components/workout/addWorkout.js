@@ -84,8 +84,8 @@ class addWorkout extends Component {
         return (
             <div>
                 <br/><br/>
-                <Form className="register_wrapper" onSubmit={this.onSubmit}>
-                    <h1>ADD WORKOUT</h1>
+                <Form className="workout_wrapper" onSubmit={this.onSubmit}>
+                    <h1 className="workout_title">ADD WORKOUT</h1>
                     &nbsp;
                    <div className="row justify-content-md-center">
                        <FormGroup >
@@ -99,7 +99,6 @@ class addWorkout extends Component {
                                onChange={this.onChange}/>
                        </FormGroup>
                    </div>
-                   &nbsp;
                    <div className="row justify-content-md-center">
                        <FormGroup >
                            <Label for="workout_theme">Theme</Label>
@@ -112,7 +111,6 @@ class addWorkout extends Component {
                                onChange={this.onChange}/>
                        </FormGroup>
                    </div>
-                   &nbsp;
                    <div className="row justify-content-md-center">
                        <FormGroup >
                            <Label for="workout_description">Description</Label>
@@ -125,7 +123,6 @@ class addWorkout extends Component {
                                onChange={this.onChange}/>
                        </FormGroup>
                    </div>
-                   &nbsp;
                    <div className="row justify-content-md-center">
                        <FormGroup >
                            <Label for="workout_schedule">Schedule</Label>
@@ -138,7 +135,6 @@ class addWorkout extends Component {
                                 rows="10" />
                        </FormGroup>
                    </div>
-                   &nbsp;
                    <div className="row justify-content-md-center">
                        <FormGroup >
                            <Label for="workout_diet">Diet</Label>
@@ -151,10 +147,8 @@ class addWorkout extends Component {
                                      onChange={this.onChange}/>
                        </FormGroup>
                    </div>
-                   &nbsp;
-                   &nbsp;
-                   <div className="row justify-content-md-center">
-                       <FormGroup className="col-2">
+                   <div className="row">
+                       <FormGroup className="col-6">
                            <Label for="workout_price">Price</Label>
                            <Input
                                type="number"
@@ -163,32 +157,25 @@ class addWorkout extends Component {
                                value={this.state.workout_price}
                                onChange={this.onChange}/>
                        </FormGroup>
+                       <FormGroup className="col-6">
+                           <Label for="workout_level">Level</Label>
+                           <select class="form-control" id="workout_level" name="workout_level" value={this.state.workout_level} onChange={this.onChange}>
+                               <option value="1"> 1 </option>
+                               <option value="2"> 2 </option>
+                               <option value="3"> 3 </option>
+                               <option value="4"> 4 </option>
+                               <option value="5"> 5 </option>
+                           </select>
+                       </FormGroup>
                    </div>
-                   &nbsp;
-                   
-                   <div className="row justify-content-md-center">
-                   <FormGroup>
-                        <Label for="workout_level">Level</Label>
-                        <select class="form-control" id="workout_level" name="workout_level" value={this.state.workout_level} onChange={this.onChange}>
-                            <option value="1"> 1 </option>
-                            <option value="2"> 2 </option>
-                            <option value="3"> 3 </option>
-                            <option value="4"> 4 </option>
-                            <option value="5"> 5 </option>
-                        </select>
-                        </FormGroup>
-                    </div>
-                    &nbsp;
-
                     <div className="row justify-content-center">
                         <div>
-                            &nbsp;
                             <FileBase type="file" multiple={false} onDone={({base64}) => this.state.workout_img = base64} />
                         </div>
                     </div>
                     &nbsp;
 
-                    <button className="register_button btn btn-primary">SUBMIT</button>
+                    <button className="workout_button btn btn-primary">SUBMIT</button>
                 </Form>
 
             </div>

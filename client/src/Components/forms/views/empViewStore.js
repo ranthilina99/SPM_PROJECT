@@ -172,7 +172,7 @@ class EmpViewStore extends Component {
                         <div className="col-md-6">
                             <div align="right">
                                 <UncontrolledDropdown>
-                                    <DropdownToggle style={{color: 'white', backgroundColor: "blue", width:"30%"}}
+                                    <DropdownToggle style={{color: 'white', backgroundColor: "blue", width:"280px"}}
                                                     className="btn btn-lg">
                                         <i className="fa fa-download"></i>&nbsp;Generate Report&nbsp;
                                     </DropdownToggle>

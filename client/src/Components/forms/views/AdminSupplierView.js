@@ -5,7 +5,7 @@ import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "
 import {ExportToCsv} from "export-to-csv";
 import jsPDF from "jspdf";
 import 'jspdf-autotable'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -126,10 +126,9 @@ class AdminSupplierView extends Component {
             <div className="container">
                 <br/>
                 <div className="navbar bg-light justify-content-between">
-                    <h1>All Supplier Details</h1>
+                    <h2>ALL SUPPLIER DETAILS</h2>
                     <form className="form-inline">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
                 <table className="table table-striped table-hover table-dark  table-bordered ">
@@ -152,9 +151,9 @@ class AdminSupplierView extends Component {
                             <td>{suppliers.supplier_address}</td>
                             <td>{suppliers.supplier_phone}</td>
                             <td>
-                                <button className="btn btn-success" onClick={e => this.navigateEditSupplierPage(e, suppliers._id)}>Edit</button>
+                                <a className="btn btn-warning" onClick={e => this.navigateEditSupplierPage(e, suppliers._id)}><i className="fa fa-edit">&nbsp;Edit</i>&nbsp;</a>
                                 &nbsp;
-                                <button className="btn btn-danger" onClick={e => this.deleteSuppliers(suppliers._id)}>Delete</button>
+                                <a className="btn btn-danger" onClick={e => this.deleteSuppliers(suppliers._id)}> <i className="fa fa-trash">&nbsp;Delete</i></a>
                             </td>
                         </tr>
                     ))}

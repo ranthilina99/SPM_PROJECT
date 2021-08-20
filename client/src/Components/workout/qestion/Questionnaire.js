@@ -80,7 +80,7 @@ export default function Questionnaire() {
 		<div className='app'>
 			{showScore ? (
 				<div className='score-section'>
-					<button>{/* You scored {score} out of {questions.length} */}
+					<button className="question-button">{/* You scored {score} out of {questions.length} */}
 					<Link to = {{
                     pathname:'/show',
                     questionProps:{
@@ -101,7 +101,7 @@ export default function Questionnaire() {
 						<div>&nbsp;</div>
 						<div className='answer-section'>
 							{questions[currentQuestion].answerOptions.map((answerOption) => (
-								<button onClick={() => handleAnswerOptionClick(answerOption.points)}>{answerOption.answerText}</button>
+								<button className="question-button" onClick={() => handleAnswerOptionClick(answerOption.points)}>{answerOption.answerText}</button>
 							))}
 						</div>
 						

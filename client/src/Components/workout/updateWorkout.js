@@ -103,9 +103,8 @@ class UpdateWorkout extends Component {
         return (
             <div>
                 <br/><br/>
-                <Form className="register_wrapper" onSubmit={this.onSubmit}>
-                    <h1>ADD WORKOUT</h1>
-                    &nbsp;
+                <Form className="workout_wrapper" onSubmit={this.onSubmit}>
+                    <h1 className="workout_title">ADD WORKOUT</h1>
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_name">Name</Label>
@@ -118,7 +117,6 @@ class UpdateWorkout extends Component {
                                 onChange={this.onChange}/>
                         </FormGroup>
                     </div>
-                    &nbsp;
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_theme">Theme</Label>
@@ -131,7 +129,6 @@ class UpdateWorkout extends Component {
                                 onChange={this.onChange}/>
                         </FormGroup>
                     </div>
-                    &nbsp;
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_description">Description</Label>
@@ -144,7 +141,6 @@ class UpdateWorkout extends Component {
                                 onChange={this.onChange}/>
                         </FormGroup>
                     </div>
-                    &nbsp;
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_schedule">Schedule</Label>
@@ -157,7 +153,6 @@ class UpdateWorkout extends Component {
                                       rows="10"/>
                         </FormGroup>
                     </div>
-                    &nbsp;
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_diet">Diet</Label>
@@ -170,10 +165,8 @@ class UpdateWorkout extends Component {
                                       onChange={this.onChange}/>
                         </FormGroup>
                     </div>
-                    &nbsp;
-                    &nbsp;
-                    <div className="row justify-content-md-center">
-                        <FormGroup className="col-2">
+                    <div className="row">
+                        <FormGroup className="col-6">
                             <Label for="workout_price">Price</Label>
                             <Input
                                 type="number"
@@ -182,11 +175,7 @@ class UpdateWorkout extends Component {
                                 value={this.state.workout_price}
                                 onChange={this.onChange}/>
                         </FormGroup>
-                    </div>
-                    &nbsp;
-
-                    <div className="row justify-content-md-center">
-                        <FormGroup>
+                        <FormGroup className="col-6">
                             <Label for="workout_level">Level</Label>
                             <select className="form-control" id="workout_level" name="workout_level"
                                     value={this.state.workout_level} onChange={this.onChange}>
@@ -198,8 +187,6 @@ class UpdateWorkout extends Component {
                             </select>
                         </FormGroup>
                     </div>
-                    &nbsp;
-
                     <div className="row justify-content-center">
                         <div>
                             &nbsp;
@@ -209,7 +196,7 @@ class UpdateWorkout extends Component {
                     </div>
                     &nbsp;
 
-                    <button className="register_button btn btn-primary">SUBMIT</button>
+                    <button className="workout_button btn btn-primary">SUBMIT</button>
                 </Form>
 
             </div>

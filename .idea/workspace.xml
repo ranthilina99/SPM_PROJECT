@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="">
+    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Integrate done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/footer/footer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/footer/footer.scss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/editStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/editStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/CreateSupplierAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/CreateSupplierAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/EditSuppliersAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/EditSuppliersAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminSupplierView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminSupplierView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/navBars/UserNavBar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/Header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/Header/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/addWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/addWorkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/qestion/Questionnaire.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/qestion/Questionnaire.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/qestion/question1.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/qestion/question1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/updateWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/updateWorkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/workout.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/workout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/AdminEditUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/AdminEditUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/getAllUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/getAllUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +41,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -51,6 +66,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -91,8 +107,17 @@
       <workItem from="1629125296024" duration="4081000" />
       <workItem from="1629203252164" duration="268000" />
       <workItem from="1629205200186" duration="4837000" />
-      <workItem from="1629210994371" duration="3673000" />
+      <workItem from="1629210994371" duration="4610000" />
+      <workItem from="1629434080571" duration="4873000" />
     </task>
+    <task id="LOCAL-00001" summary="Integrate done">
+      <created>1629214971962</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629214971962</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,5 +134,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Integrate done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrate done" />
   </component>
 </project>

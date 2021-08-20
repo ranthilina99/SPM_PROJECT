@@ -110,8 +110,8 @@ class EditStore extends Component {
     render() {
         return (
             <div>
-                <Form className="register_wrapper" onSubmit={this.onSubmit}>
-                    <h2>EDIT STORE DETAILS</h2>
+                <Form className="store_wrapper" onSubmit={this.onSubmit}>
+                    <h2 className="store_title">EDIT STORE DETAILS</h2>
                     <FormGroup>
                         <label htmlFor="storeName" className="form-label">Name</label>
                         <input
@@ -164,8 +164,8 @@ class EditStore extends Component {
                     </FormGroup>
                     &nbsp;
                     {/*<button className="register_button btn btn-primary">REGISTER</button>*/}
-                    <button type="submit" className="register_button btn btn-primary">Edit Item</button><br/><br/>
-                    <button className="register_button btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>
+                    <button type="submit" className="store_button btn btn-primary">Edit Item</button><br/><br/>
+                    <button className="store_button btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>
                 </Form>
 
             </div>

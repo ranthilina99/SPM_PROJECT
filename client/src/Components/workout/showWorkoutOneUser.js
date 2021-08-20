@@ -69,7 +69,7 @@ class showWorkoutOneUser extends Component {
 
     render() {
         return (
-            <div className="register_wrapper">
+            <div className="workout_wrapper">
                 <div className="parallax">
                     <h1>Workout</h1>
                     <img src={this.state.workout_img} alt="Logo" className="yas-banner"/>

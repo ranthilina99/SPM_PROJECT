@@ -178,15 +178,15 @@ class GetAllUsers extends Component {
                                     <i className="fa fa-edit"></i>&nbsp;
                                 </a>
                                 &nbsp;
-                                <button className = "btn btn-danger" href="#" onClick={()=>this.onDelete(users._id)}>
+                                <a className = "btn btn-danger" href="#" onClick={()=>this.onDelete(users._id)}>
                                     <i className="fa fa-trash"></i>&nbsp;
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
-                <div align="right" >
+                <div align="right">
                     <UncontrolledDropdown >
                         <DropdownToggle  style={{color: 'white', backgroundColor:"blue",marginRight:'15px'}} className = "btn btn-lg">
                             <i class="fa fa-download"></i>&nbsp;Generate Report&nbsp;

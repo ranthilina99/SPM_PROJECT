@@ -4,7 +4,7 @@ import jsPDF from "jspdf";
 import 'jspdf-autotable'
 import { ExportToCsv } from 'export-to-csv';
 import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class showWorkoutAdmin extends Component {
     constructor(props) {
@@ -87,7 +87,7 @@ class showWorkoutAdmin extends Component {
                     {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
                         <div key={index} className="card mb-3">
                             <div className="p-3" onClick={e => this.chooseWorkout(e, item._id)}>
-                                <img src={item.workout_img} alt="Logo" />
+                                <img className="workout_img" src={item.workout_img} alt="Logo" />
                                 <h3>{item.workout_name}</h3>
                                 <h4>{item.workout_theme}</h4>
                                 <h5>{item.workout_description}</h5>
@@ -102,7 +102,7 @@ class showWorkoutAdmin extends Component {
 
                 <div align="right">
                         <UncontrolledDropdown>
-                            <DropdownToggle style={{color: 'white', backgroundColor: "blue", marginRight: '15px'}}
+                            <DropdownToggle style={{color: 'white', backgroundColor: "blue", marginRight: '100px'}}
                                             className="btn btn-lg">
                                 <i className="fa fa-download"></i>&nbsp;Generate Report&nbsp;
                             </DropdownToggle>

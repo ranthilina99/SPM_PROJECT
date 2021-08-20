@@ -18,6 +18,7 @@
 }
 .reset_title{
      text-align: center;
+    text-transform: uppercase;
  }
 .password-strength-meter {
     text-align: left;

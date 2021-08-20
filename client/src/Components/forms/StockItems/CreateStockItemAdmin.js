@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
+import './stock_item.css'
 
 const initialState = {
 
@@ -67,8 +68,8 @@ class CreateStockItemAdmin extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <h1>Create Stock Item</h1>
+                <div className="container stock_item_wrapper">
+                    <h1 className="stock_item_title">Create Stock Item</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="itemName" className="form-label">Name of Item</label>
@@ -147,7 +148,8 @@ class CreateStockItemAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        &nbsp;
+                        <button type="submit" className="btn btn-primary stock_item_button">Submit</button>
                     </form>
                 </div>
                 <br/>

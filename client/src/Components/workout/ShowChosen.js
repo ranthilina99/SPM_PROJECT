@@ -153,7 +153,7 @@ class showWorkoutChosen extends Component {
 
     render() {
         return (
-            <div className="register_wrapper">
+            <div className="workout_wrapper">
                 <div className="parallax">
                     <h1>Workout</h1>
 

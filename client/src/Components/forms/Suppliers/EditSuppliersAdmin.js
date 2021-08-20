@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import axios from 'axios';
-
+import './supplier.css'
 
 const initialState = {
     supplier_name:'',
@@ -62,8 +62,8 @@ class EditSuppliersAdmin extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <h1>Edit Supplier Details</h1>
+                <div className="container supplier_wrapper">
+                    <h1 className="stock_item_title">Edit Supplier Details</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="supplierName" className="form-label">Supplier Name</label>
@@ -110,7 +110,8 @@ class EditSuppliersAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        &nbsp;
+                        <button type="submit" className="btn btn-primary supplier_button">Submit</button>
                     </form>
                 </div>
                 <br/>

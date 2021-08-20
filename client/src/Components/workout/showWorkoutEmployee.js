@@ -64,7 +64,7 @@ class showWorkoutEmployee extends Component {
                     {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
                         <div key={index} className="card mb-3">
                             <div className="p-3" onClick={e => this.chooseWorkout(e, item._id)}>
-                                <img src={item.workout_img} alt="Logo" />
+                                <img className="workout_img" src={item.workout_img} alt="Logo" />
                                 <h3>{item.workout_name}</h3>
                                 <h4>{item.workout_theme}</h4>
                                 <h5>{item.workout_description}</h5>

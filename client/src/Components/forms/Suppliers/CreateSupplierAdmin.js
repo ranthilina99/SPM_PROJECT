@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import axios from 'axios';
+import './supplier.css'
 import FileBase from 'react-file-base64';
 
 const initialState = {
@@ -51,8 +52,8 @@ class CreateSupplierAdmin extends Component {
         return (
             <div>
 
-                <div className="container">
-                    <h1>Add New supplier</h1>
+                <div className="container supplier_wrapper">
+                    <h1 className="stock_item_title">Add New supplier</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="supplierName" className="form-label">Supplier Name</label>
@@ -99,7 +100,8 @@ class CreateSupplierAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        &nbsp;
+                        <button type="submit" className="btn btn-primary supplier_button">Submit</button>
                     </form>
                 </div>
                 <br/>

@@ -10,6 +10,7 @@
     text-align: center;
     font-weight: bold;
     color: black;
+    text-transform: uppercase;
 }
 .login_button{
     width: 100%;
@@ -46,7 +47,7 @@
     .Login {
         max-width: 500px;
         width: 100%;
-        padding: 30px;
+        padding: 50px;
         box-shadow: 5px 5px 5px rgba(0,0,0,0.125);
         margin: 50px auto;
         background-color: #FFFFFF;

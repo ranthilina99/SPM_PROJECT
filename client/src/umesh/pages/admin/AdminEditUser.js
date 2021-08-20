@@ -96,8 +96,8 @@ class AdminEditUser extends Component {
         return (
             <div>
                 {this.state.updateFields &&
-                <form className="register_wrapper" onSubmit={this.onSubmit}>
-                    <h3> Update Position</h3>
+                <form className="admin_wrapper" onSubmit={this.onSubmit}>
+                    <h3 className="admin_title"> Update Position</h3>
                     <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
                     <div className="form-group">
                         <input
@@ -159,8 +159,8 @@ class AdminEditUser extends Component {
 
                 }
                 {this.state.passwordFields &&
-                <form className="register_wrapper" onSubmit={this.onChangePassword}>
-                    <h3> Update Password</h3>
+                <form className="admin_wrapper" onSubmit={this.onChangePassword}>
+                    <h3 className="admin_title"> Update Password</h3>
                     <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
                     <div className="form-group">
                         <input

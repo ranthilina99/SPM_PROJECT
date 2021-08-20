@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
+import './stock.css'
 
 const initialState = {
     category_topic: '',
@@ -45,10 +46,9 @@ class CreateCategoryAdmin extends Component {
 
     render() {
         return (
-            <div>
-
+            <div className="stock_wrapper">
                 <div className="container">
-                    <h1>Create Category</h1>
+                    <h1 className="stock_title">Create Category</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="categoryTopic" className="form-label">Stock Category</label>
@@ -92,8 +92,8 @@ class CreateCategoryAdmin extends Component {
                                           onDone={({base64}) => this.state.category_image = base64}/>
                             </div>
                         </div>
-
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        &nbsp;
+                        <button type="submit" className="btn btn-primary stock_button">Submit</button>
                     </form>
                 </div>
                 <br/>
