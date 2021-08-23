@@ -58,7 +58,7 @@ class EditStockItemsAdmin extends Component {
             item_description: this.state.item_description,
         };
         this.setState({
-                categoryID:this.props.match.params.id
+            categoryID:this.props.match.params.id
         });
         console.log('DATA TO SEND', item);
         axios.put(`http://localhost:5000/StockCategoryItem/${this.props.match.params.id}`, item)
