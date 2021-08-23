@@ -2,36 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="style form done">
-      <change afterPath="$PROJECT_DIR$/client/src/umesh/HomePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/workout.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/workout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/Header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/Header/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/StockCategoryController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/StockCategoryController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

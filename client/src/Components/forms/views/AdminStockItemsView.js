@@ -15,6 +15,7 @@ class AdminStockItemsView extends Component {
         axios.get(`http://localhost:5000/StockCategory/${this.props.match.params.id}`)
             .then(response => {
                 this.setState({stockItems: response.data.data.stock_items});
+                console.log(this.state.stockItems);
             })
     }
 
@@ -47,7 +48,7 @@ class AdminStockItemsView extends Component {
                                                     <h2 className="item_title">{item.item_name}</h2>&nbsp;<h4 className="price_item">Rs:&nbsp;{item.item_price}</h4>
                                                 </Card.Title>
                                                 <Card.Text>
-                                                    <h4>{item.item_quantity}</h4>
+                                                    <h4 style={{color:"darkblue"}}>Item Quantity:{item.item_quantity}</h4>
                                                     <h4 style={{color:"darkblue"}}>Date: {item.item_date}</h4>
                                                     <h4 style={{color:"darkblue"}}>Suppliers: {item.item_suppliers}</h4>
                                                     <h5>{item.item_description}</h5>

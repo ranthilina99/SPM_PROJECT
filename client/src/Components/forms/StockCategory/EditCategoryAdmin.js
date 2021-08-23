@@ -81,7 +81,7 @@ class EditCategoryAdmin extends Component {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="categoryDescription" className="form-label">Category description </label>
+                            <label htmlFor="categoryDescription" className="form-label">Category Description </label>
                             <input
                                 type="text"
                                 className="form-control"

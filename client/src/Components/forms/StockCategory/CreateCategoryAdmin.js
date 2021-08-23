@@ -76,7 +76,7 @@ class CreateCategoryAdmin extends Component {
                             </div>
                         </div>
                         <div className="mb-3 form-group">
-                            <label htmlFor="categoryDescription" className="form-label">Category description </label>
+                            <label htmlFor="categoryDescription" className="form-label">Category Description </label>
                             <textarea
                                 type="text"
                                 rows="3"

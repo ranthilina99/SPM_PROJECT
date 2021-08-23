@@ -20,12 +20,12 @@ const Login = ({loginUser, isLoggedIn}) => {
     });
 
     let {email, password} = data;
-    const clear =()=>{
+
         useState({
             email: '',
             password:''
         })
-    }
+
     if (isLoggedIn) {
         LoadUserOther().then((res) => {
             setUser({

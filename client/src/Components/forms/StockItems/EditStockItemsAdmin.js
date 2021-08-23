@@ -149,7 +149,7 @@ class EditStockItemsAdmin extends Component {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="itemDescription" className="form-label">Item Description </label>
-                            <input
+                            <textarea
                                 type="textarea"
                                 rows={5}
                                 cols={5}
@@ -160,6 +160,7 @@ class EditStockItemsAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
+                        &nbsp;
                         <button type="submit" className="btn btn-primary stock_item_button">Submit</button>
                     </form>
                 </div>
