@@ -21,11 +21,6 @@ const Login = ({loginUser, isLoggedIn}) => {
 
     let {email, password} = data;
 
-        useState({
-            email: '',
-            password:''
-        })
-
     if (isLoggedIn) {
         LoadUserOther().then((res) => {
             setUser({
