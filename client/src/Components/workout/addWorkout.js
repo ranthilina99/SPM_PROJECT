@@ -15,7 +15,8 @@ const initialState = {
     workout_users:[],
     workout_price:0,
     workout_level:'1',
-    workout_img:''
+    workout_img:'',
+    UserId:''
 
 }
 
@@ -46,7 +47,31 @@ class addWorkout extends Component {
     }
 
     componentDidMount() {
-        this.state.workout_creator = "41224d776a326fb40f000001";
+        const token = localStorage.getItem('token');
+        if (!token) {
+            this.setState({
+                user: null
+            });
+            return;
+        }
+        this.setState({
+            token: token
+        })
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/users/',
+            headers: {
+                Authorization: token
+            },
+            data: {}
+        }).then(res => {
+            this.setState({
+                workout_creator:res.data._id,
+                isLoggedIn:true
+            })
+        }).catch(err => {
+            console.log(err.message);
+        });
     }
 
     onChange(e) {

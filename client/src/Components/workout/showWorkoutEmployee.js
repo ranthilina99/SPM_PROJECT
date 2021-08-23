@@ -21,23 +21,61 @@ const SubmissionFail = (message) => {
     })
 }
 
+const initialState = {
+    CreatorId:'',
+    Workouts: []
+
+}
+
 class showWorkoutEmployee extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            CreatorId:'',
-            Workouts: []
-        }
+        this.state = initialState;
     }
 
     componentDidMount() {
 
-        axios.get(`http://localhost:5000/workout/creator/41224d776a326fb40f000001`)
-            .then(response => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            this.setState({
+                user: null
+            });
+            return;
+        }
+        this.setState({
+            token: token
+        })
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/users/',
+            headers: {
+                Authorization: token
+            },
+            data: {}
+        }).then(res => {
+            this.setState({
+                CreatorId:res.data._id,
+                isLoggedIn:true
+            })
+            console.log(this.state.CreatorId);
+        }).then(()=>{
+            axios.get(`http://localhost:5000/workout/creator/` + this.state.CreatorId)
+                .then(response => {
                     this.setState({ Workouts: response.data.data });
                     console.log(response.data.data);
                 })
+        }).catch(err => {
+            console.log(err.message);
+        });
+
+
+        // axios.get(`http://localhost:5000/workout/creator/` + this.state.CreatorId)
+        //     .then(response => {
+        //             this.setState({ Workouts: response.data.data });
+        //             console.log(response.data.data);
+        //         })
     }
+
 
     chooseWorkout(e, id) {
         window.location = `/workoutEmployeeShowOne/${id}`
