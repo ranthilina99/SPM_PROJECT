@@ -110,7 +110,6 @@ class Reset extends Component {
                     <FormGroup>
                         <Label for="exampleEmail">Password</Label>
                         <div className="Login_input-container">
-                            <i className="fas fa-key Login_icon"></i>
                             <Input
                                 type="password"
                                 className="form-control"
@@ -125,7 +124,6 @@ class Reset extends Component {
                     <FormGroup className="password-strength-meter">
                         <Label for="exampleEmail">Confirm Password</Label>
                         <div className="Login_input-container">
-                            <i className="fas fa-key Login_icon"></i>
                             <Input
                                 type="password"
                                 className="form-control"

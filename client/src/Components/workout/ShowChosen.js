@@ -52,11 +52,37 @@ class showWorkoutChosen extends Component {
             workout_level:'1',
             workout_img:'',
             exists:false,
-            existId:''
+            existId:'',
+            UserId:''
         }
     }
 
     componentDidMount() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            this.setState({
+                user: null
+            });
+            return;
+        }
+        this.setState({
+            token: token
+        })
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/users/',
+            headers: {
+                Authorization: token
+            },
+            data: {}
+        }).then(res => {
+            this.setState({
+                UserId:res.data._id,
+                isLoggedIn:true
+            })
+        }).catch(err => {
+            console.log(err.message);
+        });
 
         axios.get(`http://localhost:5000/workout/chosen/${this.props.match.params.id}`)
             .then(response => {
@@ -86,7 +112,7 @@ class showWorkoutChosen extends Component {
                 });
             }
         }).then(()=>{
-            axios.get(`http://localhost:5000/workoutUser/user/41224d776a326fb40f000002`)
+            axios.get('http://localhost:5000/workoutUser/user/'+this.state.UserId)
                 .then(response =>{
                     this.setState({
                         exists: response.data.exists,
@@ -104,7 +130,7 @@ class showWorkoutChosen extends Component {
     selectWorkout(){
         let message = {
             workout_id:this.state.id,
-            workoutUser_id:"41224d776a326fb40f000002"
+            workoutUser_id:this.state.UserId
         };
 
 
@@ -154,27 +180,18 @@ class showWorkoutChosen extends Component {
     render() {
         return (
             <div className="workout_wrapper">
-                <div className="parallax">
+                <div>
                     <h1>Workout</h1>
-
-
                     <img src={this.state.workout_img}  className="yas-banner"/>
-                    <div className="parallax-container" >
-
+                    <div >
                         <h4 className="h1-yas">{this.state.workout_name}</h4>
                         <h6 className="h2-yas">{this.state.workout_theme}</h6>
                         <h6 className="h2-yas">{this.state.workout_description}</h6>
-                        {/*<h6 className="h3-yas">{this.state.workout_schedule}</h6>*/}
-                        {/*<h6 className="h3-yas">{this.state.workout_diet}</h6>*/}
                         <h6 className="h4-yas">{this.state.workout_price}</h6>
                         <h6 className="h4-yas">{this.state.workout_level}</h6>
-
-
                     </div>
                     <div>
-
-                        <button className="btn btn-warning" onClick={() => this.selectWorkout()}>Purchase</button>
-
+                        <button className="btn btn-primary" onClick={() => this.selectWorkout()}>Purchase</button>
                     </div>
                 </div>
             </div>

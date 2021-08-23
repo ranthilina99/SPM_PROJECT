@@ -122,7 +122,6 @@ class Register extends Component {
                        <FormGroup className="col-6">
                            <Label for="exampleEmail">First Name</Label>
                            <div className="register_input-container">
-                               <i className="fas fa-user register_icon"></i>
                                <Input
                                    type="text"
                                    name="firstname"
@@ -135,7 +134,6 @@ class Register extends Component {
                        <FormGroup className="col-6">
                            <Label for="exampleEmail">Last Name</Label>
                            <div className="register_input-container">
-                               <i className="fas fa-user register_icon"></i>
                                <Input
                                    type="text"
                                    name="lastname"
@@ -149,7 +147,6 @@ class Register extends Component {
                     <FormGroup>
                         <Label for="exampleEmail">Email</Label>
                         <div className="register_input-container">
-                            <i className="fas fa-envelope register_icon"></i>
                             <Input
                                 type="email"
                                 name="email"
@@ -162,7 +159,6 @@ class Register extends Component {
                     <FormGroup>
                         <Label for="exampleEmail">Mobile No</Label>
                         <div className="register_input-container">
-                            <i className="fas fa-mobile register_icon"></i>
                             <Input
                                 type="number"
                                 name="mobileNo"
@@ -176,7 +172,6 @@ class Register extends Component {
                        <FormGroup className="col-6">
                            <Label for="exampleEmail">Date Of Birth</Label>
                            <div className="register_input-container">
-                               <i className="fas fa-calendar-alt register_icon"></i>
                                <Input
                                    type="date"
                                    name="DOB"
@@ -189,7 +184,6 @@ class Register extends Component {
                        <FormGroup className="col-6">
                            <Label for="exampleSelect">Gender</Label>
                            <div className="register_input-container">
-                               <i className="fas fa-genderless register_icon"></i>
                                <Input
                                    type="select"
                                    name="Gender"
@@ -218,7 +212,6 @@ class Register extends Component {
                     <FormGroup className="password-strength-meter">
                         <Label for="examplePassword">Password</Label>
                         <div className="register_input-container">
-                            <i className="fas fa-key register_icon"></i>
                             <Input
                                 type="password"
                                 name="password" id="examplePassword"

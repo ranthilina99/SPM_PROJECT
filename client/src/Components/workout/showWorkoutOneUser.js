@@ -52,7 +52,7 @@ class showWorkoutOneUser extends Component {
                 axios.get(`http://localhost:5000/workout/${this.state.workoutId}`)
                     .then(response =>{
                         this.setState({
-                            workout_img:response.data.data.workout_img              ,
+                            workout_img:response.data.data.workout_img,
                             workout_name: response.data.data.workout_name,
                             workout_theme: response.data.data.workout_theme,
                             workout_description: response.data.data.workout_description,
@@ -61,8 +61,6 @@ class showWorkoutOneUser extends Component {
                         });
                     })
         })
-
-
     }
 
 
@@ -70,19 +68,19 @@ class showWorkoutOneUser extends Component {
     render() {
         return (
             <div className="workout_wrapper">
-                <div className="parallax">
-                    <h1>Workout</h1>
-                    <img src={this.state.workout_img} alt="Logo" className="yas-banner"/>
-                    <div className="parallax-container" >
-
-                        <h4 className="h1-yas">{this.state.workout_name}</h4>
-                        <h6 className="h2-yas">{this.state.workout_theme}</h6>
-                        <h6 className="h2-yas">{this.state.workout_description}</h6>
+                <div>
+                    <h1 style={{textTransform:"uppercase",textAlign:"center"}}>Workout</h1>
+                    <img src={this.state.workout_img} alt="Logo" className="yas-banner yas-img-banner"/>
+                    <div  >
+                        <h4 className="h1-yas" align="center">{this.state.workout_name}</h4>
+                        <h6 className="h2-yas" align="center">{this.state.workout_theme}</h6>
+                        <h6 className="h2-yas" align="center">{this.state.workout_description}</h6>
+                        &nbsp;
                         <h6 className="h3-yas">{this.state.workout_schedule}</h6>
-                        <h6 className="h3-yas">{this.state.workout_diet}</h6>
-
+                        &nbsp;
+                        <h6 className="h2-yas">{this.state.workout_diet}</h6>
                     </div>
-                    <div>
+                    <div style={{color:"red"}}>
                         <Timer dueDate = {this.state.date}/>
                     </div>
 

@@ -28,6 +28,7 @@ import GetAllUsers from "../../umesh/pages/admin/getAllUser";
 import AdminRegister from "../../umesh/pages/admin/adminAddEmployee";
 import Reset from "../../umesh/pages/reset/reset";
 import ConfirmEmail from "../../Actions/confirmEmail";
+import Homepage from "../../umesh/Homepage";
 
 //Yasoja Routes
 
@@ -56,7 +57,7 @@ function Routes() {
                     <Switch>
                         <Route>
                             {/* Umesh Routes */}
-                            <Route path="/"  exact/>
+                            <Route path="/" component={Homepage} exact/>
                             <Route path="/about" component={About} />
                             <Route path="/user" component={User} />
                             <Route path="/admin" component={Admin} />

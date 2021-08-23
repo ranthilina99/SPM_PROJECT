@@ -73,10 +73,11 @@ class StoreItem extends Component {
                     <div className="alert alert-primary" role="alert">
                         <h2>Store</h2>
                     </div>
-                    <div className="row">
+                    <div className="row" >
                         <div className="col-md-6 aa1">
                             <img src={this.state.itemImage}/>
                         </div>
+
                         <div className="col-md-6 aa2">
                             <br/>
                             <h2>{this.state.itemName}</h2>

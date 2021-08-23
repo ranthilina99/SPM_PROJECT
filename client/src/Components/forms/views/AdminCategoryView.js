@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import '../../../CSS/commonViewsCSS.css';
-
+import {Card, Col, Row} from 'react-bootstrap'
 
 
 class AdminCategoryView extends Component {
@@ -41,33 +41,45 @@ class AdminCategoryView extends Component {
 
 
     }
-
-
     render() {
         return (
             <div>
-                <div className="container">
-                    <h1>Stock Category</h1>
-                    {this.state.stockCategory.length > 0 && this.state.stockCategory.map((item, index) => (
-                        <div key={index} className="card mb-3">
-                            <div className="p-3">
-                                <img src={item.category_image} alt="Category" class ="center" />
-                                <h4>Topic: {item.category_topic}</h4>
-                                <h4>date: {item.category_date}</h4>
-                                <h6>Description: {item.category_description}</h6>
-                                <button className="btn btn-success" onClick={e => this.navigateAddStockCategoryItemsPage(e, item._id)}>Add an Item</button>
-                                &nbsp; &nbsp;
-                                <button className="btn btn-danger" onClick={e => this.navigateViewItemsPage(e,item._id)}>Go To Items</button>
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                &nbsp;
-                                <button className="btn btn-success" onClick={e => this.navigateEditStockCategoryPage(e, item._id)}>Edit</button>
-                                &nbsp; &nbsp;
-                                <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}>Delete</button>
-                            </div>
-                        </div>
-                    ))}
+                <div className=" container" style={{width: '80%'}}>
+                    <div className="card" style={{width: '100%'}}>
+                        <div className="container ">
+                        <h1 style={{textTransform:"uppercase",textAlign:"center"}}>Stock Category</h1>
+                        <Row xs={1} md={2} className="g-4">
+                            {this.state.stockCategory.length > 0 && this.state.stockCategory.map((item, index) => (
+                                <Col>
+                                    <Card className="category-card">
+                                        <div align="right">
+                                            <button className="btn btn-outline-danger" onClick={e => this.deletePaper(item._id)}><i
+                                                className="fas fa-times"></i></button>
+                                        </div>
+                                        <Card.Img variant="top" img src={item.category_image} alt="Category"  className="center w3-card-4"/>
+                                        <Card.Body>
+                                            <Card.Title>
+                                                <h3>{item.category_topic}</h3>
+                                            </Card.Title>
+                                            <Card.Text>
+                                                <h4>{item.category_date}</h4>
+                                                <h6>{item.category_description}</h6>
+                                            </Card.Text>
+                                        </Card.Body>
+                                        <Card.Footer className="item-footer-button">
+                                            <button className="btn btn-success add-item" onClick={e => this.navigateAddStockCategoryItemsPage(e, item._id)}>Add an Item</button>
+                                            &nbsp; &nbsp;
+                                            <button className="btn btn-primary" onClick={e => this.navigateViewItemsPage(e,item._id)}>Go To Items</button>
+                                            &nbsp; &nbsp;
+                                            <button className="btn btn-warning edit-item" onClick={e => this.navigateEditStockCategoryPage(e, item._id)}>
+                                                <i className="fas fa-edit">&nbsp;</i>Edit</button>
+                                        </Card.Footer>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
+                    </div>
                 </div>
             </div>
         )

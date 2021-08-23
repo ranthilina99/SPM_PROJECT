@@ -91,7 +91,7 @@ const Login = ({loginUser, isLoggedIn}) => {
                 &nbsp;
                 <h3 className="login_title">LOGIN</h3>
                 <Form.Group size="lg" controlId="email" >
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="form-label">Email</Form.Label>
                         <Form.Control
                             type="email"
                             className="form-control"
@@ -103,7 +103,7 @@ const Login = ({loginUser, isLoggedIn}) => {
                             required/>
                 </Form.Group>
                 <Form.Group size="lg" controlId="password">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label className="form-label">Password</Form.Label>
                         <Form.Control
                             type="password"
                             className="form-control"

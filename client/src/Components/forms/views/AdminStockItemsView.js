@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Card, Col, Row} from "react-bootstrap";
 
 
 class AdminStockItemsView extends Component {
@@ -32,28 +33,40 @@ class AdminStockItemsView extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <h1>Stock Items</h1>
-                    {this.state.stockItems.length > 0 && this.state.stockItems.map((item, index) => (
-                        <div key={index} className="card mb-3">
-                            <div className="p-3">
-                                <img src={item.item_image} alt="Item" class="center"/>
-                                <h4>Name: {item.item_name}</h4>
-                                <h5>Quantity: {item.item_quantity}</h5>
-                                <h5>Price: {item.item_price}</h5>
-                                <h6>Date: {item.item_date}</h6>
-                                <h5>Suppliers: {item.item_suppliers}</h5>
-                                <h6>Description: {item.item_description}</h6>
-
-                                <button className="btn btn-success"
-                                        onClick={e => this.navigateEditPage(e, item._id)}>Edit
-                                </button>
-                                &nbsp; &nbsp;
-                                <button className="btn btn-danger" onClick={e => this.deleteItem(item._id)}>Delete
-                                </button>
-                            </div>
+                <div className=" container" style={{width: '80%'}}>
+                    <div className="card" style={{width: '100%',position:"relative"}}>
+                        <div className="container">
+                            <h1 style={{textTransform:"uppercase",textAlign:"center"}} >Stock Items</h1>
+                            <Row xs={1} md={2} className="g-4">
+                                {this.state.stockItems.length > 0 && this.state.stockItems.map((item, index) => (
+                                    <Col>
+                                        <Card className="category-card">
+                                            <Card.Img variant="top" img src={item.item_image} alt="Category"  className="center w3-card-4"/>
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h2 className="item_title">{item.item_name}</h2>&nbsp;<h4 className="price_item">Rs:&nbsp;{item.item_price}</h4>
+                                                </Card.Title>
+                                                <Card.Text>
+                                                    <h4>{item.item_quantity}</h4>
+                                                    <h4 style={{color:"darkblue"}}>Date: {item.item_date}</h4>
+                                                    <h4 style={{color:"darkblue"}}>Suppliers: {item.item_suppliers}</h4>
+                                                    <h5>{item.item_description}</h5>
+                                                </Card.Text>
+                                            </Card.Body>
+                                            <Card.Footer>
+                                                <button className="btn btn-warning "
+                                                        onClick={e => this.navigateEditPage(e, item._id)}>Edit
+                                                </button>
+                                                &nbsp; &nbsp;
+                                                <button className="btn btn-danger" onClick={e => this.deleteItem(item._id)}>Delete
+                                                </button>
+                                            </Card.Footer>
+                                        </Card>
+                                    </Col>
+                                ))}
+                            </Row>
                         </div>
-                    ))}
+                    </div>
                 </div>
             </div>
         )

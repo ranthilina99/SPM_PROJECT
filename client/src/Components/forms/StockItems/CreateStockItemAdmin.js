@@ -82,40 +82,42 @@ class CreateStockItemAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="Quantity" className="form-label">Quantity</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="Quantity"
-                                name="item_quantity"
-                                value={this.state.item_quantity}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="itemPrice" className="form-label">Item Price </label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="itemPrice"
-                                name="item_price"
-                                value={this.state.item_price}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Date" className="form-label">Date </label>
-                            <input
-                                type="date"
-                                className="form-control"
-                                id="Date"
-                                placeholder="Date Of Item"
-                                name="item_date"
-                                value={this.state.item_date}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                       <div className="row">
+                           <div className="col-4">
+                               <label htmlFor="Quantity" className="form-label">Quantity</label>
+                               <input
+                                   type="number"
+                                   className="form-control"
+                                   id="Quantity"
+                                   name="item_quantity"
+                                   value={this.state.item_quantity}
+                                   onChange={this.onChange}
+                               />
+                           </div>
+                           <div className="col-4">
+                               <label htmlFor="itemPrice" className="form-label">Item Price </label>
+                               <input
+                                   type="number"
+                                   className="form-control"
+                                   id="itemPrice"
+                                   name="item_price"
+                                   value={this.state.item_price}
+                                   onChange={this.onChange}
+                               />
+                           </div>
+                           <div className="col-4">
+                               <label htmlFor="Date" className="form-label">Date </label>
+                               <input
+                                   type="date"
+                                   className="form-control"
+                                   id="Date"
+                                   placeholder="Date Of Item"
+                                   name="item_date"
+                                   value={this.state.item_date}
+                                   onChange={this.onChange}
+                               />
+                           </div>
+                       </div>
                         <div className="mb-3">
                             <label htmlFor="itemSupplier" className="form-label">Item Supplier </label>
                             <input
@@ -137,7 +139,7 @@ class CreateStockItemAdmin extends Component {
 
                         <div className="mb-3">
                             <label htmlFor="itemDescription" className="form-label">Item Description </label>
-                            <input
+                            <textarea
                                 type="textarea"
                                 rows={5}
                                 cols={5}

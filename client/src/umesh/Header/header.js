@@ -25,7 +25,8 @@ class Header extends Component {
             firstname: '',
             lastname: '',
             position: '',
-            isLoggedIn:false
+            isLoggedIn:false,
+            id:''
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -81,6 +82,9 @@ class Header extends Component {
     BuyWorkout = e => {
         window.location.replace('/question');
     }
+    ViewWorkoutUser = e => {
+        window.location.replace('/workoutUserShow/'+this.state.id);
+    }
 
 
     componentDidMount() {
@@ -107,6 +111,7 @@ class Header extends Component {
                 firstname: res.data.firstName,
                 lastname: res.data.lastName,
                 position: res.data.position,
+                id:res.data._id,
                 isLoggedIn:true
             })
         }).catch(err => {
@@ -272,7 +277,7 @@ class Header extends Component {
                                                 Buy Workout
                                             </DropdownItem>
                                             <DropdownItem divider/>
-                                            <DropdownItem onClick={this.ViewWorkout}>
+                                            <DropdownItem onClick={this.ViewWorkoutUser}>
                                                 View Workout
                                             </DropdownItem>
                                         </DropdownMenu>

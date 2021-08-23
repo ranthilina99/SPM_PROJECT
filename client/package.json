@@ -17,6 +17,7 @@
     "react-file-base64": "^1.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-slideshow-image": "^3.5.0",
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
@@ -48,7 +49,9 @@
     ]
   },
   "devDependencies": {
+    "@material-ui/core": "^4.12.3",
     "axios": "^0.21.1",
+    "prop-types": "^15.7.2",
     "reactstrap": "^8.9.0",
     "sweetalert2": "^11.1.2"
   }

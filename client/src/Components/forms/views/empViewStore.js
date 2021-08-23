@@ -50,7 +50,7 @@ class EmpViewStore extends Component {
                 this.setState({ paper: response.data.data });
                 SubmissionAlert1()
             })
-        window.location = `/`
+        window.location = `/employee`
     }
 
     navigateCreateStore(e) {
@@ -138,28 +138,30 @@ class EmpViewStore extends Component {
                     </div>
                     <table className="table table-hover">
                         <thead className="thead-dark">
-                        <tr className="table-dark">
+                        <tr className="table-dark" style={{textAlign:"center"}}>
                             <th scope="col">ID</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Amount</th>
                             <th scope="col">QTY</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         {this.state.store.length > 0 && this.state.store.map((item, index) => (
-                        <tr>
+                        <tr style={{textAlign:"center"}}>
                             <th scope="row">{++this.state.num}</th>
+                            <td><img  src={item.itemImage} style={{width:"80px",height:"80px"}} alt="Card image cap"/></td>
                             <td>{item.itemName}</td>
                             <td>{item.itemDescription}</td>
                             <td>{item.itemAmount}</td>
                             <td>{item.itemQTY}</td>
-                            <td><img  src={item.itemImage}  alt="Card image cap"/></td>
-                            <td> <button className="btn btn-primary"  onClick={e => this.navigateEditStore(e,item._id)}>Edit</button></td>
-                            <td> <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}>Delete</button></td>
+                            <td >
+                                <button className="btn btn-warning"  onClick={e => this.navigateEditStore(e,item._id)}> <i className="fas fa-edit">&nbsp;</i>Edit</button>
+                                &nbsp;
+                                <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}><i className="fas fa-times">&nbsp;</i>Delete</button>
+                            </td>
                         </tr>
                             ))}
                         </tbody>

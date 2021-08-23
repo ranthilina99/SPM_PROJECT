@@ -80,7 +80,6 @@ class Forgot extends Component {
                             <FormGroup>
                                 <Label for="exampleEmail">Email address</Label>
                                 <div className="Login_input-container">
-                                    <i className="fas fa-envelope Login_icon"></i>
                                     <Input
                                         type="text"
                                         className="form-control"

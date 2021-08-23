@@ -50,21 +50,36 @@ class CreateCategoryAdmin extends Component {
                 <div className="container">
                     <h1 className="stock_title">Create Category</h1>
                     <form onSubmit={this.onSubmit}>
-                        <div className="mb-3">
-                            <label htmlFor="categoryTopic" className="form-label">Stock Category</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="categoryTopic"
-                                name="category_topic"
-                                value={this.state.category_topic}
-                                onChange={this.onChange}
-                            />
+                        <div className="row">
+                            <div className="col-6">
+                                <label htmlFor="categoryTopic" className="form-label">Stock Category</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="categoryTopic"
+                                    name="category_topic"
+                                    value={this.state.category_topic}
+                                    onChange={this.onChange}
+                                />
+                            </div>
+                            <div className="col-6">
+                                <label htmlFor="Date" className="form-label">Date </label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="Date"
+                                    placeholder="Date Of Category"
+                                    name="category_date"
+                                    value={this.state.category_date}
+                                    onChange={this.onChange}
+                                />
+                            </div>
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 form-group">
                             <label htmlFor="categoryDescription" className="form-label">Category description </label>
-                            <input
+                            <textarea
                                 type="text"
+                                rows="3"
                                 className="form-control"
                                 id="categoryDescription"
                                 name="category_description"
@@ -72,18 +87,7 @@ class CreateCategoryAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="Date" className="form-label">Date </label>
-                            <input
-                                type="date"
-                                className="form-control"
-                                id="Date"
-                                placeholder="Date Of Category"
-                                name="category_date"
-                                value={this.state.category_date}
-                                onChange={this.onChange}
-                            />
-                        </div>
+
 
                         <div className="mb-3">
                             <label htmlFor="categoryImage" className="form-label">Category Image</label>

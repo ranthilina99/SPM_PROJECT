@@ -3,8 +3,9 @@ import axios from 'axios';
 import jsPDF from "jspdf";
 import 'jspdf-autotable'
 import { ExportToCsv } from 'export-to-csv';
-import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
+import {Container, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card, Col, Row} from "react-bootstrap";
 
 class showWorkoutAdmin extends Component {
     constructor(props) {
@@ -82,25 +83,28 @@ class showWorkoutAdmin extends Component {
     render() {
         return (
             <div>
-                <div className="container p-3 my-3 bg-dark text-black-100">
-                    <h1  className="text-white">Workouts</h1>
-                    {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
-                        <div key={index} className="card mb-3">
-                            <div className="p-3" onClick={e => this.chooseWorkout(e, item._id)}>
-                                <img className="workout_img" src={item.workout_img} alt="Logo" />
-                                <h3>{item.workout_name}</h3>
-                                <h4>{item.workout_theme}</h4>
-                                <h5>{item.workout_description}</h5>
-                                <h6> Rs.{item.workout_price}</h6>
-                                <h6> Level {item.workout_level}</h6>
-                            </div>
-
-                        </div>
-                    ))}
-                </div>
-
-
-                <div align="right">
+                <Container>
+                    <h1 style={{textTransform:"uppercase"}}>Stock Category</h1>
+                    <Row  xs={1} md={2}>
+                        {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
+                            <Col className="workout-card ">
+                                <Card>
+                                    <Card.Img variant="top" className="center" src={item.workout_img} alt="Logo"/>
+                                    <Card.Body>
+                                        <Card.Title>
+                                            <h3>{item.workout_name}</h3> <h3 className="workout_item"> Rs.{item.workout_price}</h3>
+                                        </Card.Title>
+                                        <Card.Text className="workout-p">
+                                            <h4>{item.workout_theme}</h4>
+                                            <h6> Level {item.workout_level}</h6>
+                                            <h5>{item.workout_description}</h5>
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                    <div align="right">
                         <UncontrolledDropdown>
                             <DropdownToggle style={{color: 'white', backgroundColor: "blue", marginRight: '100px'}}
                                             className="btn btn-lg">
@@ -116,8 +120,8 @@ class showWorkoutAdmin extends Component {
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
-
-                </div>
+                    </div>
+                </Container>
             </div>
         )
     }

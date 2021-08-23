@@ -25,7 +25,8 @@
     "googleapis": "^84.0.0",
     "moment": "^2.29.1",
     "mongoose": "^5.12.11",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "react-player": "^2.9.0"
   },
   "devDependencies": {
     "jsonwebtoken": "^8.5.1",

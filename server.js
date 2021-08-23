@@ -19,8 +19,8 @@ app.use(fileUpload({
   useTempFiles:true
 }))
 
-app.use(bodyParser.json({ limit:"30mb",extended: true}));
-app.use(bodyParser.urlencoded({ limit:"30mb",extended: true}));
+app.use(bodyParser.json({ limit:"120mb",extended: true}));
+app.use(bodyParser.urlencoded({ limit:"120mb",extended: true}));
 app.set('trust proxy', 1) // trust first proxy
 
 const PORT = process.env.PORT || 5000;

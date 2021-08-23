@@ -78,27 +78,27 @@ class showWorkoutOneEmployee extends Component {
     render() {
         return (
             <div className="workout_wrapper">
-                <div className="parallax">
-                    <h1>Workout</h1>
-                    <img src={this.state.workout_img} alt="Logo" className="yas-banner"/>
-                    <div className="parallax-container" >
-
-                        <h4 className="h1-yas">{this.state.workout_name}</h4>
-                        <h6 className="h2-yas">{this.state.workout_theme}</h6>
-                        <h6 className="h2-yas">{this.state.workout_description}</h6>
-                        <h6 className="h3-yas">{this.state.workout_schedule}</h6>
-                        <h6 className="h3-yas">{this.state.workout_diet}</h6>
-                        <h6 className="h4-yas">{this.state.workout_price}</h6>
-                        <h6 className="h4-yas">{this.state.workout_level}</h6>
-
-
+                <h1 style={{textAlign:"center",textTransform:"uppercase"}}>Workout</h1>
+                <div>
+                   <div className="yas-img-banner">
+                       <img src={this.state.workout_img} alt="Logo" className="yas-banner"/>
+                   </div>
+                    <div >
+                        <h4 className="h1-yas" align="center">{this.state.workout_name}</h4>
+                        <h6 className="h2-yas" align="center">{this.state.workout_theme}</h6>
+                        <h6 className="h2-yas" align="center">{this.state.workout_description}</h6>
+                        &nbsp;
+                        <h6 className="h3-yas" align="left">{this.state.workout_schedule}</h6>
+                        &nbsp;
+                        <h6 className="h3-yas" align="left">{this.state.workout_diet}</h6>
+                        <h4 align="center" className="workout_item_price">Rs : {this.state.workout_price}.00</h4>
+                        <h6 className="h4-yas " align="center">Level: {this.state.workout_level}</h6>
                     </div>
-                    <div>
-                        <button className="btn btn-danger" onClick={() => this.deleteWorkout(this.state.id)}>Delete</button>
-                        <button className="btn btn-success" onClick={() => this.updateWorkout(this.state.id)}>Update</button>
-
+                    <div align="right">
+                        <button className="btn btn-warning" onClick={() => this.updateWorkout(this.state.id)}> <i className="fas fa-edit">&nbsp;UPDATE</i></button>
+                       &nbsp;&nbsp;
+                        <button className="btn btn-danger" onClick={() => this.deleteWorkout(this.state.id)}><i className="fas fa-times">&nbsp;DELETE</i></button>
                     </div>
-
                 </div>
             </div>
         )

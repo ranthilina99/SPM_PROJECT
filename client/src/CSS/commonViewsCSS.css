@@ -1,8 +1,26 @@
 .center{
     text-align: center;
-    display: block;
     justify-content: center;
     align-items: center;
     margin: auto;
-    width: 35%;
+    width: 100%;
 }
+.container .category-card{
+    width: 100%;
+    border: 1px solid;
+}
+.add-item{
+    text-align: left;
+}
+.edit-item{
+   text-align: right;
+}
+.price_item{
+    margin-top: -60px;
+    text-align: right;
+    color: red;
+}
+.item_title{
+    color: saddlebrown;
+}
+
