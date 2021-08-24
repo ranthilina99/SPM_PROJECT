@@ -5,6 +5,7 @@ import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import {Input, Label, Form, FormGroup,Button} from "reactstrap";
 import FileBase from 'react-file-base64'
 import './profile.css'
+import Avatar from "react-avatar";
 const SuccessAlert = (res) => {
     swat.fire({
         position: 'center',
@@ -103,8 +104,7 @@ class Profile extends Component {
         console.log('DATA TO SEND', user);
         axios.put(SERVER_ADDRESS+'/users/update', user, {
             headers: {Authorization: this.state.token}
-        })
-            .then(response => {
+        }).then(response => {
                 let message = "User Update"
                 SuccessAlert(message)
                 window.location.replace('/profile')
@@ -166,9 +166,12 @@ class Profile extends Component {
             <>
                 <Form >
                     <div className="profile_page">
+
                         <div className="col-left">
-                            <div className="avatar">
-                                <img src={this.state.image} alt=""/>
+                            <div className="avatar1">
+                                <Avatar size="150px" round={true}
+                                        name={this.state.firstname+ " " +this.state.lastname}
+                                        src={this.state.image}/>
                             </div>
                             {this.state.updateFields &&
                             <>
@@ -204,7 +207,7 @@ class Profile extends Component {
                                            type="email"
                                            name="email"
                                            id="exampleEmail"
-                                           placeholder="with a placeholder"
+                                           placeholder="abc@gmail.com"
                                            value={this.state.email}
                                            onChange={this.onChange}
                                            required/>
@@ -309,7 +312,7 @@ class Profile extends Component {
                                     <h6>Delete Profile</h6>
                                     <Button className="btn  btn-danger float-right" block href="/"
                                             onClick={() => this.onDelete(this.state.id)}>
-                                        <i className="fas fa-trash"></i>&nbsp;Delete
+                                        <i className="fas fa-trash">Delete</i>&nbsp;
                                     </Button>
                                 </div>
                                 }
