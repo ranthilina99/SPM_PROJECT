@@ -80,10 +80,11 @@ class EditCategoryAdmin extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 form-group">
                             <label htmlFor="categoryDescription" className="form-label">Category Description </label>
-                            <input
+                            <textarea
                                 type="text"
+                                rows="3"
                                 className="form-control"
                                 id="categoryDescription"
                                 name="category_description"

@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="CSS added">
+    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Styles and UI issues correct of Frontend">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/updateWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/updateWorkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/workout.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/workout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/adminAddEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/adminAddEmployee.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +60,7 @@
       <updated>1629125294548</updated>
       <workItem from="1629125296024" duration="4081000" />
       <workItem from="1629203252164" duration="268000" />
+      <workItem from="1629784256490" duration="3656000" />
     </task>
     <servers />
   </component>
