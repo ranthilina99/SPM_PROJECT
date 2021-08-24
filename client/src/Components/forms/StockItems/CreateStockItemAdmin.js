@@ -2,6 +2,26 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 import './stock_item.css'
+import swat from "sweetalert2";
+
+
+const SubmissionAlert = () => {
+    swat.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Item Created Successfully!',
+        showConfirmButton: false,
+        timer: 3000
+    });
+}
+
+const SubmissionFail = (message) => {
+    swat.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}
 
 const initialState = {
 
@@ -43,7 +63,7 @@ class CreateStockItemAdmin extends Component {
         console.log('DATA TO SEND', item);
         axios.post('http://localhost:5000/StockCategoryItem', item)
             .then(response => {
-                alert('Data successfully inserted')
+                SubmissionAlert();
 
                 let details = {
                     categoryID:this.props.match.params.id,
@@ -51,11 +71,10 @@ class CreateStockItemAdmin extends Component {
                 };
                 axios.patch(`http://localhost:5000/StockCategory/item`, details)
                     .then(response => {
-                        console.log('Item Id added');
+                        window.location.replace("/adminViewStockCategory");
                     })
                     .catch(error => {
-                        console.log(error.message);
-                        alert(error.message)
+                       SubmissionFail();
                     })
 
             })

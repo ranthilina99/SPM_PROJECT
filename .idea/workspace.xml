@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Styles and UI issues correct of Frontend">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Change Item edit UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/EditCategoryAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/EditStockItemsAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +67,14 @@
       <workItem from="1629203252164" duration="268000" />
       <workItem from="1629784256490" duration="3656000" />
     </task>
+    <task id="LOCAL-00001" summary="Change Item edit UI">
+      <created>1629818637183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629818637183</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,5 +91,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Change Item edit UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change Item edit UI" />
   </component>
 </project>
