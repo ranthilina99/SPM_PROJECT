@@ -1,38 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Yasoja 1st sprint and report done">
+    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="CSS added">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/stock.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/stock.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/supplier.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Suppliers/supplier.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminSupplierView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminSupplierView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/addWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/addWorkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/workout/updateWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/updateWorkout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/workout/workout.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/workout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/HomePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/AdminEditUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/AdminEditUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/getAllUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/getAllUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/Button.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/Button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/HeroSection.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/HeroSection.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/adminAddEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/adminAddEmployee.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +65,6 @@
       <updated>1629125294548</updated>
       <workItem from="1629125296024" duration="4081000" />
       <workItem from="1629203252164" duration="268000" />
-      <workItem from="1629784256490" duration="3656000" />
     </task>
     <servers />
   </component>

@@ -115,8 +115,8 @@ section p:first-child, .timer div:last-child span{
 .h5-yas{
     color: #0e0b0b;
     font-family: "Times New Roman";
-    font-size: 180%;
-
+    font-size: 129%;
+    white-space: pre-wrap;
     text-align: center;
 }
 

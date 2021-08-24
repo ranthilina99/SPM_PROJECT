@@ -86,11 +86,11 @@ class showWorkoutOneEmployee extends Component {
                     <div >
                         <h4 className="h1-yas" align="center">{this.state.workout_name}</h4>
                         <h6 className="h2-yas" align="center">{this.state.workout_theme}</h6>
-                        <h6 className="h2-yas" align="center">{this.state.workout_description}</h6>
+                        <h6 className="h3-yas" align="center">{this.state.workout_description}</h6>
                         &nbsp;
-                        <h6 className="h3-yas" align="left">{this.state.workout_schedule}</h6>
+                        <h6 className="h5-yas" align="left">{this.state.workout_schedule}</h6>
                         &nbsp;
-                        <h6 className="h3-yas" align="left">{this.state.workout_diet}</h6>
+                        <h6 className="h5-yas" align="left">{this.state.workout_diet}</h6>
                         <h4 align="center" className="workout_item_price">Rs : {this.state.workout_price}.00</h4>
                         <h6 className="h4-yas " align="center">Level: {this.state.workout_level}</h6>
                     </div>

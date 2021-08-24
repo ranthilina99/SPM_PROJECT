@@ -132,7 +132,7 @@ class AdminRegister extends Component {
                             type="email"
                             name="email"
                             id="exampleEmail"
-                            placeholder="with a placeholder"
+                            placeholder="abc@gmail.com"
                             value={this.state.email}
                             onChange={this.onChange}/>
                     </FormGroup>
@@ -222,9 +222,7 @@ class AdminRegister extends Component {
                         </FormGroup>
                     </FormGroup>
                     <button className="register_button btn btn-primary">Submit</button>
-                    <FormGroup>
-                        <Label>Login Page <a className="register"  href="/login">Login</a></Label>
-                    </FormGroup>
+
                 </Form>
 
             </div>

@@ -9,7 +9,7 @@ const SubmissionAlert = () => {
     swat.fire({
         position: 'center',
         icon: 'success',
-        title: 'Conference Updated Successfully!',
+        title: 'Workout Updated Successfully!',
         showConfirmButton: false,
         timer: 3000
     });
@@ -144,7 +144,7 @@ class UpdateWorkout extends Component {
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_schedule">Schedule</Label>
-                            <textarea className="form-control"
+                            <textarea  className="form-control"
                                       id="workout_schedule"
                                       name="workout_schedule"
                                       cols="163"
@@ -156,7 +156,7 @@ class UpdateWorkout extends Component {
                     <div className="row justify-content-md-center">
                         <FormGroup>
                             <Label for="workout_diet">Diet</Label>
-                            <textarea className="form-control"
+                            <textarea className="form-control" wrap=""
                                       id="workout_diet"
                                       rows="10"
                                       cols="163"
