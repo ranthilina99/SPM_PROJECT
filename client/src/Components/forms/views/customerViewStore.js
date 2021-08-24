@@ -102,7 +102,7 @@ class CustomerViewStore extends Component {
                 <div className="container">
 
                     <div className="alert alert-primary" role="alert">
-                        <h2>STORE</h2>
+                        <h2>Store</h2>
                     </div>
 
                     <div className="row">
@@ -119,99 +119,126 @@ class CustomerViewStore extends Component {
 
                     </div>
                     <br/><br/>
-                    <div className=" container" style={{width: '100%'}}>
-                        <div style={{width: '100%' }}>
-                            <div className="row">
-                                {this.state.store.length > 0 && this.state.store.map((item, index) => (
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img className="card-img-top" src={item.itemImage} style={{width:"100%"}} alt="Card image cap"/>
-                                            <div className="card-body">
-                                                <h5 className="card-title">{item.itemName}</h5>
-                                                <h6 className="card-text">{item.itemDescription}</h6>
-                                                <hr/>
-                                                <h6 className="card-text">LKR : {item.itemAmount}</h6>
-                                                <hr/>
-                                                <button className="btn btn-primary" onClick={e => this.navigateStoreItem(e,item._id)}>Add</button>
-                                            </div>
-                                        </div>
+
+                    <div className="row">
+                        {this.state.store.length > 0 && this.state.store.map((item, index) => (
+                            <div className="col-md-3">
+
+                                <div className="card">
+                                    <img className="card-img-top" src={item.itemImage}  alt="Card image cap"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{item.itemName}</h5>
+                                        <h6 className="card-text">{item.itemDescription}</h6>
+                                        <hr/>
+                                        <h6 className="card-text">LKR : {item.itemAmount}</h6>
+                                        <hr/>
+                                        <button className="btn btn-primary" onClick={e => this.navigateStoreItem(e,item._id)}>Add</button>
                                     </div>
-                                ))}
+                                </div>
+
                             </div>
-                        </div>
+                        ))}
                     </div>
 
 
                 </div>
             </div>
 
-        // <div className="aa">
-        //     <br/>
-        //     <div className="container">
-        //         <div className="row">
-        //
-        //             <div className="col-md-3">
-        //
-        //                 <div className="card">
-        //                     <img className="card-img-top" src="../../asserts/car.jpg" alt="Card image cap"/>
-        //                     <div className="card-body">
-        //                         <h5 className="card-title">ss</h5>
-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
-        //                             of the card's content.</p>
-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
-        //                     </div>
-        //                 </div>
-        //
-        //             </div>
-        //             <div className="col-md-3">
-        //
-        //                 <div className="card">
-        //                     <img className="card-img-top" src="#" alt="Card image cap"/>
-        //                     <div className="card-body">
-        //                         <h5 className="card-title">sss</h5>
-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
-        //                             of the card's content.</p>
-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
-        //                     </div>
-        //                 </div>
-        //
-        //             </div>
-        //
-        //             <div className="col-md-3">
-        //
-        //                 <div className="card">
-        //                     <img className="card-img-top" src="#" alt="Card image cap"/>
-        //                     <div className="card-body">
-        //                         <h5 className="card-title">sss</h5>
-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
-        //                             of the card's content.</p>
-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
-        //                     </div>
-        //                 </div>
-        //
-        //             </div>
-        //
-        //             <div className="col-md-3">
-        //
-        //                 <div className="card">
-        //                     <img className="card-img-top" src="#" alt="Card image cap"/>
-        //                     <div className="card-body">
-        //                         <h5 className="card-title">sss</h5>
-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
-        //                             of the card's content.</p>
-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
-        //                     </div>
-        //                 </div>
-        //
-        //             </div>
-        //
-        //         </div>
-        //
-        //
-        //     </div>
-        // </div>
+            // <div className="aa">
+            //     <br/>
+            //     <div className="container">
+            //         <div className="row">
+            //
+            //             <div className="col-md-3">
+            //
+            //                 <div className="card">
+            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+            //                     <div className="card-body">
+            //                         <h5 className="card-title">ss</h5>
+            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+            //                             of the card's content.</p>
+            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+            //                     </div>
+            //                 </div>
+            //
+            //             </div>
+            //             <div className="col-md-3">
+            //
+            //                 <div className="card">
+            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+            //                     <div className="card-body">
+            //                         <h5 className="card-title">sss</h5>
+            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+            //                             of the card's content.</p>
+            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+            //                     </div>
+            //                 </div>
+            //
+            //             </div>
+            //
+            //             <div className="col-md-3">
+            //
+            //                 <div className="card">
+            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+            //                     <div className="card-body">
+            //                         <h5 className="card-title">sss</h5>
+            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+            //                             of the card's content.</p>
+            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+            //                     </div>
+            //                 </div>
+            //
+            //             </div>
+            //
+            //             <div className="col-md-3">
+            //
+            //                 <div className="card">
+            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+            //                     <div className="card-body">
+            //                         <h5 className="card-title">sss</h5>
+            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+            //                             of the card's content.</p>
+            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+            //                     </div>
+            //                 </div>
+            //
+            //             </div>
+            //
+            //         </div>
+            //
+            //
+            //     </div>
+            // </div>
+
+            // <div className="container">
+            //     <div className="row">
+            //         <div className="card">
+            //             <img className="card-img-top" src="..." alt="Card image cap"/>
+            //             <div className="card-body">
+            //                 <h5 className="card-title">Card title</h5>
+            //                 <p className="card-text">Some quick example text to build on the card title and make up the bulk
+            //                     of the card's content.</p>
+            //                 <a href="#" className="btn btn-primary">Go somewhere</a>
+            //             </div>
+            //         </div>
+            //         <div className="card">
+            //             <img className="card-img-top" src="..." alt="Card image cap"/>
+            //             <div className="card-body">
+            //                 <h5 className="card-title">Card title</h5>
+            //                 <p className="card-text">Some quick example text to build on the card title and make up the bulk
+            //                     of the card's content.</p>
+            //                 <a href="#" className="btn btn-primary">Go somewhere</a>
+            //             </div>
+            //         </div>
+            //     </div>
+            // </div>
+
+
+
+
         )
     }
 }
 
 export default CustomerViewStore;
+

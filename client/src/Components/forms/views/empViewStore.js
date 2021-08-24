@@ -50,7 +50,7 @@ class EmpViewStore extends Component {
                 this.setState({ paper: response.data.data });
                 SubmissionAlert1()
             })
-        window.location = `/employee`
+        window.location = `/empViewStore`
     }
 
     navigateCreateStore(e) {
@@ -150,26 +150,26 @@ class EmpViewStore extends Component {
                         </thead>
                         <tbody>
                         {this.state.store.length > 0 && this.state.store.map((item, index) => (
-                        <tr style={{textAlign:"center"}}>
-                            <th scope="row">{++this.state.num}</th>
-                            <td><img  src={item.itemImage} style={{width:"80px",height:"80px"}} alt="Card image cap"/></td>
-                            <td>{item.itemName}</td>
-                            <td>{item.itemDescription}</td>
-                            <td>{item.itemAmount}</td>
-                            <td>{item.itemQTY}</td>
-                            <td >
-                                <button className="btn btn-warning"  onClick={e => this.navigateEditStore(e,item._id)}> <i className="fas fa-edit">&nbsp;</i>Edit</button>
-                                &nbsp;
-                                <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}><i className="fas fa-times">&nbsp;</i>Delete</button>
-                            </td>
-                        </tr>
-                            ))}
+                            <tr style={{textAlign:"center"}}>
+                                <th scope="row">{++this.state.num}</th>
+                                <td><img  src={item.itemImage} style={{width:"80px",height:"80px"}} alt="Card image cap"/></td>
+                                <td>{item.itemName}</td>
+                                <td>{item.itemDescription}</td>
+                                <td>{item.itemAmount}</td>
+                                <td>{item.itemQTY}</td>
+                                <td >
+                                    <button className="btn btn-warning"  onClick={e => this.navigateEditStore(e,item._id)}> <i className="fas fa-edit">&nbsp;</i>Edit</button>
+                                    &nbsp;
+                                    <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}><i className="fas fa-times">&nbsp;</i>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
 
                     <div className="row">
                         <div className="col-md-6">
-                            <button className="btn btn-success" onClick={e => this.navigateCreateStore()}>Add new</button>
+                            <button className="btn btn-success" onClick={e => this.navigateCreateStore()}>Add new Item</button>
                         </div>
                         <div className="col-md-6">
                             <div align="right">
@@ -200,3 +200,4 @@ class EmpViewStore extends Component {
 }
 
 export default EmpViewStore;
+

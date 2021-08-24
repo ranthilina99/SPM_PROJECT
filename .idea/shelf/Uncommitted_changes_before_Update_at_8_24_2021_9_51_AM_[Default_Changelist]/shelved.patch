@@ -1,0 +1,486 @@
+Index: client/src/Components/forms/views/empViewStore.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component} from 'react';\r\nimport axios from 'axios';\r\n// import ReviewerNavBar from \"../navbar/reviewerNavBar\";\r\nimport swat from \"sweetalert2\";\r\nimport jsPDF from \"jspdf\";\r\nimport {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from \"reactstrap\";\r\nimport { ExportToCsv } from 'export-to-csv';\r\n// import * as jsPDF from \"jspdf\";\r\nimport 'jspdf-autotable'\r\n\r\n\r\nconst SubmissionAlert1 = () => {\r\n    swat.fire({\r\n        position: 'center',\r\n        icon: 'success',\r\n        title: 'Deleted Successfully!',\r\n        showConfirmButton: false,\r\n        timer: 3000\r\n    });\r\n}\r\n\r\nclass EmpViewStore extends Component {\r\n\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            store: [],\r\n            num : 0,\r\n        }\r\n    }\r\n\r\n\r\n    componentDidMount() {\r\n        axios.get('http://localhost:5000/store/')\r\n            .then(response => {\r\n                this.setState({ store: response.data.data });\r\n                console.log(response);\r\n            })\r\n\r\n    }\r\n\r\n    navigateEditStore(e, Id) {\r\n        window.location = `/editStore/${Id}`\r\n        console.log(Id);\r\n    }\r\n\r\n    deletePaper(id){\r\n        axios.delete(`http://localhost:5000/store/${id}`)\r\n            .then(response => {\r\n                this.setState({ paper: response.data.data });\r\n                SubmissionAlert1()\r\n            })\r\n        window.location = `/employee`\r\n    }\r\n\r\n    navigateCreateStore(e) {\r\n        window.location = `/createStore`\r\n    }\r\n\r\n    ExportCSV = () => {\r\n        const options = {\r\n            fieldSeparator: ',',\r\n            quoteStrings: '\"',\r\n            decimalSeparator: '.',\r\n            showLabels: true,\r\n            showTitle: true,\r\n            filename :'equinox all Store Items report',\r\n            title: 'All Store items Details CSV ',\r\n            useTextFile: false,\r\n            useBom: true,\r\n            useKeysAsHeaders: false,\r\n            headers: [ 'Item Name','Description','Amount', 'QTY'],\r\n        };\r\n\r\n        const data = this.state.store.map(elt=> [elt.itemName, elt.itemDescription,elt.itemAmount, elt.itemQTY]);\r\n        const csvExporter = new ExportToCsv(options);\r\n        csvExporter.generateCsv(data);\r\n    }\r\n\r\n    ExportPDF = () => {\r\n        const unit = \"pt\";\r\n        const size = \"A4\"; // Use A1, A2, A3 or A4\r\n        const orientation = \"portrait\"; // portrait or landscape\r\n\r\n        const marginLeft = 40;\r\n        const doc = new jsPDF(orientation, unit, size);\r\n        doc.setFontSize(25);\r\n\r\n\r\n        const title = \"EQUINOX Gym All Store Items Details Report\";\r\n        const headers = [['Item Name','Description','Amount', 'QTY']];\r\n\r\n        const data = this.state.store.map(elt=> [elt.itemName, elt.itemDescription,elt.itemAmount, elt.itemQTY]);\r\n\r\n        let content = {\r\n            startY: 50,\r\n            head: headers,\r\n            body: data\r\n        };\r\n\r\n        doc.setFont('helvetica')\r\n        doc.setTextColor(0, 0, 255)\r\n        doc.text(title, marginLeft, 40);\r\n        doc.autoTable(content);\r\n        doc.save(\"equinox all Store Items report.pdf\")\r\n    }\r\n\r\n\r\n    render() {\r\n        return (\r\n            <div>\r\n\r\n                {/*<ReviewerNavBar/>*/}\r\n                {/*<div className=\"container p-3 my-3 bg-dark text-black-100\">*/}\r\n                {/*    <h1  className=\"text-white\">Papers</h1>*/}\r\n                {/*    {this.state.store.length > 0 && this.state.store.map((item, index) => (*/}\r\n                {/*        <div key={index} className=\"card mb-3\">*/}\r\n                {/*            <div className=\"p-3 emp\">*/}\r\n                {/*                <h4>Name: {item.itemName}</h4>*/}\r\n                {/*                <h5>Description: {item.itemDescription}</h5>*/}\r\n                {/*                <h5>Amount: {item.itemAmount}</h5>*/}\r\n                {/*                <h5>QTY: {item.itemQTY}</h5>*/}\r\n                {/*                <img  src={item.itemImage}  alt=\"Card image cap\"/><br/>*/}\r\n                {/*                <button className=\"btn btn-success\"  onClick={e => this.navigateEditStore(item._id)}>Edit</button>*/}\r\n                {/*                &nbsp;*/}\r\n                {/*                <button className=\"btn btn-danger\" onClick={e => this.deletePaper(item._id)}>Delete</button>*/}\r\n                {/*            </div>*/}\r\n                {/*        </div>*/}\r\n                {/*    ))}*/}\r\n                {/*    <button className=\"btn btn-primary\" onClick={e => this.navigateCreateStore()}>Add new</button>*/}\r\n                {/*</div>*/}\r\n\r\n                <br/>\r\n\r\n                <div className=\"container emp\">\r\n                    <div className=\"alert alert-primary\" role=\"alert\">\r\n                        <h2>Store Details</h2>\r\n                    </div>\r\n                    <table className=\"table table-hover\">\r\n                        <thead className=\"thead-dark\">\r\n                        <tr className=\"table-dark\" style={{textAlign:\"center\"}}>\r\n                            <th scope=\"col\">ID</th>\r\n                            <th scope=\"col\">Image</th>\r\n                            <th scope=\"col\">Name</th>\r\n                            <th scope=\"col\">Description</th>\r\n                            <th scope=\"col\">Amount</th>\r\n                            <th scope=\"col\">QTY</th>\r\n                            <th scope=\"col\">Action</th>\r\n                        </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                        {this.state.store.length > 0 && this.state.store.map((item, index) => (\r\n                        <tr style={{textAlign:\"center\"}}>\r\n                            <th scope=\"row\">{++this.state.num}</th>\r\n                            <td><img  src={item.itemImage} style={{width:\"80px\",height:\"80px\"}} alt=\"Card image cap\"/></td>\r\n                            <td>{item.itemName}</td>\r\n                            <td>{item.itemDescription}</td>\r\n                            <td>{item.itemAmount}</td>\r\n                            <td>{item.itemQTY}</td>\r\n                            <td >\r\n                                <button className=\"btn btn-warning\"  onClick={e => this.navigateEditStore(e,item._id)}> <i className=\"fas fa-edit\">&nbsp;</i>Edit</button>\r\n                                &nbsp;\r\n                                <button className=\"btn btn-danger\" onClick={e => this.deletePaper(item._id)}><i className=\"fas fa-times\">&nbsp;</i>Delete</button>\r\n                            </td>\r\n                        </tr>\r\n                            ))}\r\n                        </tbody>\r\n                    </table>\r\n\r\n                    <div className=\"row\">\r\n                        <div className=\"col-md-6\">\r\n                            <button className=\"btn btn-success\" onClick={e => this.navigateCreateStore()}>Add new</button>\r\n                        </div>\r\n                        <div className=\"col-md-6\">\r\n                            <div align=\"right\">\r\n                                <UncontrolledDropdown>\r\n                                    <DropdownToggle style={{color: 'white', backgroundColor: \"blue\", width:\"280px\"}}\r\n                                                    className=\"btn btn-lg\">\r\n                                        <i className=\"fa fa-download\"></i>&nbsp;Generate Report&nbsp;\r\n                                    </DropdownToggle>\r\n                                    <DropdownMenu right>\r\n                                        <DropdownItem onClick={this.ExportPDF}>\r\n                                            PDF File\r\n                                        </DropdownItem>\r\n                                        <DropdownItem divider/>\r\n                                        <DropdownItem onClick={this.ExportCSV}>\r\n                                            CSV File\r\n                                        </DropdownItem>\r\n                                    </DropdownMenu>\r\n                                </UncontrolledDropdown>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\nexport default EmpViewStore;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/Components/forms/views/empViewStore.js b/client/src/Components/forms/views/empViewStore.js
+--- a/client/src/Components/forms/views/empViewStore.js	(revision 8ab25d88ee97529a51b5756c75a20bd0a7ab8e7a)
++++ b/client/src/Components/forms/views/empViewStore.js	(date 1629778481721)
+@@ -150,20 +150,20 @@
+                         </thead>
+                         <tbody>
+                         {this.state.store.length > 0 && this.state.store.map((item, index) => (
+-                        <tr style={{textAlign:"center"}}>
+-                            <th scope="row">{++this.state.num}</th>
+-                            <td><img  src={item.itemImage} style={{width:"80px",height:"80px"}} alt="Card image cap"/></td>
+-                            <td>{item.itemName}</td>
+-                            <td>{item.itemDescription}</td>
+-                            <td>{item.itemAmount}</td>
+-                            <td>{item.itemQTY}</td>
+-                            <td >
+-                                <button className="btn btn-warning"  onClick={e => this.navigateEditStore(e,item._id)}> <i className="fas fa-edit">&nbsp;</i>Edit</button>
+-                                &nbsp;
+-                                <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}><i className="fas fa-times">&nbsp;</i>Delete</button>
+-                            </td>
+-                        </tr>
+-                            ))}
++                            <tr style={{textAlign:"center"}}>
++                                <th scope="row">{++this.state.num}</th>
++                                <td><img  src={item.itemImage} style={{width:"80px",height:"80px"}} alt="Card image cap"/></td>
++                                <td>{item.itemName}</td>
++                                <td>{item.itemDescription}</td>
++                                <td>{item.itemAmount}</td>
++                                <td>{item.itemQTY}</td>
++                                <td >
++                                    <button className="btn btn-warning"  onClick={e => this.navigateEditStore(e,item._id)}> <i className="fas fa-edit">&nbsp;</i>Edit</button>
++                                    &nbsp;
++                                    <button className="btn btn-danger" onClick={e => this.deletePaper(item._id)}><i className="fas fa-times">&nbsp;</i>Delete</button>
++                                </td>
++                            </tr>
++                        ))}
+                         </tbody>
+                     </table>
+ 
+Index: client/src/Components/forms/views/customerViewStore.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component} from 'react';\r\nimport axios from 'axios';\r\n// import ReviewerNavBar from \"../navbar/reviewerNavBar\";\r\nimport swat from \"sweetalert2\";\r\nimport car from \"../../../asserts/bottle.jpg\";\r\n\r\n\r\nconst SubmissionAlert1 = () => {\r\n    swat.fire({\r\n        position: 'center',\r\n        icon: 'success',\r\n        title: 'Deleted Successfully!',\r\n        showConfirmButton: false,\r\n        timer: 3000\r\n    });\r\n}\r\n\r\nconst SubmissionAlert2 = () => {\r\n    swat.fire({\r\n        position: 'center',\r\n        icon: 'success',\r\n        title: 'Paper Rejected!',\r\n        showConfirmButton: false,\r\n        timer: 3000\r\n    });\r\n}\r\n\r\nclass CustomerViewStore extends Component {\r\n\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            store: []\r\n        }\r\n\r\n    }\r\n\r\n    componentDidMount() {\r\n        axios.get('http://localhost:5000/store/')\r\n            .then(response => {\r\n                this.setState({ store: response.data.data });\r\n                console.log(response);\r\n            })\r\n\r\n    }\r\n\r\n    navigateStoreItem(e, Id) {\r\n        window.location = `/storeItem/${Id}`\r\n        console.log(Id);\r\n    }\r\n\r\n    // deletePaper(id){\r\n    //     axios.delete(`http://localhost:4002/store/${id}`)\r\n    //         .then(response => {\r\n    //             this.setState({ paper: response.data.data });\r\n    //             SubmissionAlert1()\r\n    //         })\r\n    //     window.location = `/`\r\n    // }\r\n    //\r\n    // navigateCreateStore(e) {\r\n    //     window.location = `/createStore`\r\n    // }\r\n\r\n\r\n    render() {\r\n        return (\r\n\r\n            // <div className=\"aa\">\r\n            //     <br/>\r\n            //\r\n            //     <div className=\"container\">\r\n            //\r\n            //\r\n            //         <div className=\"row\">\r\n            //             {this.state.store.length > 0 && this.state.store.map((item, index) => (\r\n            //             <div className=\"col-md-3\">\r\n            //\r\n            //                 <div className=\"card\">\r\n            //                     <img className=\"card-img-top\" src={item.itemImage}  alt=\"Card image cap\"/>\r\n            //                     <div className=\"card-body\">\r\n            //                         <h5 className=\"card-title\">{item.itemName}</h5>\r\n            //                         <h6 className=\"card-text\">{item.itemDescription}</h6>\r\n            //                         <hr/>\r\n            //                         <h6 className=\"card-text\">LKR : {item.itemAmount}</h6>\r\n            //                         <hr/>\r\n            //                         <a href=\"#\" className=\"btn btn-primary\">Add</a>\r\n            //                     </div>\r\n            //                 </div>\r\n            //\r\n            //             </div>\r\n            //             ))}\r\n            //         </div>\r\n            //\r\n            //\r\n            //     </div>\r\n            // </div>\r\n\r\n            <div className=\"aa\">\r\n                <br/>\r\n\r\n                <div className=\"container\">\r\n\r\n                    <div className=\"alert alert-primary\" role=\"alert\">\r\n                        <h2>STORE</h2>\r\n                    </div>\r\n\r\n                    <div className=\"row\">\r\n\r\n                        <div className=\"col-md-6 aa1\">\r\n                            <img src={car}/>\r\n                        </div>\r\n                        <div className=\"col-md-6 aa2\">\r\n                            <br/><br/><br/><br/><br/><br/><br/><br/>\r\n                            <h2>WHAT'S IN YOUR CUP?</h2>\r\n                            <p>Stay hydrated. Fill up with your favorite summer beverage.</p>\r\n                            <a href=\"#\" className=\"btn btn-primary\">Add</a>\r\n                        </div>\r\n\r\n                    </div>\r\n                    <br/><br/>\r\n                    <div className=\" container\" style={{width: '100%'}}>\r\n                        <div style={{width: '100%' }}>\r\n                            <div className=\"row\">\r\n                                {this.state.store.length > 0 && this.state.store.map((item, index) => (\r\n                                    <div className=\"col-md-3\">\r\n                                        <div className=\"card\">\r\n                                            <img className=\"card-img-top\" src={item.itemImage} style={{width:\"100%\"}} alt=\"Card image cap\"/>\r\n                                            <div className=\"card-body\">\r\n                                                <h5 className=\"card-title\">{item.itemName}</h5>\r\n                                                <h6 className=\"card-text\">{item.itemDescription}</h6>\r\n                                                <hr/>\r\n                                                <h6 className=\"card-text\">LKR : {item.itemAmount}</h6>\r\n                                                <hr/>\r\n                                                <button className=\"btn btn-primary\" onClick={e => this.navigateStoreItem(e,item._id)}>Add</button>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                ))}\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n\r\n                </div>\r\n            </div>\r\n\r\n        // <div className=\"aa\">\r\n        //     <br/>\r\n        //     <div className=\"container\">\r\n        //         <div className=\"row\">\r\n        //\r\n        //             <div className=\"col-md-3\">\r\n        //\r\n        //                 <div className=\"card\">\r\n        //                     <img className=\"card-img-top\" src=\"../../asserts/car.jpg\" alt=\"Card image cap\"/>\r\n        //                     <div className=\"card-body\">\r\n        //                         <h5 className=\"card-title\">ss</h5>\r\n        //                         <p className=\"card-text\">Some quick example text to build on the card title and make up the bulk\r\n        //                             of the card's content.</p>\r\n        //                         <a href=\"#\" className=\"btn btn-primary\">Go somewhere</a>\r\n        //                     </div>\r\n        //                 </div>\r\n        //\r\n        //             </div>\r\n        //             <div className=\"col-md-3\">\r\n        //\r\n        //                 <div className=\"card\">\r\n        //                     <img className=\"card-img-top\" src=\"#\" alt=\"Card image cap\"/>\r\n        //                     <div className=\"card-body\">\r\n        //                         <h5 className=\"card-title\">sss</h5>\r\n        //                         <p className=\"card-text\">Some quick example text to build on the card title and make up the bulk\r\n        //                             of the card's content.</p>\r\n        //                         <a href=\"#\" className=\"btn btn-primary\">Go somewhere</a>\r\n        //                     </div>\r\n        //                 </div>\r\n        //\r\n        //             </div>\r\n        //\r\n        //             <div className=\"col-md-3\">\r\n        //\r\n        //                 <div className=\"card\">\r\n        //                     <img className=\"card-img-top\" src=\"#\" alt=\"Card image cap\"/>\r\n        //                     <div className=\"card-body\">\r\n        //                         <h5 className=\"card-title\">sss</h5>\r\n        //                         <p className=\"card-text\">Some quick example text to build on the card title and make up the bulk\r\n        //                             of the card's content.</p>\r\n        //                         <a href=\"#\" className=\"btn btn-primary\">Go somewhere</a>\r\n        //                     </div>\r\n        //                 </div>\r\n        //\r\n        //             </div>\r\n        //\r\n        //             <div className=\"col-md-3\">\r\n        //\r\n        //                 <div className=\"card\">\r\n        //                     <img className=\"card-img-top\" src=\"#\" alt=\"Card image cap\"/>\r\n        //                     <div className=\"card-body\">\r\n        //                         <h5 className=\"card-title\">sss</h5>\r\n        //                         <p className=\"card-text\">Some quick example text to build on the card title and make up the bulk\r\n        //                             of the card's content.</p>\r\n        //                         <a href=\"#\" className=\"btn btn-primary\">Go somewhere</a>\r\n        //                     </div>\r\n        //                 </div>\r\n        //\r\n        //             </div>\r\n        //\r\n        //         </div>\r\n        //\r\n        //\r\n        //     </div>\r\n        // </div>\r\n        )\r\n    }\r\n}\r\n\r\nexport default CustomerViewStore;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/Components/forms/views/customerViewStore.js b/client/src/Components/forms/views/customerViewStore.js
+--- a/client/src/Components/forms/views/customerViewStore.js	(revision 8ab25d88ee97529a51b5756c75a20bd0a7ab8e7a)
++++ b/client/src/Components/forms/views/customerViewStore.js	(date 1629778461372)
+@@ -145,71 +145,71 @@
+                 </div>
+             </div>
+ 
+-        // <div className="aa">
+-        //     <br/>
+-        //     <div className="container">
+-        //         <div className="row">
+-        //
+-        //             <div className="col-md-3">
+-        //
+-        //                 <div className="card">
+-        //                     <img className="card-img-top" src="../../asserts/car.jpg" alt="Card image cap"/>
+-        //                     <div className="card-body">
+-        //                         <h5 className="card-title">ss</h5>
+-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+-        //                             of the card's content.</p>
+-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+-        //                     </div>
+-        //                 </div>
+-        //
+-        //             </div>
+-        //             <div className="col-md-3">
+-        //
+-        //                 <div className="card">
+-        //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+-        //                     <div className="card-body">
+-        //                         <h5 className="card-title">sss</h5>
+-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+-        //                             of the card's content.</p>
+-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+-        //                     </div>
+-        //                 </div>
+-        //
+-        //             </div>
+-        //
+-        //             <div className="col-md-3">
+-        //
+-        //                 <div className="card">
+-        //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+-        //                     <div className="card-body">
+-        //                         <h5 className="card-title">sss</h5>
+-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+-        //                             of the card's content.</p>
+-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+-        //                     </div>
+-        //                 </div>
+-        //
+-        //             </div>
+-        //
+-        //             <div className="col-md-3">
+-        //
+-        //                 <div className="card">
+-        //                     <img className="card-img-top" src="#" alt="Card image cap"/>
+-        //                     <div className="card-body">
+-        //                         <h5 className="card-title">sss</h5>
+-        //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
+-        //                             of the card's content.</p>
+-        //                         <a href="#" className="btn btn-primary">Go somewhere</a>
+-        //                     </div>
+-        //                 </div>
+-        //
+-        //             </div>
+-        //
+-        //         </div>
+-        //
+-        //
+-        //     </div>
+-        // </div>
++            // <div className="aa">
++            //     <br/>
++            //     <div className="container">
++            //         <div className="row">
++            //
++            //             <div className="col-md-3">
++            //
++            //                 <div className="card">
++            //                     <img className="card-img-top" src="../../asserts/car.jpg" alt="Card image cap"/>
++            //                     <div className="card-body">
++            //                         <h5 className="card-title">ss</h5>
++            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
++            //                             of the card's content.</p>
++            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
++            //                     </div>
++            //                 </div>
++            //
++            //             </div>
++            //             <div className="col-md-3">
++            //
++            //                 <div className="card">
++            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
++            //                     <div className="card-body">
++            //                         <h5 className="card-title">sss</h5>
++            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
++            //                             of the card's content.</p>
++            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
++            //                     </div>
++            //                 </div>
++            //
++            //             </div>
++            //
++            //             <div className="col-md-3">
++            //
++            //                 <div className="card">
++            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
++            //                     <div className="card-body">
++            //                         <h5 className="card-title">sss</h5>
++            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
++            //                             of the card's content.</p>
++            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
++            //                     </div>
++            //                 </div>
++            //
++            //             </div>
++            //
++            //             <div className="col-md-3">
++            //
++            //                 <div className="card">
++            //                     <img className="card-img-top" src="#" alt="Card image cap"/>
++            //                     <div className="card-body">
++            //                         <h5 className="card-title">sss</h5>
++            //                         <p className="card-text">Some quick example text to build on the card title and make up the bulk
++            //                             of the card's content.</p>
++            //                         <a href="#" className="btn btn-primary">Go somewhere</a>
++            //                     </div>
++            //                 </div>
++            //
++            //             </div>
++            //
++            //         </div>
++            //
++            //
++            //     </div>
++            // </div>
+         )
+     }
+ }
+Index: client/src/Components/forms/Store/createStore.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component} from 'react';\r\nimport axios from 'axios';\r\nimport swat from \"sweetalert2\"\r\nimport { Button, Form, FormGroup, Label, Input } from 'reactstrap';\r\nimport './createStore.css'\r\nimport FileBase from 'react-file-base64';\r\nimport {Link} from \"react-router-dom\";\r\n// import UserNavbar from \"../navbar/UserNavBar\";\r\n// import Template1 from \"url:../../Assets/Templates/temp2.docx\";\r\n// import firebase from \"../firebase/index\";\r\n// import {isEmpty} from \"../../utils/validation\";\r\n\r\nconst initialState = {\r\n\r\n    itemName: '',\r\n    itemDescription: '',\r\n    itemAmount: 0,\r\n    itemQTY:0,\r\n    itemImage:'',\r\n    isDisabled: true\r\n\r\n}\r\n\r\nconst SubmissionAlert = () => {\r\n\r\n    swat.fire({\r\n        position: 'center',\r\n        icon: 'success',\r\n        title: 'Item added successfully!',\r\n        showConfirmButton: false,\r\n        timer: 3000\r\n    });\r\n\r\n}\r\n\r\nconst SubmissionFail = (message) => {\r\n\r\n    swat.fire({\r\n        icon: 'error',\r\n        title: 'Oops...',\r\n        text: message\r\n    })\r\n\r\n}\r\n\r\nclass CreateStore extends Component {\r\n\r\n    constructor(props) {\r\n        super(props);\r\n        this.onChange = this.onChange.bind(this);\r\n        this.onSubmit = this.onSubmit.bind(this);\r\n        this.state = initialState;\r\n    }\r\n\r\n    componentDidMount() {\r\n        // console.log(this.props.match.params.id);\r\n        // this.state.paper_author = \"62534524444444\";\r\n        // this.state.paper_event = this.props.match.params.id;\r\n    }\r\n\r\n    navigateStore(e) {\r\n        window.location = `/empViewStore`\r\n    }\r\n\r\n\r\n    onChange(e) {\r\n        this.setState({[e.target.name]: e.target.value})\r\n    }\r\n\r\n    onSubmit(e) {\r\n        e.preventDefault();\r\n        this.setState({ isDisabled: false });\r\n        let store = {\r\n            itemName: this.state.itemName,\r\n            itemDescription: this.state.itemDescription,\r\n            itemAmount: this.state.itemAmount,\r\n            itemQTY: this.state.itemQTY,\r\n            itemImage: this.state.itemImage\r\n        }\r\n\r\n        console.log('DATA TO SEND', store);\r\n        axios.post('http://localhost:5000/store', store)\r\n            .then(response => {\r\n                SubmissionAlert()\r\n\r\n            })\r\n\r\n            .catch(error => {\r\n                console.log(error.message);\r\n                let message = \"Submission Error\"\r\n                SubmissionFail(message);\r\n            })\r\n    }\r\n\r\n    render() {\r\n        return (\r\n        <div>\r\n            <Form className=\"store_wrapper\" onSubmit={this.onSubmit}>\r\n                <h2 className=\"store_title\">ADD STORE DETAILS</h2>\r\n                <FormGroup>\r\n                    <label htmlFor=\"storeName\" className=\"form-label\">Name</label>\r\n                    <input\r\n                        type=\"text\"\r\n                        className=\"form-control\"\r\n                        id=\"storeName\"\r\n                        name=\"itemName\"\r\n                        placeholder=\"Name\"\r\n                        value={this.state.itemName}\r\n                        onChange={this.onChange}\r\n                    />\r\n                </FormGroup>\r\n                <FormGroup>\r\n                    <label htmlFor=\"storeDes\" className=\"form-label\">Description</label>\r\n                    <input\r\n                        type=\"text\"\r\n                        className=\"form-control\"\r\n                        id=\"storeDes\"\r\n                        name=\"itemDescription\"\r\n                        value={this.state.itemDescription}\r\n                        onChange={this.onChange}\r\n                    />\r\n                </FormGroup>\r\n                <FormGroup>\r\n                    <label htmlFor=\"storeAmount\" className=\"form-label\">Amount</label>\r\n                    <input\r\n                        type=\"number\"\r\n                        className=\"form-control\"\r\n                        id=\"storeAmount\"\r\n                        name=\"itemAmount\"\r\n                        value={this.state.itemAmount}\r\n                        onChange={this.onChange}\r\n                    />\r\n                </FormGroup>\r\n                <FormGroup>\r\n                    <label htmlFor=\"storeQTY\" className=\"form-label\">QTY</label>\r\n                    <input\r\n                        type=\"number\"\r\n                        className=\"form-control\"\r\n                        id=\"storeQTY\"\r\n                        name=\"itemQTY\"\r\n                        value={this.state.itemQTY}\r\n                        onChange={this.onChange}\r\n                    />\r\n                </FormGroup>\r\n                <FormGroup>\r\n                    <Label for=\"storeImage\">Image</Label>\r\n                    <br/>\r\n                    <FileBase type=\"file\" multiple={false} onDone={({base64}) => this.state.itemImage = base64} />\r\n                </FormGroup>\r\n                &nbsp;\r\n                {/*<button className=\"register_button btn btn-primary\">REGISTER</button>*/}\r\n                <button type=\"submit\" className=\"store_button btn btn-primary\">Add Item</button><br/><br/>\r\n                <button className=\"store_button btn btn-success\" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>\r\n            </Form>\r\n\r\n        </div>\r\n    );\r\n\r\n        // return (\r\n        //\r\n        //     <div>\r\n        //         <div className=\"container\">\r\n        //             <h1>Create Paper</h1>\r\n        //\r\n        //             <form onSubmit={this.onSubmit}>\r\n        //\r\n        //                 <div className=\"mb-3\">\r\n        //                     <label htmlFor=\"storeName\" className=\"form-label\">Name</label>\r\n        //                     <input\r\n        //                         type=\"text\"\r\n        //                         className=\"form-control\"\r\n        //                         id=\"storeName\"\r\n        //                         name=\"itemName\"\r\n        //                         value={this.state.itemName}\r\n        //                         onChange={this.onChange}\r\n        //                     />\r\n        //                 </div>\r\n        //                 <div className=\"mb-3\">\r\n        //                     <label htmlFor=\"storeDes\" className=\"form-label\">Description</label>\r\n        //                     <input\r\n        //                         type=\"text\"\r\n        //                         className=\"form-control\"\r\n        //                         id=\"storeDes\"\r\n        //                         name=\"itemDescription\"\r\n        //                         value={this.state.itemDescription}\r\n        //                         onChange={this.onChange}\r\n        //                     />\r\n        //                 </div>\r\n        //                 <div className=\"mb-3\">\r\n        //                     <label htmlFor=\"storeAmount\" className=\"form-label\">Amount</label>\r\n        //                     <input\r\n        //                         type=\"number\"\r\n        //                         className=\"form-control\"\r\n        //                         id=\"storeAmount\"\r\n        //                         name=\"itemAmount\"\r\n        //                         value={this.state.itemAmount}\r\n        //                         onChange={this.onChange}\r\n        //                     />\r\n        //                 </div>\r\n        //                 <div className=\"mb-3\">\r\n        //                     <label htmlFor=\"storeQTY\" className=\"form-label\">QTY</label>\r\n        //                     <input\r\n        //                         type=\"number\"\r\n        //                         className=\"form-control\"\r\n        //                         id=\"storeQTY\"\r\n        //                         name=\"itemQTY\"\r\n        //                         value={this.state.itemQTY}\r\n        //                         onChange={this.onChange}\r\n        //                     />\r\n        //                 </div>\r\n        //                 <div className=\"mb-3\">\r\n        //                     <label htmlFor=\"itemImage\" className=\"form-label\">Picture</label>\r\n        //                     <div>\r\n        //                         <FileBase type=\"file\" multiple={false} onDone={({base64}) => this.state.itemImage = base64} />\r\n        //                     </div>\r\n        //                 </div>\r\n        //\r\n        //                 <button type=\"submit\" className=\"btn btn-primary\">Add Item</button><br/>\r\n        //                 <button className=\"btn btn-success\" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>\r\n        //             </form>\r\n        //         </div>\r\n        //         <br/>\r\n        //     </div>\r\n        // )\r\n    }\r\n}\r\nexport default CreateStore;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/Components/forms/Store/createStore.js b/client/src/Components/forms/Store/createStore.js
+--- a/client/src/Components/forms/Store/createStore.js	(revision 8ab25d88ee97529a51b5756c75a20bd0a7ab8e7a)
++++ b/client/src/Components/forms/Store/createStore.js	(date 1629778400415)
+@@ -94,67 +94,67 @@
+ 
+     render() {
+         return (
+-        <div>
+-            <Form className="store_wrapper" onSubmit={this.onSubmit}>
+-                <h2 className="store_title">ADD STORE DETAILS</h2>
+-                <FormGroup>
+-                    <label htmlFor="storeName" className="form-label">Name</label>
+-                    <input
+-                        type="text"
+-                        className="form-control"
+-                        id="storeName"
+-                        name="itemName"
+-                        placeholder="Name"
+-                        value={this.state.itemName}
+-                        onChange={this.onChange}
+-                    />
+-                </FormGroup>
+-                <FormGroup>
+-                    <label htmlFor="storeDes" className="form-label">Description</label>
+-                    <input
+-                        type="text"
+-                        className="form-control"
+-                        id="storeDes"
+-                        name="itemDescription"
+-                        value={this.state.itemDescription}
+-                        onChange={this.onChange}
+-                    />
+-                </FormGroup>
+-                <FormGroup>
+-                    <label htmlFor="storeAmount" className="form-label">Amount</label>
+-                    <input
+-                        type="number"
+-                        className="form-control"
+-                        id="storeAmount"
+-                        name="itemAmount"
+-                        value={this.state.itemAmount}
+-                        onChange={this.onChange}
+-                    />
+-                </FormGroup>
+-                <FormGroup>
+-                    <label htmlFor="storeQTY" className="form-label">QTY</label>
+-                    <input
+-                        type="number"
+-                        className="form-control"
+-                        id="storeQTY"
+-                        name="itemQTY"
+-                        value={this.state.itemQTY}
+-                        onChange={this.onChange}
+-                    />
+-                </FormGroup>
+-                <FormGroup>
+-                    <Label for="storeImage">Image</Label>
+-                    <br/>
+-                    <FileBase type="file" multiple={false} onDone={({base64}) => this.state.itemImage = base64} />
+-                </FormGroup>
+-                &nbsp;
+-                {/*<button className="register_button btn btn-primary">REGISTER</button>*/}
+-                <button type="submit" className="store_button btn btn-primary">Add Item</button><br/><br/>
+-                <button className="store_button btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>
+-            </Form>
++            <div>
++                <Form className="store_wrapper" onSubmit={this.onSubmit}>
++                    <h2 className="store_title">ADD STORE DETAILS</h2>
++                    <FormGroup>
++                        <label htmlFor="storeName" className="form-label">Name</label>
++                        <input
++                            type="text"
++                            className="form-control"
++                            id="storeName"
++                            name="itemName"
++                            placeholder="Name"
++                            value={this.state.itemName}
++                            onChange={this.onChange}
++                        />
++                    </FormGroup>
++                    <FormGroup>
++                        <label htmlFor="storeDes" className="form-label">Description</label>
++                        <input
++                            type="text"
++                            className="form-control"
++                            id="storeDes"
++                            name="itemDescription"
++                            value={this.state.itemDescription}
++                            onChange={this.onChange}
++                        />
++                    </FormGroup>
++                    <FormGroup>
++                        <label htmlFor="storeAmount" className="form-label">Amount</label>
++                        <input
++                            type="number"
++                            className="form-control"
++                            id="storeAmount"
++                            name="itemAmount"
++                            value={this.state.itemAmount}
++                            onChange={this.onChange}
++                        />
++                    </FormGroup>
++                    <FormGroup>
++                        <label htmlFor="storeQTY" className="form-label">QTY</label>
++                        <input
++                            type="number"
++                            className="form-control"
++                            id="storeQTY"
++                            name="itemQTY"
++                            value={this.state.itemQTY}
++                            onChange={this.onChange}
++                        />
++                    </FormGroup>
++                    <FormGroup>
++                        <Label for="storeImage">Image</Label>
++                        <br/>
++                        <FileBase type="file" multiple={false} onDone={({base64}) => this.state.itemImage = base64} />
++                    </FormGroup>
++                    &nbsp;
++                    {/*<button className="register_button btn btn-primary">REGISTER</button>*/}
++                    <button type="submit" className="store_button btn btn-primary">Add Item</button><br/><br/>
++                    <button className="store_button btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>
++                </Form>
+ 
+-        </div>
+-    );
++            </div>
++        );
+ 
+         // return (
+         //
+Index: client/public/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <link rel=\"icon\" href=\"%PUBLIC_URL%/favicon.ico\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    <meta name=\"theme-color\" content=\"#000000\" />\r\n    <meta\r\n      name=\"description\"\r\n      content=\"Web site created using create-react-app\"\r\n    />\r\n    <link rel=\"apple-touch-icon\" href=\"%PUBLIC_URL%/logo192.png\" />\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC\" crossorigin=\"anonymous\">\r\n    <!--\r\n      manifest.json provides metadata used when your web app is installed on a\r\n      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/\r\n    -->\r\n    <link rel=\"manifest\" href=\"%PUBLIC_URL%/manifest.json\" />\r\n    <!--\r\n      Notice the use of %PUBLIC_URL% in the tags above.\r\n      It will be replaced with the URL of the `public` folder during the build.\r\n      Only files inside the `public` folder can be referenced from the HTML.\r\n\r\n      Unlike \"/favicon.ico\" or \"favicon.ico\", \"%PUBLIC_URL%/favicon.ico\" will\r\n      work correctly both with client-side routing and a non-root public URL.\r\n      Learn how to configure a non-root public URL by running `npm run build`.\r\n    -->\r\n    <title>React App</title>\r\n  </head>\r\n  <body>\r\n    <noscript>You need to enable JavaScript to run this app.</noscript>\r\n    <div id=\"root\"></div>\r\n    <!--\r\n      This HTML file is a template.\r\n      If you open it directly in the browser, you will see an empty page.\r\n\r\n      You can add webfonts, meta tags, or analytics to this file.\r\n      The build step will place the bundled scripts into the <body> tag.\r\n\r\n      To begin the development, run `npm start` or `yarn start`.\r\n      To create a production bundle, use `npm run build` or `yarn build`.\r\n    -->\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM\" crossorigin=\"anonymous\"></script>\r\n    <script src=\"https://kit.fontawesome.com/88d2a6f6be.js\" crossorigin=\"anonymous\"></script>\r\n  </body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/public/index.html b/client/public/index.html
+--- a/client/public/index.html	(revision 8ab25d88ee97529a51b5756c75a20bd0a7ab8e7a)
++++ b/client/public/index.html	(date 1629778278739)
+@@ -1,46 +1,43 @@
+ <!DOCTYPE html>
+ <html lang="en">
+-  <head>
+-    <meta charset="utf-8" />
+-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+-    <meta name="theme-color" content="#000000" />
+-    <meta
+-      name="description"
+-      content="Web site created using create-react-app"
+-    />
+-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+-    <!--
+-      manifest.json provides metadata used when your web app is installed on a
+-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+-    -->
+-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+-    <!--
+-      Notice the use of %PUBLIC_URL% in the tags above.
+-      It will be replaced with the URL of the `public` folder during the build.
+-      Only files inside the `public` folder can be referenced from the HTML.
+-
+-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+-      work correctly both with client-side routing and a non-root public URL.
+-      Learn how to configure a non-root public URL by running `npm run build`.
+-    -->
+-    <title>React App</title>
+-  </head>
+-  <body>
+-    <noscript>You need to enable JavaScript to run this app.</noscript>
+-    <div id="root"></div>
+-    <!--
+-      This HTML file is a template.
+-      If you open it directly in the browser, you will see an empty page.
+-
+-      You can add webfonts, meta tags, or analytics to this file.
+-      The build step will place the bundled scripts into the <body> tag.
+-
+-      To begin the development, run `npm start` or `yarn start`.
+-      To create a production bundle, use `npm run build` or `yarn build`.
+-    -->
+-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+-    <script src="https://kit.fontawesome.com/88d2a6f6be.js" crossorigin="anonymous"></script>
+-  </body>
+-</html>
++<head>
++  <meta charset="utf-8" />
++  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
++  <meta name="viewport" content="width=device-width, initial-scale=1" />
++  <meta name="theme-color" content="#000000" />
++  <meta
++          name="description"
++          content="Web site created using create-react-app"
++  />
++  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
++  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
++  <!--
++    manifest.json provides metadata used when your web app is installed on a
++    user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
++  -->
++  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
++  <!--
++    Notice the use of %PUBLIC_URL% in the tags above.
++    It will be replaced with the URL of the `public` folder during the build.
++    Only files inside the `public` folder can be referenced from the HTML.
++    Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
++    work correctly both with client-side routing and a non-root public URL.
++    Learn how to configure a non-root public URL by running `npm run build`.
++  -->
++  <title>React App</title>
++</head>
++<body>
++<noscript>You need to enable JavaScript to run this app.</noscript>
++<div id="root"></div>
++<!--
++  This HTML file is a template.
++  If you open it directly in the browser, you will see an empty page.
++  You can add webfonts, meta tags, or analytics to this file.
++  The build step will place the bundled scripts into the <body> tag.
++  To begin the development, run `npm start` or `yarn start`.
++  To create a production bundle, use `npm run build` or `yarn build`.
++-->
++<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
++<script src="https://kit.fontawesome.com/88d2a6f6be.js" crossorigin="anonymous"></script>
++</body>
++</html>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2e760697-e747-4817-82ec-839b9d6759eb\" name=\"Default Changelist\" comment=\"style form done\">\r\n      <change afterPath=\"$PROJECT_DIR$/client/src/umesh/HomePage.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/package.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/routes/routes.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/routes/routes.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/css/show.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/css/show.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/Components/workout/workout.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/Components/workout/workout.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/Header/header.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/Header/header.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/login/login.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/login/login.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/login/login.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/login/login.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/register/register.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/register/register.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/register/register.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/register/register.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/server.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/server.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"CSS File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1woWCWlf0pPIU1kZ18mN9p5u5Fy\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/client/src/umesh/temp/Card\" />\r\n    <property name=\"list.type.of.created.stylesheet\" value=\"CSS\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (2)\\SPM_PROJECT\\client\\src\\umesh\\temp\\Card\" />\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (2)\\SPM_PROJECT\\client\\src\\umesh\\temp\\SlideShow\" />\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (2)\\SPM_PROJECT\\client\\src\\umesh\\temp\\HeroSection\" />\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (2)\\SPM_PROJECT\\client\\src\\Components\" />\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (12)\\SPM_PROJECT\\client\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (2)\\SPM_PROJECT\\client\\src\\umesh\\temp\\SlideShow\" />\r\n      <recent name=\"C:\\Users\\Umesh Ranthilina\\Desktop\\New folder (2)\\SPM_PROJECT\\client\\src\\umesh\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"dev\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"dev\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.dev\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2e760697-e747-4817-82ec-839b9d6759eb\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1629125294548</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1629125294548</updated>\r\n      <workItem from=\"1629125296024\" duration=\"4081000\" />\r\n      <workItem from=\"1629203252164\" duration=\"268000\" />\r\n      <workItem from=\"1629205200186\" duration=\"4837000\" />\r\n      <workItem from=\"1629210994371\" duration=\"4610000\" />\r\n      <workItem from=\"1629434080571\" duration=\"5284000\" />\r\n      <workItem from=\"1629478775613\" duration=\"612000\" />\r\n      <workItem from=\"1629480306767\" duration=\"2069000\" />\r\n      <workItem from=\"1629519936035\" duration=\"3158000\" />\r\n      <workItem from=\"1629530435742\" duration=\"12895000\" />\r\n      <workItem from=\"1629611846294\" duration=\"19492000\" />\r\n      <workItem from=\"1629645952573\" duration=\"6197000\" />\r\n      <workItem from=\"1629689746298\" duration=\"13660000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Integrate done\">\r\n      <created>1629214971962</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629214971962</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"style form done\">\r\n      <created>1629439269178</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629439269178</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Integrate done\" />\r\n    <MESSAGE value=\"style form done\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"style form done\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8ab25d88ee97529a51b5756c75a20bd0a7ab8e7a)
++++ b/.idea/workspace.xml	(date 1629778892152)
+@@ -2,36 +2,11 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="style form done">
+-      <change afterPath="$PROJECT_DIR$/client/src/umesh/HomePage.css" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/CSS/commonViewsCSS.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockCategory/CreateCategoryAdmin.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/CreateStockItemAdmin.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/StockItems/stock_item.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminCategoryView.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/AdminStockItemsView.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/StoreItem.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/css/show.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutEmployee.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneEmployee.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/workout.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/workout.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/Header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/Header/header.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -121,6 +96,7 @@
+       <workItem from="1629611846294" duration="19492000" />
+       <workItem from="1629645952573" duration="6197000" />
+       <workItem from="1629689746298" duration="13660000" />
++      <workItem from="1629706955723" duration="15060000" />
+     </task>
+     <task id="LOCAL-00001" summary="Integrate done">
+       <created>1629214971962</created>

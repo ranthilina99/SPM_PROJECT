@@ -1,3 +1,4 @@
+
 import React, { Component} from 'react';
 import axios from 'axios';
 import swat from "sweetalert2"
@@ -165,8 +166,10 @@ class EditStore extends Component {
                     &nbsp;
                     {/*<button className="register_button btn btn-primary">REGISTER</button>*/}
                     <button type="submit" className="store_button btn btn-primary">Edit Item</button><br/><br/>
-                    <button className="store_button btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>
+                    {/*<button className="store_button btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore(e)}>Items Page</button>*/}
                 </Form>
+                <button className="store_button2 btn btn-success" disabled={this.state.isDisabled} onClick={(e) => this.navigateStore()}>
+                    <i className="fas fa-store"></i>  Items Page</button>
 
             </div>
         );

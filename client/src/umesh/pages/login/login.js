@@ -20,7 +20,12 @@ const Login = ({loginUser, isLoggedIn}) => {
     });
 
     let {email, password} = data;
-
+    const Clear =()=>{
+        useState({
+            email: '',
+            password:''
+        })
+    }
     if (isLoggedIn) {
         LoadUserOther().then((res) => {
             setUser({
@@ -49,28 +54,28 @@ const Login = ({loginUser, isLoggedIn}) => {
                 }
                 return window.location.replace('/user')
             default:
-            }
         }
-        const fieldmissAlart = (res) => {
-            swat.fire({
-                icon: 'error',
-                title: 'OOps! something missing',
-                text: res,
-            })
-        }
-        const onChange = e => {
-            setData({...data, [e.target.name]: e.target.value})
-        };
-        const submitData = (event) => {
+    }
+    const fieldmissAlart = (res) => {
+        swat.fire({
+            icon: 'error',
+            title: 'OOps! something missing',
+            text: res,
+        })
+    }
+    const onChange = e => {
+        setData({...data, [e.target.name]: e.target.value})
+    };
+    const submitData = (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            if (email === "" || password === "") {
-                fieldmissAlart();
-            } else {
-                loginUser(email, password);
-            }
+        if (email === "" || password === "") {
+            fieldmissAlart();
+        } else {
+            loginUser(email, password);
         }
+    }
     return (
         <div className="Login">
             <Form onSubmit={(event) => submitData(event)}>
@@ -86,28 +91,28 @@ const Login = ({loginUser, isLoggedIn}) => {
                 &nbsp;
                 <h3 className="login_title">LOGIN</h3>
                 <Form.Group size="lg" controlId="email" >
-                    <Form.Label className="form-label">Email</Form.Label>
-                        <Form.Control
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            placeholder="email@example.com"
-                            onChange={(e) => onChange(e)}
-                            value={email}
-                            name="email"
-                            required/>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="email@example.com"
+                        onChange={(e) => onChange(e)}
+                        value={email}
+                        name="email"
+                        required/>
                 </Form.Group>
                 <Form.Group size="lg" controlId="password">
-                    <Form.Label className="form-label">Password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            className="form-control"
-                            id="user_password"
-                            placeholder="Password"
-                            onChange={(e) => onChange(e)}
-                            value={password}
-                            name="password"
-                            required/>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        type="password"
+                        className="form-control"
+                        id="user_password"
+                        placeholder="Password"
+                        onChange={(e) => onChange(e)}
+                        value={password}
+                        name="password"
+                        required/>
                 </Form.Group>
                 <Form.Group className="login_forgot">
                     <Form.Label>Forgot<a  href="/forgot"> Password?</a></Form.Label>
