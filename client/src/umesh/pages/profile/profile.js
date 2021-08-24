@@ -6,6 +6,7 @@ import {Input, Label, Form, FormGroup,Button} from "reactstrap";
 import FileBase from 'react-file-base64'
 import './profile.css'
 import Avatar from "react-avatar";
+import zxcvbn from "zxcvbn";
 const SuccessAlert = (res) => {
     swat.fire({
         position: 'center',
@@ -44,12 +45,15 @@ class Profile extends Component {
             image: '',
             PImage: '',
             id: '',
-            type: ''
+            user1: "",
+            type: '',
+            isLoggedIn:false
         }
         this.onChange=this.onChange.bind(this);
         this.onSubmitHandler=this.onSubmitHandler.bind(this);
         this.onDelete=this.onDelete.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
+        this.logoutOnClick=this.logoutOnClick.bind(this);
     }
     onChange(e){
         this.setState({ [e.target.name]: e.target.value })
@@ -89,6 +93,16 @@ class Profile extends Component {
             console.log(err.message);
         })
     }
+    logoutOnClick = e => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('userPosition');
+        this.setState({
+            isLoggedIn: false,
+            user1: ''
+        })
+        window.location.replace('/login')
+    }
     onSubmitHandler (e) {
         e.preventDefault();
         let user = {
@@ -125,6 +139,7 @@ class Profile extends Component {
             })
         });
     }
+
     onDelete = async (id) =>{
         try {
             if(window.confirm("Are you sure you want to delete this account?")) {
@@ -161,7 +176,24 @@ class Profile extends Component {
                 FailAlert(message);
             })
     }
+    createPasswordLabel = (result) => {
+        switch (result.score) {
+            case 0:
+                return 'Weak';
+            case 1:
+                return 'Weak';
+            case 2:
+                return 'Fair';
+            case 3:
+                return 'Good';
+            case 4:
+                return 'Strong';
+            default:
+                return 'Weak';
+        }
+    }
     render() {
+        const testedResult = zxcvbn(this.state.newPassword);
         return (
             <>
                 <Form >
@@ -227,7 +259,7 @@ class Profile extends Component {
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">Date Of Birth</Label>
                                         <Input
-                                            type="text"
+                                            type="date"
                                             name="dob"
                                             id="exampleDate"
                                             placeholder="Date Of Birth"
@@ -275,7 +307,7 @@ class Profile extends Component {
                                 <h2 className="profile_title">Change Password</h2>
                                 <hr/>
                                 <FormGroup>
-                                    <Label for="exampleText">Password</Label>
+                                    <Label for="exampleText">New Password</Label>
                                     <Input type="password"
                                            name="newPassword"
                                            placeholder="New Password"
@@ -291,6 +323,28 @@ class Profile extends Component {
                                            value={this.state.confirmPassword}
                                            onChange={this.onChange}
                                            required/>
+                                    {this.state.newPassword ?
+                                        <>
+                                            <progress
+                                                className={`password-strength-meter-progress strength-${this.createPasswordLabel(testedResult)}`}
+                                                value={testedResult.score}
+                                                max="4"
+                                            />
+                                            <FormGroup>
+                                                <Label
+                                                    className="password-strength-meter-label"
+                                                >
+                                                    {this.state.newPassword &&
+                                                    <>
+                                                        <strong>Password strength:</strong> {this.createPasswordLabel(testedResult)}
+                                                    </>
+                                                    }
+                                                </Label>
+                                            </FormGroup>
+                                        </>
+                                        :
+                                        null
+                                    }
                                 </FormGroup>
                                 <FormGroup>
                                     <Button size="lg" block color="success" type="button"

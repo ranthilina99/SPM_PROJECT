@@ -44,7 +44,8 @@ class Header extends Component {
             isLoggedIn: false,
             user: ''
         })
-        window.location.replace('/')
+
+        window.location.replace('/login')
     }
     profileLink = e => {
         window.location.replace('/profile');
@@ -136,7 +137,8 @@ class Header extends Component {
                     <Nav className="me-auto">
                         { localStorage.getItem('userPosition') !== "admin" &&
                         localStorage.getItem('userPosition') !== "employee" &&
-                        localStorage.getItem('userPosition') !== "user"?
+                        localStorage.getItem('userPosition') !== "user" ||
+                            localStorage.getItem('userPosition') === " "  ?
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <a className="nav-link active" aria-current="page"
@@ -291,7 +293,7 @@ class Header extends Component {
                             null
                         }
                         {localStorage.getItem('userPosition') === "admin" || localStorage.getItem('userPosition') === "employee" ||
-                        localStorage.getItem('userPosition') === "user" || !this.state.isLoggedIn ?
+                        localStorage.getItem('userPosition') === "user" || localStorage.getItem('userPosition') === " " ||  !this.state.isLoggedIn ?
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <a className="nav-link" aria-current="page"
@@ -332,7 +334,8 @@ class Header extends Component {
                     }
                     { localStorage.getItem('userPosition') !== "admin" &&
                     localStorage.getItem('userPosition') !== "employee" &&
-                    localStorage.getItem('userPosition') !== "user"?
+                    localStorage.getItem('userPosition') !== "user" ||
+                    localStorage.getItem('userPosition') === " " ?
                         <Nav className="btn pull-right">
                             <a href="/login"><Button className="button "
                                                      variant="outline-primary">Login</Button></a>

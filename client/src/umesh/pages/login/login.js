@@ -96,7 +96,7 @@ const Login = ({loginUser, isLoggedIn}) => {
                         type="email"
                         className="form-control"
                         id="email"
-                        placeholder="email@example.com"
+                        placeholder="email@gamil.com"
                         onChange={(e) => onChange(e)}
                         value={email}
                         name="email"
@@ -122,7 +122,7 @@ const Login = ({loginUser, isLoggedIn}) => {
                 </button>
                 &nbsp;
                 <Form.Group className="login_register">
-                    <Form.Label>Don't have an account?<a className="register"  href="/register">Register</a></Form.Label>
+                    <Form.Label>Don't have an account?&nbsp;<a className="register"  href="/register">Register</a></Form.Label>
                 </Form.Group>
             </Form>
         </div>
