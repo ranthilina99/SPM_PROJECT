@@ -2,7 +2,25 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import '../../../CSS/commonViewsCSS.css';
 import {Card, Col, Row} from 'react-bootstrap'
+import swat from "sweetalert2";
 
+const SubmissionAlert = () => {
+    swat.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Category Deleted Successfully!',
+        showConfirmButton: false,
+        timer: 3000
+    });
+}
+
+const SubmissionFail = (message) => {
+    swat.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}
 
 class AdminCategoryView extends Component {
     constructor(props) {
@@ -19,11 +37,12 @@ class AdminCategoryView extends Component {
             })
     }
 
-    deletePaper(id){
+    deleteCategory(id){
         axios.delete(`http://localhost:5000/StockCategory/${id}`)
             .then(response => {
                 this.setState({ stockCategory: response.data.data });
             })
+        SubmissionAlert();
         window.location.replace("/adminViewStockCategory");
     }
 
@@ -53,7 +72,7 @@ class AdminCategoryView extends Component {
                                 <Col>
                                     <Card className="category-card">
                                         <div align="right">
-                                            <button className="btn btn-outline-danger" onClick={e => this.deletePaper(item._id)}><i
+                                            <button className="btn btn-outline-danger" onClick={e => this.deleteCategory(item._id)}><i
                                                 className="fas fa-times"></i></button>
                                         </div>
                                         <Card.Img variant="top" img src={item.category_image} alt="Category"  className="center card-img-top item_img-zoom w3-card-4"/>

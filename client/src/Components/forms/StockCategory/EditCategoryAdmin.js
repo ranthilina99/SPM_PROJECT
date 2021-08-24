@@ -2,7 +2,25 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 import './stock.css'
+import swat from "sweetalert2";
 
+
+const SubmissionAlert = () => {
+    swat.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Category Updated Successfully!',
+        showConfirmButton: false,
+        timer: 3000
+    });
+}
+const SubmissionFail = (message) => {
+    swat.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}
 const initialState = {
     category_topic: '',
     category_description: '',
@@ -54,7 +72,7 @@ class EditCategoryAdmin extends Component {
         console.log('DATA TO SEND', category)
         axios.put(`http://localhost:5000/StockCategory/${this.props.match.params.id}`, category)
             .then(response => {
-                alert('Category Data successfully updated')
+                SubmissionAlert();
                 window.location.replace("/adminViewStockCategory");
             })
             .catch(error => {

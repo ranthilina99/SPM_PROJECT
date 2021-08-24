@@ -2,6 +2,25 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 import './stock.css'
+import swat from "sweetalert2";
+
+const SubmissionAlert = () => {
+    swat.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Category Created Successfully!',
+        showConfirmButton: false,
+        timer: 3000
+    });
+}
+const SubmissionFail = (message) => {
+    swat.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}
+
 
 const initialState = {
     category_topic: '',
@@ -36,11 +55,12 @@ class CreateCategoryAdmin extends Component {
         console.log('DATA TO SEND', category);
         axios.post('http://localhost:5000/StockCategory', category)
             .then(response => {
-                alert('Data successfully inserted')
+              SubmissionAlert();
+                window.location.replace("/adminViewStockCategory");
             })
             .catch(error => {
-                console.log(error.message);
-                alert(error.message)
+                SubmissionFail();
+
             })
     }
 

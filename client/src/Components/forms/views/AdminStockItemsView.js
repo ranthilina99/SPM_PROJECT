@@ -1,7 +1,27 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Card, Col, Row} from "react-bootstrap";
+import moment from "moment";
+import swat from "sweetalert2";
 
+
+const SubmissionAlert = () => {
+    swat.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Item Deleted Successfully!',
+        showConfirmButton: false,
+        timer: 3000
+    });
+}
+
+const SubmissionFail = (message) => {
+    swat.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}
 
 class AdminStockItemsView extends Component {
     constructor(props) {
@@ -15,7 +35,6 @@ class AdminStockItemsView extends Component {
         axios.get(`http://localhost:5000/StockCategory/${this.props.match.params.id}`)
             .then(response => {
                 this.setState({stockItems: response.data.data.stock_items});
-                console.log(this.state.stockItems);
             })
     }
 
@@ -23,8 +42,10 @@ class AdminStockItemsView extends Component {
         axios.delete(`http://localhost:5000/StockCategoryItem/${id}`)
             .then(response => {
                 this.setState({stockItems: response.data.data});
+
             })
-        window.location.replace("/adminViewStockItem");
+        window.location.replace("/adminViewStockCategory");
+        SubmissionAlert();
     }
 
     navigateEditPage(e, itemId) {
@@ -49,7 +70,7 @@ class AdminStockItemsView extends Component {
                                                 </Card.Title>
                                                 <Card.Text>
                                                     <h4 style={{color:"darkblue"}}>Item Quantity:{item.item_quantity}</h4>
-                                                    <h4 style={{color:"darkblue"}}>Date: {item.item_date}</h4>
+                                                    <h4 style={{color:"darkblue"}}>Date: {moment(item.item_date).format('DD-MM-YYYY')}</h4>
                                                     <h4 style={{color:"darkblue"}}>Suppliers: {item.item_suppliers}</h4>
                                                     <h5>{item.item_description}</h5>
                                                 </Card.Text>

@@ -2,6 +2,26 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 import './stock_item.css'
+import swat from "sweetalert2";
+
+
+const SubmissionAlert = () => {
+    swat.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Item Updated Successfully!',
+        showConfirmButton: false,
+        timer: 3000
+    });
+}
+
+const SubmissionFail = (message) => {
+    swat.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}
 
 const initialState = {
     item_name: '',
@@ -30,7 +50,7 @@ class EditStockItemsAdmin extends Component {
                         item_name: response.data.data.item_name,
                         item_quantity: response.data.data.item_quantity,
                         item_price: response.data.data.item_price,
-                        item_date: response.data.data.item_date,
+                        item_date: response.data.data.item_date.substr(0,10),
                         item_suppliers: response.data.data.item_suppliers,
                         item_image: response.data.data.item_image,
                         item_description: response.data.data.item_description,
@@ -63,13 +83,12 @@ class EditStockItemsAdmin extends Component {
         console.log('DATA TO SEND', item);
         axios.put(`http://localhost:5000/StockCategoryItem/${this.props.match.params.id}`, item)
             .then(response => {
-                alert('Item Data successfully updated')
+                SubmissionAlert();
 
                 window.location.replace("/adminViewStockCategory");
             })
             .catch(error => {
-                console.log(error.message);
-                alert(error.message)
+             SubmissionFail();
             })
     }
 
