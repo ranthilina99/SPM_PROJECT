@@ -112,16 +112,17 @@ class showWorkoutEmployee extends Component {
                                                <h2 className="workout_title">{item.workout_name}</h2><h3 className="workout_item"> Rs.{item.workout_price}</h3>
                                            </div>
                                            <div className="card-body">
-                                               <h4>{item.workout_theme}</h4>
-                                               <h4> Level {item.workout_level}</h4>
-                                               <h6>{item.workout_description}</h6>
+                                               <h3>{item.workout_theme}</h3>
+                                               <h4>{item.workout_description }</h4>
+                                               <h6> Level {item.workout_level}</h6>
                                            </div>
+                                       </div>
                                            <div className="card-footer">
                                                <button className="btn btn-warning" onClick={() => this.updateWorkout(item._id)}>Update</button>
                                                &nbsp;
                                                <button className="btn btn-danger" onClick={() => this.deleteWorkout(item._id)}>Delete</button>
                                            </div>
-                                       </div>
+                                       {/*</div>*/}
                                    </div>
                                </Col>
                            ))}

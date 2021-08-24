@@ -16,7 +16,9 @@ const initialState = {
     workout_price:0,
     workout_level:'1',
     workout_img:'',
-    UserId:''
+    UserId:'',
+    fName:'',
+    lName:''
 
 }
 
@@ -67,6 +69,8 @@ class addWorkout extends Component {
         }).then(res => {
             this.setState({
                 workout_creator:res.data._id,
+                fName:res.data.firstName,
+                lName:res.data.lastName,
                 isLoggedIn:true
             })
         }).catch(err => {
@@ -83,6 +87,8 @@ class addWorkout extends Component {
         e.preventDefault();
         let workout = {
             workout_creator:this.state.workout_creator,
+            workout_fName:this.state.fName,
+            workout_lName:this.state.lName,
             workout_users:this.state.workout_users,
             workout_img:this.state.workout_img,
             workout_name: this.state.workout_name,

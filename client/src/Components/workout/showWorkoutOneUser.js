@@ -69,16 +69,15 @@ class showWorkoutOneUser extends Component {
         return (
             <div className="workout_wrapper">
                 <div>
-                    <h1 style={{textTransform:"uppercase",textAlign:"center"}}>Workout</h1>
+                    <h4 className="h1-yas">{this.state.workout_name}</h4>
                     <img src={this.state.workout_img} alt="Logo" className="yas-banner yas-img-banner"/>
-                    <div  >
-                        <h4 className="h1-yas" align="center">{this.state.workout_name}</h4>
-                        <h6 className="h2-yas" align="center">{this.state.workout_theme}</h6>
-                        <h6 className="h2-yas" align="center">{this.state.workout_description}</h6>
+                    <div>
+                        <h6 className="h2-yas">{this.state.workout_theme}</h6>
+                        <h6 className="h3-yas">{this.state.workout_description}</h6>
                         &nbsp;
-                        <h6 className="h3-yas">{this.state.workout_schedule}</h6>
+                        <h6 className="h5-yas">{this.state.workout_schedule}</h6>
                         &nbsp;
-                        <h6 className="h2-yas">{this.state.workout_diet}</h6>
+                        <h6 className="h5-yas">{this.state.workout_diet}</h6>
                     </div>
                     <div style={{color:"red"}}>
                         <Timer dueDate = {this.state.date}/>

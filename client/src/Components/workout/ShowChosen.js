@@ -181,17 +181,18 @@ class showWorkoutChosen extends Component {
         return (
             <div className="workout_wrapper">
                 <div>
-                    <h1>Workout</h1>
+                    <h4 className="h1-yas">{this.state.workout_name}</h4>
                     <img src={this.state.workout_img}  className="yas-banner"/>
                     <div >
-                        <h4 className="h1-yas">{this.state.workout_name}</h4>
-                        <h6 className="h2-yas">{this.state.workout_theme}</h6>
-                        <h6 className="h2-yas">{this.state.workout_description}</h6>
-                        <h6 className="h4-yas">{this.state.workout_price}</h6>
-                        <h6 className="h4-yas">{this.state.workout_level}</h6>
+
+                        <h2 className="h2-yas">{this.state.workout_theme}</h2>
+                        <h4 className="h3-yas">{this.state.workout_description}</h4>
+                        <h6 className="h4-yas">Rs.{this.state.workout_price}</h6>
+                        {/*<h6 className="h4-yas">{this.state.workout_level}</h6>*/}
                     </div>
                     <div>
-                        <button className="btn btn-primary" onClick={() => this.selectWorkout()}>Purchase</button>
+                        &nbsp;
+                        <center><button className="btn btn-warning" onClick={() => this.selectWorkout()}>Purchase</button></center>
                     </div>
                 </div>
             </div>

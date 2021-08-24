@@ -2,6 +2,8 @@ const mongoose=require('mongoose');
 
 const WorkoutSchema=new mongoose.Schema({
     workout_name:{type:String, required:true, trim:true},
+    workout_fName:{type:String, required:true, trim:true},
+    workout_lName:{type:String, required:true, trim:true},
     workout_theme:{type:String, required:true, trim:true},
     workout_description:{type:String, required:true, trim:true},
     workout_schedule:{type:String, required:true, trim:true},

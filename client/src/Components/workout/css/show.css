@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     color:#fff;
     width: 100%;
-    height:100%;
+    height:50%;
 
 }
 
@@ -14,11 +14,11 @@
     flex: border-box;
     align-items: center;
     justify-content: center;
-    padding-bottom: 5em;
-    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-top: 1em;
     width: 100%;
     height: 100%;
-    font-family: 'Big Shoulders Stencil Display', cursive;
+    font-family: 'Big Shoulders Stencil Display' ;
     font-size: medium;
     color: black;
 
@@ -37,7 +37,7 @@
     border: 1px solid #fff;
     border-radius: 3px;
     display: grid;
-    color: #f4511e;
+    color: #130404;
     grid-template-columns: repeat(7,1fr);
     margin-top: 3em;
     padding:3em;
@@ -87,27 +87,37 @@ section p:first-child, .timer div:last-child span{
 }
 
 .h1-yas{
-    color: darkcyan;
-    font-family: Courier New;
+    color: #c31313;
+    font-family: fantasy Copperplate;
     font-size: 400%;
     text-transform: uppercase;
     font-weight: bold;
-    font-style: italic;
+    text-align: center;
+
 }
 
 .h2-yas{
     color: #282c34;
     font-family: "Times New Roman";
-    font-size: 150%;
-    font-weight: bold
+    font-size: 250%;
+    font-weight: bold;
+    text-align: center;
 }
 
 .h4-yas{
-    color:  darkgray;
+    color: #a9a9a9;
     font-family: "Times New Roman";
-    font-size: 250%;
+    font-size: 150%;
     font-weight: bold;
+    text-align: center;
+}
 
+.h5-yas{
+    color: #0e0b0b;
+    font-family: "Times New Roman";
+    font-size: 180%;
+
+    text-align: center;
 }
 
 .h3-yas{
@@ -115,7 +125,7 @@ section p:first-child, .timer div:last-child span{
     font-family: "Times New Roman";
     font-size: 200%;
     font-weight: bold;
-    font-style: italic;
+    text-align: center;
 }
 .parallax {
     /* The image used */

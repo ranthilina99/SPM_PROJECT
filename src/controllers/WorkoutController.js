@@ -18,6 +18,7 @@ const getAllWorkouts = async (req, res) => {
 
     await Workouts.find()
         //.populate('workout_users', 'username email')
+        .populate('workout_creator', 'firstName lastName')
         .then(data => {
             res.status(200).send({ data: data });
         })

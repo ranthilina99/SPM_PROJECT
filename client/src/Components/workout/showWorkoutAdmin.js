@@ -8,11 +8,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Col, Row} from "react-bootstrap";
 
 class showWorkoutAdmin extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             CreatorId:'',
-            Workouts: []
+            Workouts: [],
+            fName:'',
+            lName:'',
+            users:[]
         }
     }
 
@@ -21,13 +25,15 @@ class showWorkoutAdmin extends Component {
         axios.get(`http://localhost:5000/workout/`)
             .then(response => {
                 this.setState({ Workouts: response.data.data });
-                console.log(response.data.data);
+
             })
     }
 
     chooseWorkout(e, id) {
         window.location = `/workoutAdminShowOne/${id}`
     }
+
+
 
     ExportCSV = () => {
         const options = {
@@ -80,11 +86,13 @@ class showWorkoutAdmin extends Component {
     }
 
 
+
+
     render() {
         return (
             <div>
                 <Container>
-                    <h1 style={{textTransform:"uppercase"}}>Stock Category</h1>
+                    <h1 style={{textTransform:"uppercase"}}>Workouts</h1>
                     <Row  xs={1} md={2}>
                         {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
                             <Col className="workout-card ">
@@ -97,7 +105,8 @@ class showWorkoutAdmin extends Component {
                                         <Card.Text className="workout-p">
                                             <h4>{item.workout_theme}</h4>
                                             <h6> Level {item.workout_level}</h6>
-                                            <h5>{item.workout_description}</h5>
+                                            <h5>{item.workout_fName}&nbsp;{item.workout_lName}</h5>
+
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
