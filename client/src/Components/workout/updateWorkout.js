@@ -103,7 +103,7 @@ class UpdateWorkout extends Component {
         return (
             <div>
                 <br/><br/>
-                <Form className="workout_wrapper" onSubmit={this.onSubmit}>
+                <Form className="workout_wrapper" style={{ borderTop: "10px solid black"}} onSubmit={this.onSubmit}>
                     <h1 className="workout_title">ADD WORKOUT</h1>
                     <div className="row justify-content-md-center">
                         <FormGroup>

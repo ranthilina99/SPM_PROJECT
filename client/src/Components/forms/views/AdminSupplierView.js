@@ -125,7 +125,7 @@ class AdminSupplierView extends Component {
         return (
             <div className="container">
                 <br/>
-                <div className="navbar bg-light justify-content-between">
+                <div className="navbar justify-content-between alert alert-primary"  role="alert">
                     <h2>ALL SUPPLIER DETAILS</h2>
                     <form className="form-inline">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>

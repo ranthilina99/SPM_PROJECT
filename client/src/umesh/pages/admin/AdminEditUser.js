@@ -97,7 +97,7 @@ class AdminEditUser extends Component {
             <div>
                 {this.state.updateFields &&
                 <form className="admin_wrapper" onSubmit={this.onSubmit}>
-                    <h3 className="admin_title"> Update Position</h3>
+                    <h2 className="admin_title"> Update Position</h2>
                     <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
                     <div className="form-group">
                         <input
@@ -131,6 +131,7 @@ class AdminEditUser extends Component {
                         <select className="form-select form-select-sm"
                                 aria-label=".form-select-sm example"
                                 name="position1"
+                                className="form-control"
                                 id="exampleInputPosition"
                                 value={this.state.position1}
                                 onChange={this.onChange}
@@ -144,23 +145,23 @@ class AdminEditUser extends Component {
                     &nbsp;
                     <div className="form-group">
                         <button type="submit"
-                                className="form-control btn btn-primary">Update Details
+                                className="btn-block btn-lg btn btn-primary">Update Details
                         </button>
                     </div>
                     <div className="form-group">
                         <button type="submit"
-                                onClick={this.passwordFieldShow} className="form-control btn btn-success">Change Password
+                                onClick={this.passwordFieldShow} className="btn-block btn-lg btn btn-success">Change Password
                         </button>
                     </div>
                     <div className="form-group">
-                        <button type="submit" onClick={this.back} className="form-control btn btn-warning">Cancel</button>
+                        <button type="submit" onClick={this.back} className="btn-block btn-lg btn btn-warning">Cancel</button>
                     </div>
                 </form>
 
                 }
                 {this.state.passwordFields &&
                 <form className="admin_wrapper" onSubmit={this.onChangePassword}>
-                    <h3 className="admin_title"> Update Password</h3>
+                    <h2 className="admin_title"> Update Password</h2>
                     <label htmlFor="exampleFormControlInput1" className="form-label">First Name</label>
                     <div className="form-group">
                         <input
@@ -202,12 +203,12 @@ class AdminEditUser extends Component {
                     </div>
                     <div className="form-group">
                         <button type="submit"
-                                className="form-control btn btn-primary">Update Details
+                                className="btn-block  btn-lg btn btn-primary">Update Details
                         </button>
                     </div>
                     <div className="form-group">
                         <button type="submit"
-                                onClick={this.passwordFieldHide} className="form-control btn btn-warning">Cancel
+                                onClick={this.passwordFieldHide} className="btn-block btn-lg btn btn-warning">Cancel
                         </button>
                     </div>
                 </form>

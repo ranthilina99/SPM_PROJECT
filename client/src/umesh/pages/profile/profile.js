@@ -172,7 +172,8 @@ class Profile extends Component {
                             </div>
                             {this.state.updateFields &&
                             <>
-                                <h1>User Profile</h1>
+                                <h2 className="profile_title">User Profile</h2>
+                                <hr/>
                                 <div className="row">
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">First Name</Label>
@@ -268,6 +269,8 @@ class Profile extends Component {
                             }
                             {this.state.passwordFields &&
                             <Form>
+                                <h2 className="profile_title">Change Password</h2>
+                                <hr/>
                                 <FormGroup>
                                     <Label for="exampleText">Password</Label>
                                     <Input type="password"
@@ -304,7 +307,7 @@ class Profile extends Component {
                                 {this.state.updateFields &&
                                 <div>
                                     <h6>Delete Profile</h6>
-                                    <Button className="btn btn-danger float-right" block href="/"
+                                    <Button className="btn  btn-danger float-right" block href="/"
                                             onClick={() => this.onDelete(this.state.id)}>
                                         <i className="fas fa-trash"></i>&nbsp;Delete
                                     </Button>

@@ -125,7 +125,7 @@ class CustomerViewStore extends Component {
                             <div className="col-md-3">
 
                                 <div className="card">
-                                    <img className="card-img-top" src={item.itemImage}  alt="Card image cap"/>
+                                    <img className="w3-card-4 card-img-top" src={item.itemImage}  alt="Card image cap"/>
                                     <div className="card-body">
                                         <h5 className="card-title">{item.itemName}</h5>
                                         <h6 className="card-text">{item.itemDescription}</h6>

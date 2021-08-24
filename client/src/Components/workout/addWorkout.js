@@ -113,9 +113,9 @@ class addWorkout extends Component {
 
     render() {
         return (
-            <div>
+            <div className="workout_wrapper" style={{ borderTop: "10px solid black"}}>
                 <br/><br/>
-                <Form className="workout_wrapper" onSubmit={this.onSubmit}>
+                <Form onSubmit={this.onSubmit}>
                     <h1 className="workout_title">ADD WORKOUT</h1>
                     &nbsp;
                    <div className="row justify-content-md-center">

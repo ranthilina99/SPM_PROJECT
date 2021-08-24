@@ -6,6 +6,7 @@
     margin: 45px auto;
     background-color: #FFFFFF;
     border-radius: 10px;
+    border-top: 10px solid black;
 }
 .forgot_button{
     width: 100%;

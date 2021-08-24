@@ -23,4 +23,10 @@
 .item_title{
     color: saddlebrown;
 }
-
+.item_img-zoom{
+    width: 90%;
+    height: 350px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}

@@ -56,7 +56,7 @@ class AdminCategoryView extends Component {
                                             <button className="btn btn-outline-danger" onClick={e => this.deletePaper(item._id)}><i
                                                 className="fas fa-times"></i></button>
                                         </div>
-                                        <Card.Img variant="top" img src={item.category_image} alt="Category"  className="center w3-card-4"/>
+                                        <Card.Img variant="top" img src={item.category_image} alt="Category"  className="center card-img-top item_img-zoom w3-card-4"/>
                                         <Card.Body>
                                             <Card.Title>
                                                 <h3>{item.category_topic}</h3>

@@ -138,7 +138,7 @@ class GetAllUsers extends Component {
         return (
             <div className="container">
                 <br/>
-                <div className="navbar bg-light justify-content-between">
+                <div className="navbar  justify-content-between alert alert-primary"  role="alert">
                     <h3 className="admin_title">All User Details</h3>
                     <form className="form-inline">
                         <input className="form-control mr-sm-2 mr-md-2 " type="search" placeholder="Search" aria-label="Search"/>

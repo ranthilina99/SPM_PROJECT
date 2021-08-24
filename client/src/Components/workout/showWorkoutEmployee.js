@@ -100,14 +100,14 @@ class showWorkoutEmployee extends Component {
                 <div className=" container" style={{width: '80%'}}>
                     <div className="card" style={{width: '100%'}}>
                         <br/>
-                        <h1 style={{textTransform:"uppercase"}} >Workouts</h1>
+                        <h1 style={{textTransform:"uppercase",textAlign:"center"}} >Workouts</h1>
                         <br/>
                        <Row>
                            {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
-                               <Col className="w3-card-4">
-                                   <div key={index} className="card mb-4">
+                               <Col className=" col-md-6">
+                                   <div key={index} className="card">
                                        <div className="p-3 " onClick={e => this.chooseWorkout(e, item._id)}>
-                                           <img className="workout_img card-img-top" src={item.workout_img} alt="Logo" />
+                                           <img className="w3-card-4 workout_img card-img-top" src={item.workout_img} alt="Logo" />
                                            <div className="card-title">
                                                <h2 className="workout_title">{item.workout_name}</h2><h3 className="workout_item"> Rs.{item.workout_price}</h3>
                                            </div>
@@ -117,11 +117,12 @@ class showWorkoutEmployee extends Component {
                                                <h6> Level {item.workout_level}</h6>
                                            </div>
                                        </div>
-                                           <div className="card-footer">
-                                               <button className="btn btn-warning" onClick={() => this.updateWorkout(item._id)}>Update</button>
-                                               &nbsp;
-                                               <button className="btn btn-danger" onClick={() => this.deleteWorkout(item._id)}>Delete</button>
-                                           </div>
+                                       <div className="card-footer">
+                                           <button className="btn btn-warning" onClick={() => this.updateWorkout(item._id)}>Update</button>
+                                           &nbsp;
+                                           <button className="btn btn-danger" onClick={() => this.deleteWorkout(item._id)}>Delete</button>
+                                       </div>
+
                                        {/*</div>*/}
                                    </div>
                                </Col>

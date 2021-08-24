@@ -92,12 +92,14 @@ class showWorkoutAdmin extends Component {
         return (
             <div>
                 <Container>
-                    <h1 style={{textTransform:"uppercase"}}>Workouts</h1>
+                    <br/>
+                    <h1 style={{textTransform:"uppercase",textAlign:"center"}}>Workouts</h1>
+                    <br/>
                     <Row  xs={1} md={2}>
                         {this.state.Workouts.length > 0 && this.state.Workouts.map((item, index) => (
                             <Col className="workout-card ">
                                 <Card>
-                                    <Card.Img variant="top" className="center" src={item.workout_img} alt="Logo"/>
+                                    <Card.Img className="center workout_img card-img-top w3-card-4" src={item.workout_img} alt="Logo"/>
                                     <Card.Body>
                                         <Card.Title>
                                             <h3>{item.workout_name}</h3> <h3 className="workout_item"> Rs.{item.workout_price}</h3>
