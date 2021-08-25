@@ -3,6 +3,8 @@ import axios from 'axios';
 import FileBase from 'react-file-base64';
 import './stock.css'
 import swat from "sweetalert2";
+import {FormGroup} from "@material-ui/core";
+import {FormFeedback, Input, Label} from "reactstrap";
 
 const SubmissionAlert = () => {
     swat.fire({
@@ -26,7 +28,10 @@ const initialState = {
     category_topic: '',
     category_description: '',
     category_date: '',
-    category_image: ''
+    category_image: '',
+    touched: {
+        category_topic: false,
+    }
 
 }
 
@@ -41,7 +46,21 @@ class CreateCategoryAdmin extends Component {
     onChange(e) {
         this.setState({[e.target.name]: e.target.value})
     }
-
+    handleBlur = (field) => (evt) => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+    validate =(category_topic)=> {
+        const errors = {
+            category_topic: '',
+        };
+        if (this.state.touched.category_topic && category_topic.length < 3)
+            errors.category_topic = 'First Name should be >= 3 characters';
+        else if (this.state.touched.category_topic && category_topic.length > 10)
+            errors.category_topic = 'First Name should be <= 10 characters';
+        return errors;
+    }
     onSubmit(e) {
         e.preventDefault();
         let category = {
@@ -53,35 +72,46 @@ class CreateCategoryAdmin extends Component {
         };
 
         console.log('DATA TO SEND', category);
-        axios.post('http://localhost:5000/StockCategory', category)
-            .then(response => {
-              SubmissionAlert();
-                window.location.replace("/adminViewStockCategory");
-            })
-            .catch(error => {
-                SubmissionFail();
+        if (this.state.category_topic.length < 3 || this.state.category_topic.length > 10){
+            this.validate(this.state.category_topic)
+        } else {
+            axios.post('http://localhost:5000/StockCategory', category)
+                .then(response => {
+                    SubmissionAlert();
+                    window.location.replace("/adminViewStockCategory");
+                })
+                .catch(error => {
+                    SubmissionFail();
 
-            })
+                })
+        }
     }
 
     render() {
+        const errors=this.validate(this.state.category_topic);
         return (
             <div className="stock_wrapper">
                 <div className="container">
                     <h1 className="stock_title">Create Category</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="row">
-                            <div className="col-6">
-                                <label htmlFor="categoryTopic" className="form-label">Stock Category</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="categoryTopic"
-                                    name="category_topic"
-                                    value={this.state.category_topic}
-                                    onChange={this.onChange}
-                                />
-                            </div>
+                            <FormGroup className="col-6">
+                                <Label htmlFor="categoryTopic" className="form-label">Stock Category</Label>
+                               <div>
+                                   <Input
+                                       type="text"
+                                       className="form-control"
+                                       id="categoryTopic"
+                                       name="category_topic"
+                                       value={this.state.category_topic}
+                                       onChange={this.onChange}
+                                       valid={errors.category_topic === ''}
+                                       invalid={errors.category_topic !== ''}
+                                       onBlur={this.handleBlur('category_topic')}
+                                   />
+                                   <FormFeedback>{errors.category_topic}</FormFeedback>
+                               </div>
+                            </FormGroup>
                             <div className="col-6">
                                 <label htmlFor="Date" className="form-label">Date </label>
                                 <input

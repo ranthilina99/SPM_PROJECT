@@ -11,7 +11,7 @@ const SuccessAlert = (res) => {
     swat.fire({
         position: 'center',
         icon: 'success',
-        title: res + 'Successfully',
+        title: res +" "+ 'Successfully',
         showConfirmButton: false,
         timer: 3000
     });
@@ -124,7 +124,7 @@ class Profile extends Component {
                 window.location.replace('/profile')
 
             }).catch(error => {
-            let message = " Update Successfully"
+            let message = "Update"
             console.log(error);
             FailAlert(message)
             this.setState({
@@ -142,13 +142,13 @@ class Profile extends Component {
 
     onDelete = async (id) =>{
         try {
+            let message = "User Delete"
+            SuccessAlert(message)
             if(window.confirm("Are you sure you want to delete this account?")) {
                 await axios.delete(SERVER_ADDRESS +`/users/delete/${id}`, {
                     headers: {Authorization: this.state.token}
 
                 })
-                let message = "User Delete"
-                SuccessAlert(message)
                 window.location.replace('/')
             }
         } catch (err) {
@@ -167,7 +167,8 @@ class Profile extends Component {
             headers: {Authorization: this.state.token}
         })
             .then(response => {
-                SuccessAlert();
+                let message="Password Change"
+                SuccessAlert(message);
                 window.location.replace("/profile");
             })
             .catch(error => {
