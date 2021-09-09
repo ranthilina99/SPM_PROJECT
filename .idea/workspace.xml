@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="style form done">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_24_2021_9_51_AM__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Made changes in the Backend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/editStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/editStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/customerViewStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/views/empViewStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/store.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/store.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +98,7 @@
       <workItem from="1630092709317" duration="89000" />
       <workItem from="1630937731758" duration="98000" />
       <workItem from="1630992888127" duration="3186000" />
-      <workItem from="1631207329592" duration="1864000" />
+      <workItem from="1631207329592" duration="3020000" />
     </task>
     <task id="LOCAL-00001" summary="Integrate done">
       <created>1629214971962</created>
@@ -120,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629439269178</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Made changes in the Backend">
+      <created>1631209391761</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1631209391761</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +142,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Integrate done" />
     <MESSAGE value="style form done" />
-    <option name="LAST_COMMIT_MESSAGE" value="style form done" />
+    <MESSAGE value="Made changes in the Backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made changes in the Backend" />
   </component>
 </project>
