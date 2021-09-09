@@ -14,27 +14,42 @@ const createStore = async (req, res) => {
 }
 
 const getAllStores = async (req, res) => {
-    await Store.find({}).populate('employee', 'name')
-        .then(data => {
-            res.status(200).send({ data: data });
-        })
-        .catch(error => {
-            res.status(500).send({ error: error.message });
-        });
+    // await Store.find({}).populate('employee', 'name')
+    //     .then(data => {
+    //         res.status(200).send({ data: data });
+    //     })
+    //     .catch(error => {
+    //         res.status(500).send({ error: error.message });
+    //     });
+    try {
+        const products = await Store.find({});
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
 }
 
 const getSpecificStore = async (req, res) => {
 
-    if (req.params && req.params.id) {
+    // if (req.params && req.params.id) {
+    //
+    //     await Store.findById(req.params.id)
+    //         .populate('employee', 'name')
+    //         .then(response => {
+    //             res.status(200).send({ data: response });
+    //         })
+    //         .catch(error => {
+    //             res.status(500).send({ error: error.message });
+    //         });
+    // }
+    try {
+        const product = await Store.findById(req.params.id);
 
-        await Store.findById(req.params.id)
-            .populate('employee', 'name')
-            .then(response => {
-                res.status(200).send({ data: response });
-            })
-            .catch(error => {
-                res.status(500).send({ error: error.message });
-            });
+        res.json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
     }
 
 }

@@ -38,7 +38,7 @@ class CustomerViewStore extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/store/')
             .then(response => {
-                this.setState({ store: response.data.data });
+                this.setState({ store: response.data });
                 console.log(response);
             })
 

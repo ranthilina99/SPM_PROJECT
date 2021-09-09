@@ -33,7 +33,7 @@ class EmpViewStore extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/store/')
             .then(response => {
-                this.setState({ store: response.data.data });
+                this.setState({ store: response.data });
                 console.log(response);
             })
 
@@ -47,7 +47,7 @@ class EmpViewStore extends Component {
     deletePaper(id){
         axios.delete(`http://localhost:5000/store/${id}`)
             .then(response => {
-                this.setState({ paper: response.data.data });
+                this.setState({ paper: response.data });
                 SubmissionAlert1()
             })
         window.location = `/empViewStore`
