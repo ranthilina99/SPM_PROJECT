@@ -7,7 +7,7 @@ import FileBase from 'react-file-base64'
 import './profile.css'
 import Avatar from "react-avatar";
 import zxcvbn from "zxcvbn";
-import {isEmail, isEmpty, isLengthMobile} from "../../../Utils/validations";
+import {isEmail, isEmpty, isLengthMobile, isMobile} from "../../../Utils/validations";
 
 const SuccessAlert = (res) => {
     swat.fire({
@@ -51,6 +51,13 @@ class Profile extends Component {
             type: '',
             isLoggedIn:false,
             touched: {
+                firstname: false,
+                address:false,
+                mobile:false,
+                email:false,
+                lastname:false,
+                dob:false,
+                gender:false,
                 newPassword:false,
                 confirmPassword:false,
                 image:false
@@ -67,7 +74,52 @@ class Profile extends Component {
             touched: { ...this.state.touched, [field]: true }
         });
     }
-    validate =(newPassword,confirmPassword,image)=> {
+    validate =(firstname,lastname,address,mobile,dob,gender,image)=> {
+        const errors1 = {
+            firstname: '',
+            address:'',
+            mobile:'',
+            email:'',
+            lastname:'',
+            dob:'',
+            gender:'',
+            newPassword:'',
+            confirmPassword:'',
+            image:''
+        };
+        if (this.state.touched.firstname && firstname.length < 3)
+            errors1.firstname = 'First Name should be >= 3 characters';
+
+        if (this.state.touched.lastname && lastname.length < 3)
+            errors1.lastname = 'First Name should be >= 3 characters';
+
+        if (this.state.touched.address && address.length < 3)
+            errors1.address = 'First Name should be >= 3 characters';
+
+        if (this.state.touched.mobileNo && mobile.length<10 || mobile.length >=11)
+            errors1.mobileNo = 'Tel. Number should contain only 10 digit number';
+
+        const reg = /^\d+$/;
+        if (this.state.touched.mobileNo && !reg.test(mobile))
+            errors1.mobileNo = 'Tel. Number should contain only numbers'
+
+        const reg3=/^(?:7|0|(?:\+94))[0-9]{9,10}$/
+        if (this.state.touched.mobile && !reg3.test(mobile))
+            errors1.mobile = 'Tel. please the match request format '
+
+        if(this.state.touched.image  && image==='')
+            errors1.image = 'No file chosen';
+
+        if(this.state.touched.dob && (dob===''))
+            errors1.DOB = 'Field is Empty';
+
+        if(this.state.touched.gender && (gender===''))
+            errors1.gender = 'Field is Empty';
+
+        return errors1;
+
+    }
+    validatePassword =(newPassword,confirmPassword)=> {
         const errors = {
             newPassword:'',
             confirmPassword:'',
@@ -84,8 +136,6 @@ class Profile extends Component {
         if(newPassword!==confirmPassword)
             errors.confirmPassword = 'Password is not match';
 
-        if(this.state.touched.image  && image==='')
-            errors.image = 'No file chosen';
         return errors;
 
     }
@@ -149,14 +199,18 @@ class Profile extends Component {
             Gender: this.state.gender,
             imageUrl: this.state.PImage,
         }
-        if(isEmpty(this.state.PImage) || isEmpty(this.state.lastname) || isEmpty(this.state.email) || isEmpty(this.state.mobile) || isEmpty(this.state.dob) || isEmpty(this.state.address) || isEmpty(this.state.gender)){
-            let message = "Fields are empty"
+        if (this.state.firstname.length < 3 || this.state.address.length < 3 ||
+            this.state.mobile.length < 10 || this.state.mobile.length >= 11 ||
+            this.state.lastname.length < 3  || this.state.image!==""){
+            this.validate(this.state.firstname,this.state.lastname,this.state.address,this.state.mobile,
+               this.state.DOB,this.state.Gender,this.state.image)
+            let message = "Update failed"
             FailAlert(message);
-        }else if(!isLengthMobile(this.state.mobile)){
-            let message = "Enter the 10 digit numbers"
+        }else if(!isMobile(this.state.mobile)){
+            let message = "Tel. please the match request format"
             FailAlert(message);
-        }else if(!isEmail(this.state.email)) {
-            let message = "Enter the valid email"
+        }else if(!isLengthMobile(this.state.mobile)) {
+            let message = "Tel. Number should contain only 10 digit number"
             FailAlert(message);
         }else {
             console.log('DATA TO SEND', user);
@@ -168,7 +222,7 @@ class Profile extends Component {
                 window.location.replace('/profile')
 
             }).catch(error => {
-                let message = "Update"
+                let message = "Update failed"
                 console.log(error);
                 FailAlert(message)
                 this.setState({
@@ -209,7 +263,7 @@ class Profile extends Component {
             new_password:this.state.newPassword
         }
         if (this.state.newPassword.length < 8 || this.state.confirmPassword.length < 8 || this.state.confirmPassword !==this.state.newPassword) {
-            this.validate(this.state.newPassword,this.state.confirmPassword);
+            this.validatePassword(this.state.newPassword,this.state.confirmPassword);
             let message = "Password Error"
             FailAlert(message);
         }else {
@@ -247,7 +301,9 @@ class Profile extends Component {
     }
     render() {
         const testedResult = zxcvbn(this.state.newPassword);
-        const errors=this.validate(this.state.newPassword,this.state.confirmPassword);
+        const errors1=this.validate(this.state.firstname,this.state.lastname,this.state.address,this.state.mobile,
+            this.state.DOB,this.state.Gender,this.state.image)
+        const errors=this.validatePassword(this.state.newPassword,this.state.confirmPassword);
         return (
             <>
                 <Form >
@@ -266,60 +322,83 @@ class Profile extends Component {
                                 <div className="row">
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">First Name</Label>
-                                        <Input
-                                            type="text"
-                                            name="firstname"
-                                            id="exampleFirstname"
-                                            placeholder="First Name"
-                                            value={this.state.firstname}
-                                            onChange={this.onChange}
-                                            required/>
+                                       <div>
+                                           <Input
+                                               type="text"
+                                               name="firstname"
+                                               id="exampleFirstname"
+                                               placeholder="First Name"
+                                               value={this.state.firstname}
+                                               onChange={this.onChange}
+                                               required
+                                               invalid={errors1.firstname !== ''}
+                                               onBlur={this.handleBlur('firstname')}/>
+                                           <FormFeedback>{errors1.firstname}</FormFeedback>
+                                       </div>
                                     </FormGroup>
                                     <FormGroup className="col-6">
                                         <Label for="exampleLastName">Last Name</Label>
-                                        <Input
-                                            type="text"
-                                            name="lastname"
-                                            id="exampleLastname"
-                                            placeholder="Last Name"
-                                            value={this.state.lastname}
-                                            onChange={this.onChange}
-                                            required/>
+                                        <div>
+                                            <Input
+                                                type="text"
+                                                name="lastname"
+                                                id="exampleLastname"
+                                                placeholder="Last Name"
+                                                value={this.state.lastname}
+                                                onChange={this.onChange}
+                                                required valid={errors1.lastname === ''}
+                                                invalid={errors1.lastname !== ''}
+                                                onBlur={this.handleBlur('lastname')}
+                                            />
+                                            <FormFeedback>{errors1.lastname}</FormFeedback>
+                                     </div>
                                     </FormGroup>
                                 </div>
                                 <FormGroup>
                                     <Label for="exampleEmail">Email</Label>
-                                    <Input disabled
-                                           type="email"
-                                           name="email"
-                                           id="exampleEmail"
-                                           placeholder="abc@gmail.com"
-                                           value={this.state.email}
-                                           onChange={this.onChange}
-                                           required/>
+                                   <div>
+                                       <Input disabled
+                                              type="email"
+                                              name="email"
+                                              id="exampleEmail"
+                                              placeholder="abc@gmail.com"
+                                              value={this.state.email}
+                                              onChange={this.onChange}/>
+                                   </div>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="exampleEmail">Mobile No</Label>
-                                    <Input
-                                        type="number"
-                                        name="mobile"
-                                        id="exampleMobile"
-                                        placeholder="Mobile Number"
-                                        value={this.state.mobile}
-                                        onChange={this.onChange}
-                                        required/>
+                                   <div>
+                                       <Input
+                                           type="tel"
+                                           name="mobile"
+                                           id="exampleMobile"
+                                           placeholder="Mobile Number"
+                                           value={this.state.mobile}
+                                           onChange={this.onChange}
+                                           required valid={errors1.mobile === ''}
+                                           invalid={errors1.mobile !== ''}
+                                           onBlur={this.handleBlur('mobile')}/>
+                                       <FormFeedback>{errors1.mobile}</FormFeedback>
+                                   </div>
                                 </FormGroup>
                                 <div className="row">
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">Date Of Birth</Label>
-                                        <Input
-                                            type="date"
-                                            name="dob"
-                                            id="exampleDate"
-                                            placeholder="Date Of Birth"
-                                            value={this.state.dob}
-                                            onChange={this.onChange}
-                                            required/>
+                                       <div>
+                                           <Input
+                                               type="date"
+                                               name="dob"
+                                               id="exampleDate"
+                                               placeholder="Date Of Birth"
+                                               value={this.state.dob}
+                                               onChange={this.onChange}
+                                               required
+                                               valid={errors1.dob === ''}
+                                               invalid={errors1.dob !== ''}
+                                               onBlur={this.handleBlur('DOB')}/>
+                                           <FormFeedback>{errors1.dob}</FormFeedback>
+                                       </div>
                                     </FormGroup>
                                     <FormGroup className="col-6">
                                         <Label for="exampleSelect">Gender</Label>
@@ -328,22 +407,32 @@ class Profile extends Component {
                                             name="gender"
                                             id="exampleSelect"
                                             value={this.state.gender}
-                                            onChange={this.onChange}>
+                                            onChange={this.onChange}
+                                            valid={errors1.gender === ''}
+                                            invalid={errors1.gender !== ''}
+                                            onBlur={this.handleBlur('gender')}>
                                             <option value="" disabled>Select Gender</option>
                                             <option value={'male'}>Male</option>
                                             <option value={'female'}>Female</option>
                                         </Input>
+                                        <FormFeedback>{errors1.gender}</FormFeedback>
                                     </FormGroup>
                                 </div>
                                 <FormGroup>
                                     <Label for="exampleText">Address</Label>
-                                    <Input
-                                        type="textarea"
-                                        name="address"
-                                        id="exampleText"
-                                        value={this.state.address}
-                                        onChange={this.onChange}
-                                        required/>
+                                   <div>
+                                       <Input
+                                           type="textarea"
+                                           name="address"
+                                           id="exampleText"
+                                           value={this.state.address}
+                                           onChange={this.onChange}
+                                           required
+                                           valid={errors1.address === ''}
+                                           invalid={errors1.address !== ''}
+                                           onBlur={this.handleBlur('address')}/>
+                                       <FormFeedback>{errors1.address}</FormFeedback>
+                                   </div>
                                 </FormGroup>
                                 <div className="mb-3">
                                     <Label htmlFor="res_img" className="form-label">Picture</Label>

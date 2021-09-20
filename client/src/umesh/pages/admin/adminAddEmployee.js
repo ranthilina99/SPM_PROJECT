@@ -6,6 +6,7 @@ import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import zxcvbn from "zxcvbn";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './admin.css';
+import {isLengthMobile, isMobile} from "../../../Utils/validations";
 
 const RegisteredAlert = () => {
     swat.fire({
@@ -90,6 +91,10 @@ class AdminRegister extends Component {
         if (this.state.touched.mobileNo && !reg.test(mobileNo))
             errors.mobileNo = 'Tel. Number should contain only numbers'
 
+        const reg3=/^(?:7|0|(?:\+94))[0-9]{9,10}$/
+        if (this.state.touched.mobileNo && !reg3.test(mobileNo))
+            errors.mobileNo = 'Tel. please the match request format '
+
         const reg1 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if(this.state.touched.email && !reg1.test(email))
@@ -132,7 +137,10 @@ class AdminRegister extends Component {
                 this.state.lastname,this.state.password,this.state.DOB,this.state.Gender,this.state.Eposition)
             let message = "Register Failed"
             RegisterFail(message);
-        } else {
+        } else if(!isMobile(this.state.mobileNo) || !isLengthMobile(this.state.mobileNo)){
+            let message = "Please enter the valid phone No"
+            RegisterFail(message);
+        }else {
             axios.post(SERVER_ADDRESS + '/users/admin_register', user)
                 .then(response => {
                     this.setState({
