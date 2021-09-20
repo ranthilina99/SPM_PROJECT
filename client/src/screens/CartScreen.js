@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-///////////////
+
 //Components
-// import CartItem from "../components/CartItem";
+import CartItem from "../Components/CartItem";
 
 //Actions
-// import { addToCart, removeFromCart } from "../redux/actions/cartActions";
+import { addToCart, removeFromCart } from "../redux/actions/cartActions";
 import CartHeader from "../Components/cartHeader";
 
 const CartScreen = () => {
@@ -50,7 +50,7 @@ const CartScreen = () => {
     //
     //         {cartItems.length === 0 ? (
     //           <div>
-    //             Your Cart Is Empty <Link to="/">Go Back</Link>
+    //             Your Cart Is Empty <Link to="/homestore">Go Back</Link>
     //           </div>
     //         ) : (
     //           cartItems.map((item) => (
@@ -80,9 +80,11 @@ const CartScreen = () => {
     // </>
     //   </div>
 
-      <div>
-        Cart screen working
-      </div>
+      // <div>
+      //   Cart screen is working
+      // </div>
+
+
 
     // <>
     //     <div className="cartscreen">
@@ -117,6 +119,27 @@ const CartScreen = () => {
     //         </div>
     //     </div>
     // </>
+
+      <>
+          <div className="cartscreen">
+              <div className="cartscreen__left">
+                  <h2>Shopping Cart</h2>
+                        <CartItem/>
+                  <CartItem/>
+                  <CartItem/>
+                  </div>
+
+                  <div className="cartscreen__right">
+                    <div className="cartscreen__info">
+                      <p>Subtotal 5 items</p>
+                      <p>20.00</p>
+                    </div>
+                    <div>
+                      <button>Proceed To Checkout</button>
+                    </div>
+                  </div>
+              </div>
+      </>
   );
 };
 

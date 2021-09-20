@@ -6,14 +6,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { cartReducer } from "./reducers/cartReducers";
 
 import {
-  getProductsReducer,
-  getProductDetailsReducer,
+    getProductsReducer,
+    getProductDetailsReducer,
 } from "./reducers/productReducers";
 
 const reducer = combineReducers({
-  cart: cartReducer,
-  getProducts: getProductsReducer,
-  getProductDetails: getProductDetailsReducer,
+    cart: cartReducer,
+    getProducts: getProductsReducer,
+    getProductDetails: getProductDetailsReducer,
 });
 
 const middleware = [thunk];
@@ -29,9 +29,9 @@ const middleware = [thunk];
 // };
 
 const store = createStore(
-  reducer,
-  // INITIAL_STATE,
-  composeWithDevTools(applyMiddleware(...middleware))
+    reducer,
+    // INITIAL_STATE,
+    composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;
