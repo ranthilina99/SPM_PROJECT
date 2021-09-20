@@ -87,7 +87,7 @@ class Header extends Component {
         window.location.replace('/workoutUserShow/'+this.state.id);
     }
     ViewAllWorkoutUser= e => {
-        window.location.replace('#');
+        window.location.replace('/workoutUserAllShow');
     }
 
     componentDidMount() {
