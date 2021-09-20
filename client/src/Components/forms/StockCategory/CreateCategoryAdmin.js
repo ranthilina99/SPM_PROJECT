@@ -23,7 +23,6 @@ const SubmissionFail = (message) => {
     })
 }
 
-
 const initialState = {
     category_topic: '',
     category_description: '',
@@ -31,6 +30,8 @@ const initialState = {
     category_image: '',
     touched: {
         category_topic: false,
+        category_description: false,
+        category_date: false
     }
 
 }
@@ -51,14 +52,19 @@ class CreateCategoryAdmin extends Component {
             touched: { ...this.state.touched, [field]: true }
         });
     }
-    validate =(category_topic)=> {
+    validate =(category_topic,category_description)=> {
         const errors = {
             category_topic: '',
+            category_description:'',
+            category_date:''
         };
-        if (this.state.touched.category_topic && category_topic.length < 3)
-            errors.category_topic = 'First Name should be >= 3 characters';
-        else if (this.state.touched.category_topic && category_topic.length > 10)
-            errors.category_topic = 'First Name should be <= 10 characters';
+        if (this.state.touched.category_topic && category_topic.length <= 0)
+            errors.category_topic = 'Category Topic should be filled';
+        else if (this.state.touched.category_topic && category_topic.length > 20)
+            errors.category_topic = 'Category Topic should be <= 20 characters';
+        else if (this.state.touched.category_description && category_description.length < 10)
+            errors.category_topic = 'Category Description should be >= 10 characters';
+
         return errors;
     }
     onSubmit(e) {
@@ -72,8 +78,8 @@ class CreateCategoryAdmin extends Component {
         };
 
         console.log('DATA TO SEND', category);
-        if (this.state.category_topic.length < 3 || this.state.category_topic.length > 10){
-            this.validate(this.state.category_topic)
+        if (this.state.category_topic.length <=0 || this.state.category_topic.length > 20 || this.state.category_description.length < 10){
+            this.validate(this.state.category_topic,this.state.category_description)
         } else {
             axios.post('http://localhost:5000/StockCategory', category)
                 .then(response => {
@@ -88,7 +94,7 @@ class CreateCategoryAdmin extends Component {
     }
 
     render() {
-        const errors=this.validate(this.state.category_topic);
+        const errors=this.validate(this.state.category_topic,this.state.category_description);
         return (
             <div className="stock_wrapper">
                 <div className="container">
@@ -97,48 +103,56 @@ class CreateCategoryAdmin extends Component {
                         <div className="row">
                             <FormGroup className="col-6">
                                 <Label htmlFor="categoryTopic" className="form-label">Stock Category</Label>
-                               <div>
-                                   <Input
-                                       type="text"
-                                       className="form-control"
-                                       id="categoryTopic"
-                                       name="category_topic"
-                                       value={this.state.category_topic}
-                                       onChange={this.onChange}
-                                       valid={errors.category_topic === ''}
-                                       invalid={errors.category_topic !== ''}
-                                       onBlur={this.handleBlur('category_topic')}
-                                   />
-                                   <FormFeedback>{errors.category_topic}</FormFeedback>
-                               </div>
+                                <div>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        id="categoryTopic"
+                                        name="category_topic"
+                                        value={this.state.category_topic}
+                                        onChange={this.onChange}
+                                        valid={errors.category_topic === ''}
+                                        invalid={errors.category_topic !== ''}
+                                        onBlur={this.handleBlur('category_topic')}
+                                    />
+                                    <FormFeedback>{errors.category_topic}</FormFeedback>
+                                </div>
                             </FormGroup>
-                            <div className="col-6">
-                                <label htmlFor="Date" className="form-label">Date </label>
-                                <input
-                                    type="date"
-                                    className="form-control"
-                                    id="Date"
-                                    placeholder="Date Of Category"
-                                    name="category_date"
-                                    value={this.state.category_date}
-                                    onChange={this.onChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="mb-3 form-group">
-                            <label htmlFor="categoryDescription" className="form-label">Category Description </label>
-                            <textarea
-                                type="text"
-                                rows="3"
-                                className="form-control"
-                                id="categoryDescription"
-                                name="category_description"
-                                value={this.state.category_description}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                            <FormGroup className="col-6">
+                                <Label htmlFor="Date" className="form-label">Date</Label>
+                                <div>
+                                    <Input
+                                        type="date"
+                                        className="form-control"
+                                        id="Date"
+                                        placeholder="Date Of Category"
+                                        name="category_date"
+                                        value={this.state.category_date}
+                                        onChange={this.onChange}
 
-
+                                    />
+                                    <FormFeedback>{errors.category_date}</FormFeedback>
+                                </div>
+                            </FormGroup>
+                            <FormGroup className=" mb-3">
+                                <Label htmlFor="categoryDescription" className="form-label">Category Description</Label>
+                                <div>
+                                    <Input
+                                        type="textarea"
+                                        rows="3"
+                                        className="form-control"
+                                        id="categoryDescription"
+                                        name="category_description"
+                                        value={this.state.category_description}
+                                        onChange={this.onChange}
+                                        valid={errors.category_description === ''}
+                                        invalid={errors.category_description !== ''}
+                                        onBlur={this.handleBlur('category_description')}
+                                    />
+                                    <FormFeedback>{errors.category_description}</FormFeedback>
+                                </div>
+                            </FormGroup>
+                        </div>
                         <div className="mb-3">
                             <label htmlFor="categoryImage" className="form-label">Category Image</label>
                             <div>
@@ -157,28 +171,3 @@ class CreateCategoryAdmin extends Component {
 }
 
 export default CreateCategoryAdmin;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -32,8 +32,11 @@ class AdminSupplierView extends Component {
         super(props);
         this.state = {
             suppliers: [],
-            search: ''
+            search: '',
+            filter:'',
+            filteredData:''
         }
+        this.handleChange=this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -42,6 +45,10 @@ class AdminSupplierView extends Component {
                 this.setState({suppliers: response.data.data });
             })
     }
+
+    handleChange = event => {
+        this.setState({ filter: event.target.value });
+    };
 
     deleteSuppliers(id){
         axios.delete(`http://localhost:5000/Suppliers/${id}`)
@@ -122,13 +129,23 @@ class AdminSupplierView extends Component {
     }
 
     render() {
+
+        const { filter, suppliers } = this.state;
+        const lowerCasedFilter = filter.toLowerCase();
+        const upperCasedFilter = filter.toUpperCase();
+        this.state.filteredData = suppliers.filter(suppliers => {
+            return Object.keys(suppliers).some(key =>
+                typeof suppliers[key] === "string" && suppliers[key].toLowerCase().includes(lowerCasedFilter) && suppliers[key].toUpperCase().includes(upperCasedFilter)
+            );
+        });
+
         return (
             <div className="container">
                 <br/>
                 <div className="navbar justify-content-between alert alert-primary"  role="alert">
                     <h2>ALL SUPPLIER DETAILS</h2>
                     <form className="form-inline">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={filter} onChange={this.handleChange}/>
                     </form>
                 </div>
                 <table className="table table-striped table-hover table-dark  table-bordered ">
@@ -143,7 +160,7 @@ class AdminSupplierView extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.suppliers.length > 0 && this.state.suppliers.map((suppliers, index)=>(
+                    {this.state.suppliers.length > 0 && this.state.filteredData.map((suppliers, index)=>(
                         <tr key={index}>
                             <th scope="row" >{index + 1}</th>
                             <td>{suppliers.supplier_name}</td>
