@@ -3,19 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Add Redux - reducers/actions/constants for the store">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Actions/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Actions/Authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/CartItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/CartItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Constants/Constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Constants/Constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/productActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/productReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/productReducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/CartScreen.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/CartScreen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/CartScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/ProductScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/ProductScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/Header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/Header/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/AdminEditUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/AdminEditUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/adminAddEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/adminAddEmployee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/admin/getAllUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/admin/getAllUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/register/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/register/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/reset/reset.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/HeroSection.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/temp/HeroSection/HeroSection.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/umesh/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,18 +51,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/umesh/temp/Card" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (11)\SPM_PROJECT\client\src" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (2)\SPM_PROJECT\client\src\umesh\temp\Card" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (2)\SPM_PROJECT\client\src\umesh\temp\SlideShow" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (2)\SPM_PROJECT\client\src\umesh\temp\HeroSection" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (2)\SPM_PROJECT\client\src\Components" />
-      <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (12)\SPM_PROJECT\client\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (2)\SPM_PROJECT\client\src\umesh\temp\SlideShow" />
@@ -125,6 +126,7 @@
       <workItem from="1631512343718" duration="13048000" />
       <workItem from="1631974256495" duration="2381000" />
       <workItem from="1632119658014" duration="2244000" />
+      <workItem from="1632128968304" duration="1035000" />
     </task>
     <task id="LOCAL-00001" summary="Integrate done">
       <created>1629214971962</created>

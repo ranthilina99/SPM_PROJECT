@@ -44,7 +44,7 @@ class Admin extends Component {
             <div>
                 <br/>  <br/>  <br/>  <br/>
                 <h1 className="page_role" style={{textTransform:"uppercase",textAlign:"center",color:"red", letterSpacing:"6px"}}>WELCOME</h1>
-                <h1 style={{textTransform:"uppercase",textAlign:"center"}}>Admin</h1>
+                <h1 style={{textTransform:"uppercase",textAlign:"center",fontStyle:"italic",fontWeight:"bold"}}>Admin</h1>
                 <br/>  <br/>  <br/>  <br/>  <br/>  <br/>
                 <br/> <br/>
             </div>

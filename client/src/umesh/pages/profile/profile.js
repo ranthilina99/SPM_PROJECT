@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import swat from "sweetalert2";
 import axios from "axios";
 import {SERVER_ADDRESS} from "../../../Constants/Constants";
-import {Input, Label, Form, FormGroup,Button} from "reactstrap";
+import {Input, Label, Form, FormGroup, Button, FormFeedback} from "reactstrap";
 import FileBase from 'react-file-base64'
 import './profile.css'
 import Avatar from "react-avatar";
 import zxcvbn from "zxcvbn";
+import {isEmail, isEmpty, isLengthMobile} from "../../../Utils/validations";
+
 const SuccessAlert = (res) => {
     swat.fire({
         position: 'center',
@@ -47,13 +49,45 @@ class Profile extends Component {
             id: '',
             user1: "",
             type: '',
-            isLoggedIn:false
+            isLoggedIn:false,
+            touched: {
+                newPassword:false,
+                confirmPassword:false,
+                image:false
+            }
         }
         this.onChange=this.onChange.bind(this);
         this.onSubmitHandler=this.onSubmitHandler.bind(this);
         this.onDelete=this.onDelete.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
         this.logoutOnClick=this.logoutOnClick.bind(this);
+    }
+    handleBlur = (field) => (evt) => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+    validate =(newPassword,confirmPassword,image)=> {
+        const errors = {
+            newPassword:'',
+            confirmPassword:'',
+            image:''
+        };
+        const reg2 =new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+        if(this.state.touched.newPassword && (newPassword.length < 8) && !reg2.test(newPassword))
+            errors.newPassword = 'Enter the at least 8 characters ';
+
+        if(this.state.touched.confirmPassword && (confirmPassword.length< 8) && !reg2.test(confirmPassword))
+            errors.confirmPassword = 'Enter the at least 8 characters ';
+
+        if(newPassword!==confirmPassword)
+            errors.confirmPassword = 'Password is not match';
+
+        if(this.state.touched.image  && image==='')
+            errors.image = 'No file chosen';
+        return errors;
+
     }
     onChange(e){
         this.setState({ [e.target.name]: e.target.value })
@@ -115,29 +149,41 @@ class Profile extends Component {
             Gender: this.state.gender,
             imageUrl: this.state.PImage,
         }
-        console.log('DATA TO SEND', user);
-        axios.put(SERVER_ADDRESS+'/users/update', user, {
-            headers: {Authorization: this.state.token}
-        }).then(response => {
+        if(isEmpty(this.state.PImage) || isEmpty(this.state.lastname) || isEmpty(this.state.email) || isEmpty(this.state.mobile) || isEmpty(this.state.dob) || isEmpty(this.state.address) || isEmpty(this.state.gender)){
+            let message = "Fields are empty"
+            FailAlert(message);
+        }else if(!isLengthMobile(this.state.mobile)){
+            let message = "Enter the 10 digit numbers"
+            FailAlert(message);
+        }else if(!isEmail(this.state.email)) {
+            let message = "Enter the valid email"
+            FailAlert(message);
+        }else {
+            console.log('DATA TO SEND', user);
+            axios.put(SERVER_ADDRESS + '/users/update', user, {
+                headers: {Authorization: this.state.token}
+            }).then(response => {
                 let message = "User Update"
                 SuccessAlert(message)
                 window.location.replace('/profile')
 
             }).catch(error => {
-            let message = "Update"
-            console.log(error);
-            FailAlert(message)
-            this.setState({
-                firstname: '',
-                lastname: '',
-                email: '',
-                mobile: '',
-                dob: '',
-                address: '',
-                gender: '',
-                PImage:''
-            })
-        });
+                let message = "Update"
+                console.log(error);
+                FailAlert(message)
+                this.setState({
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    mobile: '',
+                    dob: '',
+                    address: '',
+                    gender: '',
+                    PImage: ''
+                })
+            });
+        }
+
     }
 
     onDelete = async (id) =>{
@@ -162,20 +208,26 @@ class Profile extends Component {
         let user = {
             new_password:this.state.newPassword
         }
-        console.log('DATA TO SEND', user);
-        axios.post(SERVER_ADDRESS+`/users/admin_update_password/${this.state.id}`, user, {
-            headers: {Authorization: this.state.token}
-        })
-            .then(response => {
-                let message="Password Change"
-                SuccessAlert(message);
-                window.location.replace("/profile");
+        if (this.state.newPassword.length < 8 || this.state.confirmPassword.length < 8 || this.state.confirmPassword !==this.state.newPassword) {
+            this.validate(this.state.newPassword,this.state.confirmPassword);
+            let message = "Password Error"
+            FailAlert(message);
+        }else {
+            console.log('DATA TO SEND', user);
+            axios.post(SERVER_ADDRESS + `/users/admin_update_password/${this.state.id}`, user, {
+                headers: {Authorization: this.state.token}
             })
-            .catch(error => {
-                console.log(error.message);
-                let message= "Password Error"
-                FailAlert(message);
-            })
+                .then(response => {
+                    let message = "Password Change"
+                    SuccessAlert(message);
+                    window.location.replace("/profile");
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    let message = "Password Error"
+                    FailAlert(message);
+                })
+        }
     }
     createPasswordLabel = (result) => {
         switch (result.score) {
@@ -195,6 +247,7 @@ class Profile extends Component {
     }
     render() {
         const testedResult = zxcvbn(this.state.newPassword);
+        const errors=this.validate(this.state.newPassword,this.state.confirmPassword);
         return (
             <>
                 <Form >
@@ -295,7 +348,7 @@ class Profile extends Component {
                                 <div className="mb-3">
                                     <Label htmlFor="res_img" className="form-label">Picture</Label>
                                     <div>
-                                        <FileBase type="file"  multiple={false} onDone={({base64}) => this.state.PImage = base64} />
+                                        <FileBase type="file"  multiple={false} onDone={({base64}) => this.state.PImage = base64}  />
                                     </div>
                                 </div>
                             </>
@@ -314,7 +367,11 @@ class Profile extends Component {
                                            placeholder="New Password"
                                            value={this.state.newPassword}
                                            onChange={this.onChange}
+                                           valid={errors.newPassword === ''}
+                                           invalid={errors.newPassword !== ''}
+                                           onBlur={this.handleBlur('newPassword')}
                                            required/>
+                                    <FormFeedback>{errors.newPassword}</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="exampleText">Confirm Password</Label>
@@ -323,7 +380,11 @@ class Profile extends Component {
                                            placeholder="Confirm Password"
                                            value={this.state.confirmPassword}
                                            onChange={this.onChange}
+                                           valid={errors.confirmPassword === ''}
+                                           invalid={errors.confirmPassword !== ''}
+                                           onBlur={this.handleBlur('confirmPassword')}
                                            required/>
+                                    <FormFeedback>{errors.confirmPassword}</FormFeedback>
                                     {this.state.newPassword ?
                                         <>
                                             <progress

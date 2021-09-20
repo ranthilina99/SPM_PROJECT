@@ -86,7 +86,9 @@ class Header extends Component {
     ViewWorkoutUser = e => {
         window.location.replace('/workoutUserShow/'+this.state.id);
     }
-
+    ViewAllWorkoutUser= e => {
+        window.location.replace('#');
+    }
 
     componentDidMount() {
         const token = localStorage.getItem('token');
@@ -280,7 +282,11 @@ class Header extends Component {
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem onClick={this.ViewWorkoutUser}>
-                                                View Workout
+                                                My Workout
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem onClick={this.ViewAllWorkoutUser}>
+                                                All Workouts
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>

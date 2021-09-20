@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import swat from "sweetalert2";
 import axios from "axios";
-import {Form, FormGroup, Label, Input } from 'reactstrap';
+import {Form, FormGroup, Label, Input, FormFeedback} from 'reactstrap';
 import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import './register.css'
 import zxcvbn from "zxcvbn";
@@ -41,7 +41,17 @@ class Register extends Component {
             Gender:'',
             password:'',
             image:'',
-            isLoading:false
+            isLoading:false,
+            touched: {
+                firstname: false,
+                address:false,
+                mobileNo:false,
+                email:false,
+                lastname:false,
+                password:false,
+                DOB:false,
+                Gender:false
+            }
         }
         this.onChange=this.onChange.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
@@ -49,7 +59,57 @@ class Register extends Component {
     onChange(e){
         this.setState({ [e.target.name]: e.target.value })
     }
+    handleBlur = (field) => (evt) => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+    validate =(firstname,address,mobileNo,email,lastname,password,DOB,Gender)=> {
+        const errors = {
+            firstname: '',
+            address:'',
+            mobileNo:'',
+            email:'',
+            lastname:'',
+            password:'',
+            DOB:'',
+            Gender:''
 
+        };
+        if (this.state.touched.firstname && firstname.length < 3)
+            errors.firstname = 'First Name should be >= 3 characters';
+
+        if (this.state.touched.lastname && lastname.length < 3)
+            errors.lastname = 'First Name should be >= 3 characters';
+
+        if (this.state.touched.address && address.length < 3)
+            errors.address = 'First Name should be >= 3 characters';
+
+        if (this.state.touched.mobileNo && mobileNo.length<10 || mobileNo.length >=11)
+            errors.mobileNo = 'Tel. Number should contain only 10 digit number';
+
+        const reg = /^\d+$/;
+        if (this.state.touched.mobileNo && !reg.test(mobileNo))
+            errors.mobileNo = 'Tel. Number should contain only numbers'
+
+        const reg1 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if(this.state.touched.email && !reg1.test(email))
+            errors.email = 'Email should contain a abc@gmail.com';
+
+        const reg2 =new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+        if(this.state.touched.password && (password.length < 8) && !reg2.test(password))
+            errors.password = 'Password the at least 8 characters ';
+
+        if(this.state.touched.DOB && (DOB===''))
+            errors.DOB = 'Field is Empty';
+
+        if(this.state.touched.Gender && (Gender===''))
+            errors.Gender = 'Field is Empty';
+
+        return errors;
+    }
     onSubmit(e) {
         e.preventDefault();
         let user = {
@@ -64,26 +124,35 @@ class Register extends Component {
             imageUrl: this.state.image,
         }
         console.log('DATA TO SEND', user);
-        axios.post(SERVER_ADDRESS+'/users/register', user)
-            .then(response => {
-                RegisteredAlert();
-            })
-            .catch(error => {
-                console.log(error.message);
-                let message = "Register Failed"
-                RegisterFail(message);
-            }).finally(x=>{
-                this.setState({
-                    firstname:'',
-                    lastname:'',
-                    email:'',
-                    mobileNo:'',
-                    address: '',
-                    DOB:'',
-                    Gender:'',
-                    password:'',
+        if (this.state.firstname.length < 3 || this.state.address.length < 3 ||
+            this.state.mobileNo.length < 10 || this.state.mobileNo.length >= 11 || this.state.email.split('').filter(x => x === '@').length !== 1 ||
+            this.state.lastname.length < 3 || this.state.password.length < 8 ){
+            this.validate(this.state.firstname,this.state.address,this.state.mobileNo,this.state.email,
+                this.state.lastname,this.state.password,this.state.DOB,this.state.Gender)
+            let message = "Register Failed"
+            RegisterFail(message);
+        } else {
+            axios.post(SERVER_ADDRESS + '/users/register', user)
+                .then(response => {
+                    RegisteredAlert();
                 })
-        });
+                .catch(error => {
+                    console.log(error.message);
+                    let message = "Register Failed"
+                    RegisterFail(message);
+                }).finally(x => {
+                this.setState({
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    mobileNo: '',
+                    address: '',
+                    DOB: '',
+                    Gender: '',
+                    password: '',
+                })
+            });
+        }
     }
     createPasswordLabel = (result) => {
         switch (result.score) {
@@ -102,6 +171,8 @@ class Register extends Component {
         }
     }
     render() {
+        const errors=this.validate(this.state.firstname,this.state.address,this.state.mobileNo,this.state.email
+            ,this.state.lastname,this.state.password,this.state.DOB,this.state.Gender);
         const testedResult = zxcvbn(this.state.password);
         return (
             <div>
@@ -118,106 +189,141 @@ class Register extends Component {
                     &nbsp;
                     <h3 className="register_title">REGISTER</h3>
                     &nbsp;
-                   <div className="row">
-                       <FormGroup className="col-6">
-                           <Label for="exampleEmail">First Name</Label>
-                           <div className="register_input-container">
-                               <Input
-                                   type="text"
-                                   name="firstname"
-                                   id="exampleFirstname"
-                                   placeholder="First Name"
-                                   value={this.state.firstname}
-                                   onChange={this.onChange}/>
-                           </div>
-                       </FormGroup>
-                       <FormGroup className="col-6">
-                           <Label for="exampleEmail">Last Name</Label>
-                           <div className="register_input-container">
-                               <Input
-                                   type="text"
-                                   name="lastname"
-                                   id="exampleLastname"
-                                   placeholder="Last Name"
-                                   value={this.state.lastname}
-                                   onChange={this.onChange}/>`
-                           </div>
-                       </FormGroup>
-                   </div>
+                    <div className="row">
+                        <FormGroup className="col-6">
+                            <Label for="exampleEmail">First Name</Label>
+                            <div >
+                                <Input
+                                    type="text"
+                                    name="firstname"
+                                    id="exampleFirstname"
+                                    placeholder="First Name"
+                                    value={this.state.firstname}
+                                    onChange={this.onChange}
+                                    valid={errors.firstname === ''}
+                                    invalid={errors.firstname !== ''}
+                                    onBlur={this.handleBlur('firstname')}
+                                />
+                                <FormFeedback>{errors.firstname}</FormFeedback>
+                            </div>
+                        </FormGroup>
+                        <FormGroup className="col-6">
+                            <Label for="exampleEmail">Last Name</Label>
+                            <div>
+                                <Input
+                                    type="text"
+                                    name="lastname"
+                                    id="exampleLastname"
+                                    placeholder="Last Name"
+                                    value={this.state.lastname}
+                                    onChange={this.onChange}
+                                    valid={errors.lastname === ''}
+                                    invalid={errors.lastname !== ''}
+                                    onBlur={this.handleBlur('lastname')}
+                                />
+                                <FormFeedback>{errors.lastname}</FormFeedback>
+                            </div>
+                        </FormGroup>
+                    </div>
                     <FormGroup>
                         <Label for="exampleEmail">Email</Label>
-                        <div className="register_input-container">
+                        <div >
                             <Input
                                 type="email"
                                 name="email"
                                 id="exampleEmail"
                                 placeholder="abc@gmail.com"
                                 value={this.state.email}
-                                onChange={this.onChange}/>
+                                onChange={this.onChange}
+                                valid={errors.email === ''}
+                                invalid={errors.email !== ''}
+                                onBlur={this.handleBlur('email')}/>
+                            <FormFeedback>{errors.email}</FormFeedback>
                         </div>
                     </FormGroup>
                     <FormGroup>
                         <Label for="exampleEmail">Mobile No</Label>
-                        <div className="register_input-container">
+                        <div>
                             <Input
-                                type="number"
+                                type="tel"
                                 name="mobileNo"
                                 id="exampleMobile"
                                 placeholder="07xxxxxxxx"
                                 value={this.state.mobileNo}
-                                onChange={this.onChange}/>
+                                onChange={this.onChange}
+                                valid={errors.mobileNo === ''}
+                                invalid={errors.mobileNo !== ''}
+                                onBlur={this.handleBlur('mobileNo')}/>
+                            <FormFeedback>{errors.mobileNo}</FormFeedback>
                         </div>
                     </FormGroup>
-                   <div className="row">
-                       <FormGroup className="col-6">
-                           <Label for="exampleEmail">Date Of Birth</Label>
-                           <div className="register_input-container">
-                               <Input
-                                   type="date"
-                                   name="DOB"
-                                   id="exampleDate"
-                                   placeholder="Date Of Birth"
-                                   value={this.state.DOB}
-                                   onChange={this.onChange}/>
-                           </div>
-                       </FormGroup>
-                       <FormGroup className="col-6">
-                           <Label for="exampleSelect">Gender</Label>
-                           <div className="register_input-container">
-                               <Input
-                                   type="select"
-                                   name="Gender"
-                                   id="exampleSelect"
-                                   value={this.state.Gender}
-                                   onChange={this.onChange}>
-                                   <option value="" disabled>Select Gender</option>
-                                   <option value={'male'}>Male</option>
-                                   <option value={'female'}>Female</option>
-                               </Input>
-                           </div>
-                       </FormGroup>
-                   </div>
+                    <div className="row">
+                        <FormGroup className="col-6">
+                            <Label for="exampleEmail">Date Of Birth</Label>
+                            <div>
+                                <Input
+                                    type="date"
+                                    name="DOB"
+                                    id="exampleDate"
+                                    placeholder="Date Of Birth"
+                                    value={this.state.DOB}
+                                    onChange={this.onChange}
+                                    valid={errors.DOB === ''}
+                                    invalid={errors.DOB !== ''}
+                                    onBlur={this.handleBlur('DOB')}/>
+                                <FormFeedback>{errors.DOB}</FormFeedback>
+                            </div>
+                        </FormGroup>
+                        <FormGroup className="col-6">
+                            <Label for="exampleSelect">Gender</Label>
+                            <div >
+                                <Input
+                                    type="select"
+                                    name="Gender"
+                                    id="exampleSelect"
+                                    value={this.state.Gender}
+                                    onChange={this.onChange}
+                                    valid={errors.Gender === ''}
+                                    invalid={errors.Gender !== ''}
+                                    onBlur={this.handleBlur('Gender')}>
+                                    <option value="" disabled>Select Gender</option>
+                                    <option value={'male'}>Male</option>
+                                    <option value={'female'}>Female</option>
+                                </Input>
+                                <FormFeedback>{errors.Gender}</FormFeedback>
+                            </div>
+                        </FormGroup>
+                    </div>
                     <FormGroup>
                         <Label for="exampleText">Address</Label>
-                        <div className="register_input-container">
+                        <div >
                             <Input
                                 type="textarea"
                                 name="address"
                                 placeholder="Address"
                                 id="exampleText"
+                                rows="3"
                                 value={this.state.address}
-                                onChange={this.onChange}/>
+                                onChange={this.onChange}
+                                valid={errors.address === ''}
+                                invalid={errors.address !== ''}
+                                onBlur={this.handleBlur('address')}/>
+                            <FormFeedback>{errors.address}</FormFeedback>
                         </div>
                     </FormGroup>
                     <FormGroup className="password-strength-meter">
                         <Label for="examplePassword">Password</Label>
-                        <div className="register_input-container">
+                        <div>
                             <Input
                                 type="password"
                                 name="password" id="examplePassword"
                                 placeholder="password "
                                 value={this.state.password}
-                                onChange={this.onChange}/>
+                                onChange={this.onChange}
+                                valid={errors.password === ''}
+                                invalid={errors.password !== ''}
+                                onBlur={this.handleBlur('password')}/>
+                            <FormFeedback>{errors.password}</FormFeedback>
                         </div>
                         {this.state.password &&
                         <progress
