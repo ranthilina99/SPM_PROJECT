@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Change Item edit UI">
+    <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Add Contact Us and About Us">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/Header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/Header/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/about.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/forgot/forgot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/umesh/pages/profile/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/CartScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/ProductScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/ProductScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/asserts" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -51,13 +48,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (15)\SPM_PROJECT\client\src\asserts" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (12)\SPM_PROJECT\client\src" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (12)\SPM_PROJECT\src\models" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (12)\SPM_PROJECT\src" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (12)\SPM_PROJECT\src\controllers" />
-      <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (12)\SPM_PROJECT\src\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (15)\SPM_PROJECT\client\src\Components\forms\Payment" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (15)\SPM_PROJECT\client\src\asserts" />
       <recent name="C:\Users\Umesh Ranthilina\Desktop\New folder (15)\SPM_PROJECT\client\src\umesh\pages\aboutUs" />
     </key>
@@ -94,7 +92,8 @@
       <workItem from="1633018576919" duration="3536000" />
       <workItem from="1633059117461" duration="1936000" />
       <workItem from="1633083898871" duration="84000" />
-      <workItem from="1633091486612" duration="1866000" />
+      <workItem from="1633091486612" duration="2149000" />
+      <workItem from="1633095403112" duration="945000" />
     </task>
     <task id="LOCAL-00001" summary="Change Item edit UI">
       <created>1629818637183</created>
@@ -103,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629818637183</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add Contact Us and About Us">
+      <created>1633093473560</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1633093473560</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Change Item edit UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change Item edit UI" />
+    <MESSAGE value="Add Contact Us and About Us" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Contact Us and About Us" />
   </component>
 </project>
