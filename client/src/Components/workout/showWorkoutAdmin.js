@@ -32,10 +32,6 @@ class showWorkoutAdmin extends Component {
             })
     }
 
-    chooseWorkout(e, id) {
-        window.location = `/workoutAdminShowOne/${id}`
-    }
-
 
 
     ExportCSV = () => {

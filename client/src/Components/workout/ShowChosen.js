@@ -90,14 +90,14 @@ class showWorkoutChosen extends Component {
                     workouts: response.data.data
                 });
             }).then(() =>{
-                this.setState({
-                    max : this.state.workouts.length
-                });
-            }).then(() =>{
-                this.setState({
-                    index: Math.floor(Math.random() * this.state.max)
-                });
-            }).then(() => {
+            this.setState({
+                max : this.state.workouts.length
+            });
+        }).then(() =>{
+            this.setState({
+                index: Math.floor(Math.random() * this.state.max)
+            });
+        }).then(() => {
             if (this.state.workouts[0] !== undefined) {
                 this.setState({
                     id: this.state.workouts[this.state.index]._id,
@@ -139,7 +139,8 @@ class showWorkoutChosen extends Component {
                 .then(response => {
                     let message = {
                         workoutId:this.state.id,
-                        userId:"41224d776a326fb40f000002"
+                        //userId:"41224d776a326fb40f000002"
+                        userId:this.state.UserId
                     };
 
                     axios.patch(`http://localhost:5000/workout/addUsers`, message)
@@ -152,13 +153,16 @@ class showWorkoutChosen extends Component {
                             SubmissionFail();
                         })
 
-                })
+                }).then(()=>{
+                window.location = `/workoutPayment/${this.state.workout_price}`
+            })
         }else{
             axios.post(`http://localhost:5000/workoutUser/`,message)
                 .then(response => {
                     let message = {
                         workoutId:this.state.id,
-                        userId:"41224d776a326fb40f000002"
+                        //userId:"41224d776a326fb40f000002"
+                        userId:this.state.UserId
                     };
 
                     axios.patch(`http://localhost:5000/workout/addUsers`, message)
@@ -171,7 +175,9 @@ class showWorkoutChosen extends Component {
                             SubmissionFail();
                         })
 
-                })
+                }).then(()=>{
+                window.location = `/workoutPayment/${this.state.workout_price}`
+            })
 
         }
 
@@ -188,7 +194,7 @@ class showWorkoutChosen extends Component {
                         <h2 className="h2-yas">{this.state.workout_theme}</h2>
                         <h4 className="h3-yas">{this.state.workout_description}</h4>
                         <h6 className="h4-yas">Rs.{this.state.workout_price}</h6>
-                        {/*<h6 className="h4-yas">{this.state.workout_level}</h6>*/}
+
                     </div>
                     <div>
                         &nbsp;

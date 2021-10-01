@@ -1,13 +1,13 @@
 import React, { Component} from 'react';
 import axios from 'axios';
-import jsPDF from "jspdf";
+
 import 'jspdf-autotable'
-import { ExportToCsv } from 'export-to-csv';
-import {Container, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
+
+import {Container} from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Col, Row} from "react-bootstrap";
 
-class showWorkoutAdmin extends Component {
+class showAllWorkoutUser extends Component {
 
     constructor(props) {
         super(props);
@@ -30,62 +30,6 @@ class showWorkoutAdmin extends Component {
                 this.setState({ Workouts: response.data.data });
 
             })
-    }
-
-    chooseWorkout(e, id) {
-        window.location = `/workoutAdminShowOne/${id}`
-    }
-
-
-
-    ExportCSV = () => {
-        const options = {
-            fieldSeparator: ',',
-            quoteStrings: '"',
-            decimalSeparator: '.',
-            showLabels: true,
-            showTitle: true,
-            filename :'Equinox All Workout Report',
-            title: 'All Workout Details CSV ',
-            useTextFile: false,
-            useBom: true,
-            useKeysAsHeaders: false,
-            headers: [ 'Name','Theme','Description', 'Price', 'Level','Made By:FName','Made By:LName'],
-        };
-        const data = this.state.Workouts.map(elt=> [elt.workout_name, elt.workout_theme,elt.workout_description, elt.workout_price,elt.workout_level,elt.workout_fName,elt.workout_lName]);
-
-        const csvExporter = new ExportToCsv(options);
-
-        csvExporter.generateCsv(data);
-    }
-
-
-    ExportPDF = () => {
-        const unit = "pt";
-        const size = "A4"; // Use A1, A2, A3 or A4
-        const orientation = "portrait"; // portrait or landscape
-
-        const marginLeft = 40;
-        const doc = new jsPDF(orientation, unit, size);
-        doc.setFontSize(25);
-
-
-        const title = "EQUINOX Gym All Workout Details Report";
-        const headers = [['Name','Theme','Description', 'Price', 'Level','Made By:FName','Made By:LName']];
-
-        const data = this.state.Workouts.map(elt=> [elt.workout_name, elt.workout_theme,elt.workout_description, elt.workout_price,elt.workout_level,elt.workout_fName,elt.workout_lName]);
-
-        let content = {
-            startY: 50,
-            head: headers,
-            body: data
-        };
-
-        doc.setFont('helvetica')
-        doc.setTextColor(0, 0, 255)
-        doc.text(title, marginLeft, 40);
-        doc.autoTable(content);
-        doc.save("equinox all workout report.pdf")
     }
 
     handleChange = event => {
@@ -133,7 +77,7 @@ class showWorkoutAdmin extends Component {
                                         <Card.Text className="workout-p">
                                             <h5>{item.workout_theme}</h5>
                                             <h6> Level {item.workout_level}</h6>
-                                            <h6 className="workout_item"> Made by:&nbsp;{item.workout_fName}&nbsp;{item.workout_lName}</h6>
+
 
                                         </Card.Text>
                                     </Card.Body>
@@ -142,27 +86,11 @@ class showWorkoutAdmin extends Component {
                         ))}
                     </Row>
                     <br/>
-                    <div align="right">
-                        <UncontrolledDropdown>
-                            <DropdownToggle style={{color: 'white', backgroundColor: "blue", marginRight: '100px'}}
-                                            className="btn btn-lg">
-                                <i className="fa fa-download"></i>&nbsp;Generate Report&nbsp;
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                                <DropdownItem onClick={this.ExportPDF}>
-                                    PDF File
-                                </DropdownItem>
-                                <DropdownItem divider/>
-                                <DropdownItem onClick={this.ExportCSV}>
-                                    CSV File
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </div>
+
                 </Container>
             </div>
         )
     }
 }
 
-export default showWorkoutAdmin;
+export default showAllWorkoutUser;

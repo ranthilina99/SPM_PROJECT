@@ -3,10 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2e760697-e747-4817-82ec-839b9d6759eb" name="Default Changelist" comment="Add Contact Us and About Us">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/forms/Store/createStore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/CartScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/ProductScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/ProductScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/ShowChosen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/qestion/Questionnaire.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/qestion/Questionnaire.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showAllWorkoutUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showAllWorkoutUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/showWorkoutOneUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/workout/workoutPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/workout/workoutPayment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

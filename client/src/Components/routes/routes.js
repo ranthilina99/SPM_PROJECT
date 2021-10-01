@@ -41,7 +41,7 @@ import WorkoutAdminShow from '../workout/showWorkoutAdmin';
 import showWorkoutOneEmployee from "../workout/showWorkoutOneEmployee";
 import showWorkoutChosen from "../workout/ShowChosen";
 import showWorkoutOneUser from "../workout/showWorkoutOneUser";
-
+import workoutPayment from "../workout/workoutPayment";
 import showAllWorkoutUser from "../workout/showAllWorkoutUser";
 
 //Binuka Routes
@@ -106,7 +106,7 @@ function Routes() {
                             <Route path="/workoutEmployeeShowOne/:id" component={showWorkoutOneEmployee}  />
                             <Route path="/workoutChosen/:id" component={showWorkoutChosen}  />
                             <Route path="/workoutUserShow/:id" component={showWorkoutOneUser}  />
-
+                            <Route path="/workoutPayment/:price" component={workoutPayment}  />
                             <Route path="/workoutUserAllShow" component={showAllWorkoutUser}  />
 
 

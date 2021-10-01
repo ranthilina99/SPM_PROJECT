@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
 import swat from "sweetalert2"
-import {Button, Form, FormGroup, Label, Input, FormFeedback} from 'reactstrap';
-//import './createStore.css'
+import { Form, FormGroup, FormFeedback} from 'reactstrap';
 import cardImage1 from "./pics/p1.jpeg";
 import cardImage2 from "./pics/p2.jpeg";
 import cardImage3 from "./pics/p3.jpeg";

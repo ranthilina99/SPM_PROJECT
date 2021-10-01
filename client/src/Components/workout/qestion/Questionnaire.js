@@ -7,8 +7,8 @@ export default function Questionnaire() {
 		{
 			questionText: 'What is your gender?',
 			answerOptions: [
-				{ answerText: 'Male', points: 1 },
-				{ answerText: 'Female', points: 2 },
+				{ answerText: 'Male', points: 2 },
+				{ answerText: 'Female', points: 1 },
 			],
 		},
 		{
@@ -24,31 +24,31 @@ export default function Questionnaire() {
 		{
 			questionText: 'What is your experience?',
 			answerOptions: [
-				{ answerText: 'Beginner', points: 5 },
-				{ answerText: 'Novice', points: 4 },
+				{ answerText: 'Beginner', points: 1 },
+				{ answerText: 'Novice', points: 2 },
 				{ answerText: 'Intermediate', points: 3 },
-				{ answerText: 'Advanced', points: 2 },
-				{ answerText: 'Elite', points: 1 },
+				{ answerText: 'Advanced', points: 4 },
+				{ answerText: 'Elite', points: 5 },
 			],
 		},
 		{
 			questionText: 'How many push-ups can you do in a single set?',
 			answerOptions: [
-				{ answerText: '10-', points: 5 },
-				{ answerText: '10-20', points: 4 },
+				{ answerText: '10-', points: 1 },
+				{ answerText: '10-20', points: 2 },
 				{ answerText: '20-50', points: 3 },
-				{ answerText: '50-100', points: 2 },
-				{ answerText: '100+', points: 1 },
+				{ answerText: '50-100', points: 4 },
+				{ answerText: '100+', points: 5 },
 			],
 		},
 		{
 			questionText: 'How many pull-ups can you do in a single set?',
 			answerOptions: [
-				{ answerText: '10-', points: 5 },
-				{ answerText: '10-20', points: 4 },
+				{ answerText: '10-', points: 1 },
+				{ answerText: '10-20', points: 2 },
 				{ answerText: '20-50', points: 3 },
-				{ answerText: '50-100', points: 2 },
-				{ answerText: '100+', points: 1 },
+				{ answerText: '50-100', points: 4 },
+				{ answerText: '100+', points: 5 },
 			],
 		},
 	];
@@ -58,12 +58,12 @@ export default function Questionnaire() {
 	const [score, setScore] = useState(0);
 
 
-	
+
 
 	const handleAnswerOptionClick = (points) => {
 
 		setScore(score + points);
-		
+
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
@@ -77,39 +77,39 @@ export default function Questionnaire() {
 	};
 	return (
 		<div className='body1'>
-		<div className='app'>
-			{showScore ? (
-				<div className='score-section'>
-					<button className="question-button">{/* You scored {score} out of {questions.length} */}
-					<Link to = {{
-                    pathname:'/show',
-                    questionProps:{
-                        thisScore: score
-                    }
-                }}>Choose</Link>
-				</button>
-				</div>
-			) : (
-				<>
-					<div className='question-section'>
-						<div className='question-count'>
-							<span>Question {currentQuestion + 1}</span>/{questions.length}
-						</div>
-						
-						<div className='question-text'>{questions[currentQuestion].questionText}</div>
-
-						<div>&nbsp;</div>
-						<div className='answer-section'>
-							{questions[currentQuestion].answerOptions.map((answerOption) => (
-								<button className="question-button" onClick={() => handleAnswerOptionClick(answerOption.points)}>{answerOption.answerText}</button>
-							))}
-						</div>
-						
+			<div className='app'>
+				{showScore ? (
+					<div className='score-section'>
+						<button className="question-button">{/* You scored {score} out of {questions.length} */}
+							<Link to = {{
+								pathname:'/show',
+								questionProps:{
+									thisScore: score
+								}
+							}}>Choose</Link>
+						</button>
 					</div>
-					
-				</>
-			)}
-		</div>
+				) : (
+					<>
+						<div className='question-section'>
+							<div className='question-count'>
+								<span>Question {currentQuestion + 1}</span>/{questions.length}
+							</div>
+
+							<div className='question-text'>{questions[currentQuestion].questionText}</div>
+
+							<div>&nbsp;</div>
+							<div className='answer-section'>
+								{questions[currentQuestion].answerOptions.map((answerOption) => (
+									<button className="question-button" onClick={() => handleAnswerOptionClick(answerOption.points)}>{answerOption.answerText}</button>
+								))}
+							</div>
+
+						</div>
+
+					</>
+				)}
+			</div>
 		</div>
 	);
 }

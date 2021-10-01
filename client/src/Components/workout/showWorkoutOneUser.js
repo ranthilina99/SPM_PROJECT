@@ -21,23 +21,6 @@ class showWorkoutOneUser extends Component {
 
     componentDidMount() {
 
-        // axios.get(`http://localhost:5000/workout/${this.props.match.params.id}`)
-        //     .then(response => {
-        //         this.setState({
-        //             id: response.data.data._id,
-        //             workout_creator:response.data.data.workout_creator,
-        //             workout_users:response.data.data.workout_users,
-        //             workout_img:response.data.data.workout_img,
-        //             workout_name: response.data.data.workout_name,
-        //             workout_theme: response.data.data.workout_theme,
-        //             workout_description: response.data.data.workout_description,
-        //             workout_schedule:response.data.data.workout_schedule,
-        //             workout_diet:response.data.data.workout_diet,
-        //             workout_price:response.data.data.workout_price,
-        //             workout_level:response.data.data.workout_level
-        //         });
-        //     })
-
         axios.get(`http://localhost:5000/workoutUser/user/${this.props.match.params.id}`)
             .then(response => {
                 let d = new Date(response.data.data[0].createdAt);
