@@ -307,7 +307,7 @@ class Header extends Component {
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" aria-current="page"
-                                       href="/contact">Contact us</a>
+                                       href="/contactUs">Contact us</a>
                                 </li>
                             </ul>
                             :

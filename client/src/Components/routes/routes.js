@@ -15,7 +15,7 @@ import ViewSuppliersAdmin2 from "../forms/views/AdminSupplierView";
 
 import {Provider} from "react-redux";
 import store from "../../Store";
-import About from "../../umesh/about";
+import About from "../../umesh/pages/aboutUs/About Us";
 import User from "../../umesh/user";
 import Admin from "../../umesh/admin";
 import Employee from "../../umesh/employee";
@@ -53,6 +53,7 @@ import StoreItem from "../forms/views/StoreItem";
 import HomeScreen from "../../screens/HomeScreen";
 import CartScreen from "../../screens/CartScreen";
 import ProductScreen from "../../screens/ProductScreen";
+import ContactUs from "../../umesh/pages/ContactUs/contactUs";
 
 function Routes() {
     return (
@@ -64,6 +65,7 @@ function Routes() {
                             {/* Umesh Routes */}
                             <Route path="/" component={Homepage} exact/>
                             <Route path="/about" component={About} />
+                            <Route path="/contactUs" component={ContactUs} />
                             <Route path="/user" component={User} />
                             <Route path="/admin" component={Admin} />
                             <Route path="/employee" component={Employee} />

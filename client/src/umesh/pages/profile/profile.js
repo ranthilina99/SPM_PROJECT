@@ -199,11 +199,12 @@ class Profile extends Component {
             Gender: this.state.gender,
             imageUrl: this.state.PImage,
         }
+        console.log('DATA TO SEND', user);
         if (this.state.firstname.length < 3 || this.state.address.length < 3 ||
             this.state.mobile.length < 10 || this.state.mobile.length >= 11 ||
-            this.state.lastname.length < 3  || this.state.image!==""){
+            this.state.lastname.length < 3 ){
             this.validate(this.state.firstname,this.state.lastname,this.state.address,this.state.mobile,
-               this.state.DOB,this.state.Gender,this.state.image)
+                this.state.DOB,this.state.Gender)
             let message = "Update failed"
             FailAlert(message);
         }else if(!isMobile(this.state.mobile)){
@@ -213,7 +214,7 @@ class Profile extends Component {
             let message = "Tel. Number should contain only 10 digit number"
             FailAlert(message);
         }else {
-            console.log('DATA TO SEND', user);
+
             axios.put(SERVER_ADDRESS + '/users/update', user, {
                 headers: {Authorization: this.state.token}
             }).then(response => {
@@ -302,7 +303,7 @@ class Profile extends Component {
     render() {
         const testedResult = zxcvbn(this.state.newPassword);
         const errors1=this.validate(this.state.firstname,this.state.lastname,this.state.address,this.state.mobile,
-            this.state.DOB,this.state.Gender,this.state.image)
+            this.state.DOB,this.state.Gender)
         const errors=this.validatePassword(this.state.newPassword,this.state.confirmPassword);
         return (
             <>
@@ -322,19 +323,20 @@ class Profile extends Component {
                                 <div className="row">
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">First Name</Label>
-                                       <div>
-                                           <Input
-                                               type="text"
-                                               name="firstname"
-                                               id="exampleFirstname"
-                                               placeholder="First Name"
-                                               value={this.state.firstname}
-                                               onChange={this.onChange}
-                                               required
-                                               invalid={errors1.firstname !== ''}
-                                               onBlur={this.handleBlur('firstname')}/>
-                                           <FormFeedback>{errors1.firstname}</FormFeedback>
-                                       </div>
+                                        <div>
+                                            <Input
+                                                type="text"
+                                                name="firstname"
+                                                id="exampleFirstname"
+                                                placeholder="First Name"
+                                                value={this.state.firstname}
+                                                onChange={this.onChange}
+                                                required
+                                                valid={errors1.firstname === ''}
+                                                invalid={errors1.firstname !== ''}
+                                                onBlur={this.handleBlur('firstname')}/>
+                                            <FormFeedback>{errors1.firstname}</FormFeedback>
+                                        </div>
                                     </FormGroup>
                                     <FormGroup className="col-6">
                                         <Label for="exampleLastName">Last Name</Label>
@@ -351,54 +353,54 @@ class Profile extends Component {
                                                 onBlur={this.handleBlur('lastname')}
                                             />
                                             <FormFeedback>{errors1.lastname}</FormFeedback>
-                                     </div>
+                                        </div>
                                     </FormGroup>
                                 </div>
                                 <FormGroup>
                                     <Label for="exampleEmail">Email</Label>
-                                   <div>
-                                       <Input disabled
-                                              type="email"
-                                              name="email"
-                                              id="exampleEmail"
-                                              placeholder="abc@gmail.com"
-                                              value={this.state.email}
-                                              onChange={this.onChange}/>
-                                   </div>
+                                    <div>
+                                        <Input disabled
+                                               type="email"
+                                               name="email"
+                                               id="exampleEmail"
+                                               placeholder="abc@gmail.com"
+                                               value={this.state.email}
+                                               onChange={this.onChange}/>
+                                    </div>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="exampleEmail">Mobile No</Label>
-                                   <div>
-                                       <Input
-                                           type="tel"
-                                           name="mobile"
-                                           id="exampleMobile"
-                                           placeholder="Mobile Number"
-                                           value={this.state.mobile}
-                                           onChange={this.onChange}
-                                           required valid={errors1.mobile === ''}
-                                           invalid={errors1.mobile !== ''}
-                                           onBlur={this.handleBlur('mobile')}/>
-                                       <FormFeedback>{errors1.mobile}</FormFeedback>
-                                   </div>
+                                    <div>
+                                        <Input
+                                            type="tel"
+                                            name="mobile"
+                                            id="exampleMobile"
+                                            placeholder="Mobile Number"
+                                            value={this.state.mobile}
+                                            onChange={this.onChange}
+                                            required valid={errors1.mobile === ''}
+                                            invalid={errors1.mobile !== ''}
+                                            onBlur={this.handleBlur('mobile')}/>
+                                        <FormFeedback>{errors1.mobile}</FormFeedback>
+                                    </div>
                                 </FormGroup>
                                 <div className="row">
                                     <FormGroup className="col-6">
                                         <Label for="exampleEmail">Date Of Birth</Label>
-                                       <div>
-                                           <Input
-                                               type="date"
-                                               name="dob"
-                                               id="exampleDate"
-                                               placeholder="Date Of Birth"
-                                               value={this.state.dob}
-                                               onChange={this.onChange}
-                                               required
-                                               valid={errors1.dob === ''}
-                                               invalid={errors1.dob !== ''}
-                                               onBlur={this.handleBlur('DOB')}/>
-                                           <FormFeedback>{errors1.dob}</FormFeedback>
-                                       </div>
+                                        <div>
+                                            <Input
+                                                type="date"
+                                                name="dob"
+                                                id="exampleDate"
+                                                placeholder="Date Of Birth"
+                                                value={this.state.dob}
+                                                onChange={this.onChange}
+                                                required
+                                                valid={errors1.dob === ''}
+                                                invalid={errors1.dob !== ''}
+                                                onBlur={this.handleBlur('DOB')}/>
+                                            <FormFeedback>{errors1.dob}</FormFeedback>
+                                        </div>
                                     </FormGroup>
                                     <FormGroup className="col-6">
                                         <Label for="exampleSelect">Gender</Label>
@@ -420,19 +422,19 @@ class Profile extends Component {
                                 </div>
                                 <FormGroup>
                                     <Label for="exampleText">Address</Label>
-                                   <div>
-                                       <Input
-                                           type="textarea"
-                                           name="address"
-                                           id="exampleText"
-                                           value={this.state.address}
-                                           onChange={this.onChange}
-                                           required
-                                           valid={errors1.address === ''}
-                                           invalid={errors1.address !== ''}
-                                           onBlur={this.handleBlur('address')}/>
-                                       <FormFeedback>{errors1.address}</FormFeedback>
-                                   </div>
+                                    <div>
+                                        <Input
+                                            type="textarea"
+                                            name="address"
+                                            id="exampleText"
+                                            value={this.state.address}
+                                            onChange={this.onChange}
+                                            required
+                                            valid={errors1.address === ''}
+                                            invalid={errors1.address !== ''}
+                                            onBlur={this.handleBlur('address')}/>
+                                        <FormFeedback>{errors1.address}</FormFeedback>
+                                    </div>
                                 </FormGroup>
                                 <div className="mb-3">
                                     <Label htmlFor="res_img" className="form-label">Picture</Label>

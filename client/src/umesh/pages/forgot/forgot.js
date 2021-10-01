@@ -12,9 +12,9 @@ const ForgotAlert = () => {
     swat.fire({
         position: 'center',
         icon: 'success',
-        title: 'Forgot Password Successfully',
+        title: 'The email has sent',
         showConfirmButton: false,
-        timer: 3000
+        timer: 5000
     });
 }
 
