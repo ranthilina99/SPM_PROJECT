@@ -23,8 +23,7 @@ class HeroSection extends Component {
                         className='btns'
                         buttonStyle='btn--outline'
                         buttonSize='btn--large'
-                    >
-                        GET MY FREE WORKOUT
+                    >GET MY WORKOUT
                     </Button>
                 </div>
                 <br/> <br/> <br/>

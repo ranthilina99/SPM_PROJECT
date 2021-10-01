@@ -15,7 +15,7 @@ import ViewSuppliersAdmin2 from "../forms/views/AdminSupplierView";
 
 import {Provider} from "react-redux";
 import store from "../../Store";
-import About from "../../umesh/about";
+import About from "../../umesh/pages/aboutUs/About Us";
 import User from "../../umesh/user";
 import Admin from "../../umesh/admin";
 import Employee from "../../umesh/employee";
@@ -42,12 +42,18 @@ import showWorkoutOneEmployee from "../workout/showWorkoutOneEmployee";
 import showWorkoutChosen from "../workout/ShowChosen";
 import showWorkoutOneUser from "../workout/showWorkoutOneUser";
 
+import showAllWorkoutUser from "../workout/showAllWorkoutUser";
+
 //Binuka Routes
 import CreateStore from "../forms/Store/createStore";
 import EmpViewStore from "../forms/views/empViewStore";
 import EditStore from "../forms/Store/editStore";
 import CustomerViewStore from "../forms/views/customerViewStore";
 import StoreItem from "../forms/views/StoreItem";
+import HomeScreen from "../../screens/HomeScreen";
+import CartScreen from "../../screens/CartScreen";
+import ProductScreen from "../../screens/ProductScreen";
+import ContactUs from "../../umesh/pages/ContactUs/contactUs";
 
 function Routes() {
     return (
@@ -59,6 +65,7 @@ function Routes() {
                             {/* Umesh Routes */}
                             <Route path="/" component={Homepage} exact/>
                             <Route path="/about" component={About} />
+                            <Route path="/contactUs" component={ContactUs} />
                             <Route path="/user" component={User} />
                             <Route path="/admin" component={Admin} />
                             <Route path="/employee" component={Employee} />
@@ -100,12 +107,18 @@ function Routes() {
                             <Route path="/workoutChosen/:id" component={showWorkoutChosen}  />
                             <Route path="/workoutUserShow/:id" component={showWorkoutOneUser}  />
 
+                            <Route path="/workoutUserAllShow" component={showAllWorkoutUser}  />
+
+
                             {/* Binuka Routes */}
                             <Route path="/createStore" component={CreateStore} />
                             <Route path="/viewStore" component={CustomerViewStore} />
                             <Route path="/empViewStore" component={EmpViewStore} />
                             <Route path="/editStore/:id" component={EditStore} />
                             <Route path="/storeItem/:id" component={StoreItem} />
+                            <Route exact path="/homeStore" component={HomeScreen} />
+                            <Route exact path="/product/:id" component={ProductScreen} />
+                            <Route exact path="/cart" component={CartScreen} />
                         </Route>
                     </Switch>
                 </Router>

@@ -1,0 +1,78 @@
+#infoo{
+    background-image: url("../../../images/1087589.jpg");
+    color: black;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 100px;
+}
+
+#infoo h1{
+    color: #FFFFFF;
+    font-size: 80px;
+    text-align: center;
+}
+
+#info span{
+    font-weight: bold;
+}
+
+
+#info h3{
+    font-weight: lighter;
+}
+
+#info{
+    background-color: black;
+    color: red;
+    padding: 80px;
+}
+
+#story h3{
+    font-weight: bold;
+}
+#story{
+    padding: 100px;
+}
+
+.text-center_new{
+    background-color: black;
+}
+#service h3{
+    font-weight: bold;
+}
+#service{
+    padding: 100px;
+}
+
+#touch{
+    background-image: url("../../../asserts/teahub.io-gym-hd-wallpapers-1080p-1962277.png");
+    padding: 110px;
+    color: white;
+}
+#touch h2{
+    font-weight: bold;
+}
+#touch button{
+    width: 200px;
+}
+
+#core{
+    background-color: black;
+    color: white;
+    padding: 80px;
+}
+
+#core .col-md-4{
+    padding: 30px;
+}
+
+#core i{
+    font-size: 90px;
+    color: white;
+}
+
+#core i:hover{
+    transform: translate(0, -40px);
+}

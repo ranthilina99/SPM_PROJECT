@@ -113,7 +113,7 @@ class showWorkoutEmployee extends Component {
                                            </div>
                                            <div className="card-body">
                                                <h3>{item.workout_theme}</h3>
-                                               <h4>{item.workout_description }</h4>
+                                               <h5>{item.workout_description }</h5>
                                                <h6> Level {item.workout_level}</h6>
                                            </div>
                                        </div>

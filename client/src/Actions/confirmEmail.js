@@ -27,6 +27,8 @@ function ConfirmEmail() {
             <br/>
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
+            <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+            <br/> <br/> <br/> <br/>
         </div>
     )
 }

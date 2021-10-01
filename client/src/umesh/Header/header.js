@@ -44,7 +44,8 @@ class Header extends Component {
             isLoggedIn: false,
             user: ''
         })
-        window.location.replace('/')
+
+        window.location.replace('/login')
     }
     profileLink = e => {
         window.location.replace('/profile');
@@ -85,7 +86,9 @@ class Header extends Component {
     ViewWorkoutUser = e => {
         window.location.replace('/workoutUserShow/'+this.state.id);
     }
-
+    ViewAllWorkoutUser= e => {
+        window.location.replace('/workoutUserAllShow');
+    }
 
     componentDidMount() {
         const token = localStorage.getItem('token');
@@ -136,7 +139,8 @@ class Header extends Component {
                     <Nav className="me-auto">
                         { localStorage.getItem('userPosition') !== "admin" &&
                         localStorage.getItem('userPosition') !== "employee" &&
-                        localStorage.getItem('userPosition') !== "user"?
+                        localStorage.getItem('userPosition') !== "user" ||
+                            localStorage.getItem('userPosition') === " "  ?
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <a className="nav-link active" aria-current="page"
@@ -278,7 +282,11 @@ class Header extends Component {
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem onClick={this.ViewWorkoutUser}>
-                                                View Workout
+                                                My Workout
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem onClick={this.ViewAllWorkoutUser}>
+                                                All Workouts
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
@@ -291,7 +299,7 @@ class Header extends Component {
                             null
                         }
                         {localStorage.getItem('userPosition') === "admin" || localStorage.getItem('userPosition') === "employee" ||
-                        localStorage.getItem('userPosition') === "user" || !this.state.isLoggedIn ?
+                        localStorage.getItem('userPosition') === "user" || localStorage.getItem('userPosition') === " " ||  !this.state.isLoggedIn ?
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <a className="nav-link" aria-current="page"
@@ -299,7 +307,7 @@ class Header extends Component {
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" aria-current="page"
-                                       href="/contact">Contact us</a>
+                                       href="/contactUs">Contact us</a>
                                 </li>
                             </ul>
                             :
@@ -332,7 +340,8 @@ class Header extends Component {
                     }
                     { localStorage.getItem('userPosition') !== "admin" &&
                     localStorage.getItem('userPosition') !== "employee" &&
-                    localStorage.getItem('userPosition') !== "user"?
+                    localStorage.getItem('userPosition') !== "user" ||
+                    localStorage.getItem('userPosition') === " " ?
                         <Nav className="btn pull-right">
                             <a href="/login"><Button className="button "
                                                      variant="outline-primary">Login</Button></a>

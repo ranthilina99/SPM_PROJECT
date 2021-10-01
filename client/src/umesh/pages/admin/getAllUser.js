@@ -33,8 +33,11 @@ class GetAllUsers extends Component {
         this.state={
             users:[],
             token:'',
-            search:''
+            search:'',
+            filter:'',
+            filteredData:''
         }
+        this.handleChange=this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -66,7 +69,9 @@ class GetAllUsers extends Component {
             console.log(err.message);
         })
     }
-
+    handleChange = event => {
+        this.setState({ filter: event.target.value });
+    };
     onDelete(id){
         if(window.confirm("Are you sure you want to delete this account?")) {
             axios.delete(SERVER_ADDRESS + `/users/delete/${id}`, {
@@ -135,13 +140,21 @@ class GetAllUsers extends Component {
         });
     }
     render() {
+        const { filter, users } = this.state;
+        const lowerCasedFilter = filter.toLowerCase();
+        const upperCasedFilter = filter.toUpperCase();
+        this.state.filteredData = users.filter(users => {
+            return Object.keys(users).some(key =>
+                typeof users[key] === "string" && users[key].toLowerCase().includes(lowerCasedFilter) && users[key].toUpperCase().includes(upperCasedFilter)
+            );
+        });
         return (
             <div className="container">
                 <br/>
                 <div className="navbar  justify-content-between alert alert-primary"  role="alert">
                     <h3 className="admin_title">All User Details</h3>
                     <form className="form-inline">
-                        <input className="form-control mr-sm-2 mr-md-2 " type="search" placeholder="Search" aria-label="Search"/>
+                        <input className="form-control mr-sm-2 mr-md-2 " type="search" placeholder="Search" aria-label="Search" value={filter} onChange={this.handleChange}/>
                     </form>
                 </div>
                 <table className="table table-striped table-hover table-dark  table-bordered  col-md-12 ">
@@ -161,7 +174,7 @@ class GetAllUsers extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.users.length > 0 && this.state.users.map((users, index)=>(
+                    {this.state.users.length > 0 && this.state.filteredData.map((users, index)=>(
                         <tr key={index}>
                             <th scope="row" >{index + 1}</th>
                             {/*<td>{users._id}</td>*/}
@@ -200,7 +213,7 @@ class GetAllUsers extends Component {
                                 CSV File
                             </DropdownItem>
                         </DropdownMenu>
-                </UncontrolledDropdown>
+                    </UncontrolledDropdown>
                 </div>
                 <br/>
                 <br/>

@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {SERVER_ADDRESS} from "../../../Constants/Constants";
 import swat from "sweetalert2";
+import {FormGroup, Input} from "@material-ui/core";
+import {Label} from "reactstrap";
+import {isLength,isEmpty} from "../../../Utils/validations";
+import zxcvbn from "zxcvbn";
 
 
 const UpdateAlert = () => {
@@ -60,20 +64,28 @@ class AdminEditUser extends Component {
         let user = {
             new_password: this.state.password
         }
-        console.log('DATA TO SEND', user);
-        axios.post(SERVER_ADDRESS+`/users/admin_update_password/${this.props.match.params.id}`, user)
-            .then(response => {
-                UpdateAlert();
+        if(isEmpty(this.state.password)) {
+            let message = "Empty Field"
+            UpdateFail(message);
+        }else if(isLength(this.state.password)) {
+            let message = "Password Error"
+            UpdateFail(message);
+        }else {
+            console.log('DATA TO SEND', user);
+            axios.post(SERVER_ADDRESS + `/users/admin_update_password/${this.props.match.params.id}`, user)
+                .then(response => {
+                    UpdateAlert();
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    let message = "Password Error"
+                    UpdateFail(message);
+                }).finally(x => {
+                this.setState({
+                    password: ''
+                })
             })
-            .catch(error => {
-                console.log(error.message);
-                let message= "Password Error"
-                UpdateFail(message);
-            }).finally(x=>{
-            this.setState({
-                password:''
-            })
-        })
+        }
     }
     onSubmit(e) {
         e.preventDefault();
@@ -92,7 +104,24 @@ class AdminEditUser extends Component {
                 UpdateFail(message);
             })
     }
+    createPasswordLabel = (result) => {
+        switch (result.score) {
+            case 0:
+                return 'Weak';
+            case 1:
+                return 'Weak';
+            case 2:
+                return 'Fair';
+            case 3:
+                return 'Good';
+            case 4:
+                return 'Strong';
+            default:
+                return 'Weak';
+        }
+    }
     render() {
+        const testedResult = zxcvbn(this.state.password);
         return (
             <div>
                 {this.state.updateFields &&
@@ -191,19 +220,36 @@ class AdminEditUser extends Component {
                         />
                     </div>
                     <label htmlFor="exampleFormControlTextarea1" className="form-label">Password</label>
-                    <div className="form-group d-flex">
-                        <input
+                    <FormGroup className="form-group d-flex">
+                        <Input
                             className="form-control"
                             type="password"
                             name="password"
                             id="password"
                             value={this.state.password}
-                            onChange={this.onChange}>
-                        </input>
-                    </div>
+                            onChange={this.onChange}/>
+                        {this.state.password &&
+                        <progress
+                            className={`password-strength-meter-progress strength-${this.createPasswordLabel(testedResult)}`}
+                            value={testedResult.score}
+                            max="4"
+                        />
+                        }
+                        <FormGroup>
+                            <Label
+                                className="password-strength-meter-label"
+                            >
+                                {this.state.password &&  (
+                                    <>
+                                        <strong>Password strength:</strong> {this.createPasswordLabel(testedResult)}
+                                    </>
+                                )}
+                            </Label>
+                        </FormGroup>
+                    </FormGroup>
                     <div className="form-group">
                         <button type="submit"
-                                className="btn-block  btn-lg btn btn-primary">Update Details
+                                className="btn-block  btn-lg btn btn-primary">Update Password
                         </button>
                     </div>
                     <div className="form-group">

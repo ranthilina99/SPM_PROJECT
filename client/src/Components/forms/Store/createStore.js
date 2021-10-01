@@ -1,14 +1,14 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import swat from "sweetalert2"
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Form, FormGroup, Label, Input, FormFeedback} from 'reactstrap';
 import './createStore.css'
 import FileBase from 'react-file-base64';
 import {Link} from "react-router-dom";
 // import UserNavbar from "../navbar/UserNavBar";
 // import Template1 from "url:../../Assets/Templates/temp2.docx";
 // import firebase from "../firebase/index";
-// import {isEmpty} from "../../utils/validation";
+
 
 const initialState = {
 
@@ -17,7 +17,13 @@ const initialState = {
     itemAmount: '',
     itemQTY:'',
     itemImage:'',
-    isDisabled: true
+    isDisabled: true,
+    touched: {
+        itemName: false,
+        itemDescription: false,
+        itemAmount: false,
+        itemQTY:false,
+    }
 
 }
 
@@ -49,7 +55,35 @@ class CreateStore extends Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
         this.state = initialState;
+
+    }
+
+    handleBlur = (field) => (evt) => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+
+    validate =(itemName,itemDescription,itemAmount)=> {
+        const errors = {
+            itemName: '',
+            itemDescription: '',
+            itemAmount: '',
+            itemQTY:''
+        };
+        if (this.state.touched.itemName && itemName.length < 3)
+            errors.itemName = 'Invalid Item Name';
+        else if (this.state.touched.itemName && itemName.length > 10)
+            errors.itemName = 'Invalid Item Name';
+        if (this.state.touched.itemDescription && itemDescription.length < 5)
+            errors.itemDescription = 'Invalid Description';
+        // else if (this.state.touched.lastname && lastname.length > 10)
+        //     errors.lastname = 'Last Name should be <= 10 characters';
+        if (this.state.touched.itemAmount && true == isNaN(itemAmount))
+            errors.itemAmount = '5 characters';
+        return errors;
     }
 
     componentDidMount() {
@@ -80,65 +114,113 @@ class CreateStore extends Component {
             itemImage: this.state.itemImage
         }
 
-        console.log('DATA TO SEND', store);
-        axios.post('http://localhost:5000/store', store)
-            .then(response => {
-                SubmissionAlert()
+        // console.log('DATA TO SEND', store);
+        // axios.post('http://localhost:5000/store', store)
+        //     .then(response => {
+        //         SubmissionAlert()
+        //
+        //     })
+        //     .catch(error => {
+        //         console.log(error.message);
+        //         let message = "Submission Error"
+        //         SubmissionFail(message);
+        //     })
+        // this.setState({ isDisabled: false });
 
-            })
-            .catch(error => {
-                console.log(error.message);
-                let message = "Submission Error"
-                SubmissionFail(message);
-            })
-        this.setState({ isDisabled: false });
+        // if (isEmpty(this.state.itemName) || isEmpty(this.state.itemDescription) || isEmpty(this.state.itemAmount) || isEmpty(this.state.itemQTY))
+        // {
+        //     let message = "Fill the required fields"
+        //     SubmissionFail(message);
+        // }
+        // else{
+        if (this.state.itemName.length < 3 || this.state.itemName.length > 10 ||
+            this.state.itemDescription.length < 5) {
+            this.validate(this.state.itemName,this.state.itemDescription)
+        }
+        else if((isNaN(this.state.itemAmount))){
+            this.validate(this.state.itemAmount)
+        }
+        else {
+            console.log('DATA TO SEND', store);
+            axios.post('http://localhost:5000/store', store)
+                .then(response => {
+                    SubmissionAlert()
+
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    let message = "Submission Error"
+                    SubmissionFail(message);
+                })
+            this.setState({ isDisabled: false });
+        }
+
+
     }
 
     render() {
+        const errors=this.validate(this.state.itemName,this.state.itemDescription);
         return (
             <div>
                 <Form className="store_wrapper" onSubmit={this.onSubmit}>
                     <h2 className="store_title">ADD STORE DETAILS</h2>
                     <FormGroup>
-                        <label htmlFor="storeName" className="form-label">Name</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="storeName"
-                            name="itemName"
-                            placeholder="Name"
-                            value={this.state.itemName}
-                            onChange={this.onChange}
-                        />
+                        <Label htmlFor="storeName" className="form-label">Name</Label>
+                        <div>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                id="storeName"
+                                name="itemName"
+                                placeholder="Name"
+                                value={this.state.itemName}
+                                onChange={this.onChange}
+                                valid={errors.itemName === ''}
+                                invalid={errors.itemName !== ''}
+                                onBlur={this.handleBlur('itemName')}
+                            />
+                            <FormFeedback>{errors.itemName}</FormFeedback>
+                        </div>
                     </FormGroup>
                     <FormGroup>
                         <label htmlFor="storeDes" className="form-label">Description</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="storeDes"
-                            placeholder="Description"
-                            name="itemDescription"
-                            value={this.state.itemDescription}
-                            onChange={this.onChange}
-                        />
+                        <div>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                id="storeDes"
+                                name="itemDescription"
+                                placeholder="Description"
+                                value={this.state.itemDescription}
+                                onChange={this.onChange}
+                                valid={errors.itemDescription === ''}
+                                invalid={errors.itemDescription !== ''}
+                                onBlur={this.handleBlur('itemDescription')}
+                            />
+                            <FormFeedback>{errors.itemDescription}</FormFeedback>
+                        </div>
                     </FormGroup>
                     <FormGroup>
                         <label htmlFor="storeAmount" className="form-label">Amount</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="storeAmount"
-                            name="itemAmount"
-                            placeholder="2000.00"
-                            value={this.state.itemAmount}
-                            onChange={this.onChange}
-                        />
+                        <div>
+                            <Input
+                                type="number"
+                                className="form-control"
+                                id="storeAmount"
+                                name="itemAmount"
+                                placeholder="2000.00"
+                                pattern="[0-9]*"
+                                inputmode="numeric"
+                                value={this.state.itemAmount}
+                                onChange={this.onChange}
+                            />
+                            <FormFeedback>{errors.itemAmount}</FormFeedback>
+                        </div>
                     </FormGroup>
                     <FormGroup>
                         <label htmlFor="storeQTY" className="form-label">QTY</label>
                         <input
-                            type="number"
+                            type="text"
                             className="form-control"
                             id="storeQTY"
                             name="itemQTY"

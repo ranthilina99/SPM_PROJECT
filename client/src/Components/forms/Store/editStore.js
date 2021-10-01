@@ -61,11 +61,11 @@ class EditStore extends Component {
             .then(response => {
                 this.setState(
                     {
-                        itemName: response.data.data.itemName,
-                        itemDescription: response.data.data.itemDescription,
-                        itemAmount: response.data.data.itemAmount,
-                        itemQTY: response.data.data.itemQTY,
-                        itemImage: response.data.data.itemImage
+                        itemName: response.data.itemName,
+                        itemDescription: response.data.itemDescription,
+                        itemAmount: response.data.itemAmount,
+                        itemQTY: response.data.itemQTY,
+                        itemImage: response.data.itemImage
                     });
             })
             .catch(error => {

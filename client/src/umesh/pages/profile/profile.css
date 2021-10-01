@@ -14,7 +14,7 @@
     padding: 10px;
 }
 
-.profile_page .col-left .avatar{
+.profile_page .col-left .avatar1{
     width: 150px;
     height: 150px;
     overflow: hidden;
@@ -56,4 +56,5 @@
 .profile_title{
     text-transform: uppercase;
     text-align: center;
+    font-weight: bold;
 }

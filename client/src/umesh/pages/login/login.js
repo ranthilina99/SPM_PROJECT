@@ -6,6 +6,7 @@ import './login.css'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import logo from '../../../images/new.png'
+import {isEmail, isEmpty, isLength} from "../../../Utils/validations";
 
 const Login = ({loginUser, isLoggedIn}) => {
 
@@ -72,7 +73,17 @@ const Login = ({loginUser, isLoggedIn}) => {
 
         if (email === "" || password === "") {
             fieldmissAlart();
-        } else {
+        }
+        if (isEmpty(email) || isEmpty(password)) {
+            let message="Fields are Empty"
+            fieldmissAlart(message);
+        } else if (isLength(password)) {
+            let message="At least 8 Characters"
+            fieldmissAlart(message);
+        } else if (!isEmail(email)) {
+            let message = "Invalid Email"
+            fieldmissAlart(message);
+        }else {
             loginUser(email, password);
         }
     }
@@ -96,7 +107,7 @@ const Login = ({loginUser, isLoggedIn}) => {
                         type="email"
                         className="form-control"
                         id="email"
-                        placeholder="email@example.com"
+                        placeholder="email@gamil.com"
                         onChange={(e) => onChange(e)}
                         value={email}
                         name="email"
@@ -122,7 +133,7 @@ const Login = ({loginUser, isLoggedIn}) => {
                 </button>
                 &nbsp;
                 <Form.Group className="login_register">
-                    <Form.Label>Don't have an account?<a className="register"  href="/register">Register</a></Form.Label>
+                    <Form.Label>Don't have an account?&nbsp;<a className="register"  href="/register">Register</a></Form.Label>
                 </Form.Group>
             </Form>
         </div>
