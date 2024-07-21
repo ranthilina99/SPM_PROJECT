@@ -23,7 +23,7 @@ app.use(bodyParser.json({ limit:"120mb",extended: true}));
 app.use(bodyParser.urlencoded({ limit:"120mb",extended: true}));
 app.set('trust proxy', 1) // trust first proxy
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI, {
