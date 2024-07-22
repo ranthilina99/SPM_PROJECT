@@ -2,7 +2,7 @@
   "name": "sliit-api",
   "version": "1.0.0",
   "description": "AF Final paper API",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "nodemon server.js",
