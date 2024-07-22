@@ -23,21 +23,6 @@ app.use(bodyParser.json({ limit:"120mb",extended: true}));
 app.use(bodyParser.urlencoded({ limit:"120mb",extended: true}));
 app.set('trust proxy', 1) // trust first proxy
 
-const PORT = process.env.PORT;
-const MONGODB_URI = process.env.MONGODB_URI;
-
-mongoose.connect(MONGODB_URI, {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: true
-
-}, (error) => {
-  if (error) {
-    console.log('Database Error: ', error.message);
-  }
-});
-
 app.use('/users', userAPI());
 app.use('/StockCategory', StockCategoryAPI());
 app.use('/StockCategoryItem', StockCategoryItemAPI());
@@ -46,12 +31,17 @@ app.use('/workout', workoutAPI());
 app.use('/workoutUser', workoutUserAPI());
 app.use('/store', storeAPI());
 
-
-
-mongoose.connection.once('open', () => {
-  console.log('Database Connected');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is up and running on PORT ${PORT}`);
-});
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => {
+      console.log('Database Connection is ready...');
+      //Server
+      app.listen(process.env.PORT, () => {
+          console.log(`server is running http://localhost:${process.env.PORT}`);
+      })
+  })
+  .catch((err) => {
+      console.log(err);
+  })
